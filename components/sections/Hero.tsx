@@ -106,6 +106,7 @@ export default function Hero() {
                   />
                   every prompt into a breakthough.
                 </h1>
+                {/* // todo: investigate this, but for now keep both classes. */}
                 <p className='mx-auto mt-8 max-w-2xl text-balance text-lg text-pretty text-muted-foreground'>
                   Improve your workflow with automatic prompt enhancement. Save
                   time and effort while elevating AI response quality through
