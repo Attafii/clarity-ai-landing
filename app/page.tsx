@@ -1,6 +1,8 @@
 import Header from "@/components/layout/Header";
 import Hero from "@/components/sections/Hero";
 import FloatingDockSection from "@/components/sections/FloatingDockSection";
+import { TestimonialsSection } from "@/components/ui/testimonials-columns-1";
+import { Features } from "@/components/ui/features-8";
 import Footer from "@/components/layout/Footer";
 
 export default function Home() {
@@ -12,6 +14,9 @@ export default function Home() {
       <section id="home">
         <Hero />
       </section>
+
+      {/* Features Section */}
+      <Features />
 
       {/* AI Solutions Section */}
       <section id="solutions" className="py-24 bg-muted/30">
@@ -96,6 +101,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <TestimonialsSection />
 
       {/* Floating Navigation Dock */}
       <FloatingDockSection />

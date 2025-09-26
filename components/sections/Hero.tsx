@@ -2,288 +2,127 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { ArrowRight, ChevronRight, MoveRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { AnimatedGroup } from '@/components/ui/animated-group';
+import AnimatedShaderHero from '@/components/ui/animated-shader-hero';
+import SimpleHeroTest from '@/components/ui/simple-hero-test';
+import LogoLoop from '@/components/LogoLoop';
 import { siteConfig } from '@/lib/site';
+import { 
+  SiGithub, 
+  SiOpenai, 
+  SiGoogle, 
+  SiVercel, 
+  SiNotion, 
+  SiLinear,
+  SiSlack,
+  SiFigma,
+  SiDiscord,
+  SiSupabase,
+  SiNetflix,
+  SiSpotify,
+  SiTailwindcss,
+  SiTypescript
+} from 'react-icons/si';
 
-const transitionVariants = {
-  item: {
-    hidden: {
-      opacity: 0,
-      filter: 'blur(12px)',
-      y: 12,
-    },
-    visible: {
-      opacity: 1,
-      filter: 'blur(0px)',
-      y: 0,
-      transition: {
-        type: 'spring' as const,
-        bounce: 0.3,
-        duration: 1.5,
-      },
-    },
-  },
-};
+// Tech company logos with modern brands
+const techLogos = [
+  { node: <SiGithub className="text-gray-600 dark:text-gray-400" />, title: "GitHub", href: "https://github.com" },
+  { node: <SiOpenai className="text-gray-600 dark:text-gray-400" />, title: "OpenAI", href: "https://openai.com" },
+  { node: <SiGoogle className="text-gray-600 dark:text-gray-400" />, title: "Google", href: "https://google.com" },
+  { node: <SiVercel className="text-gray-600 dark:text-gray-400" />, title: "Vercel", href: "https://vercel.com" },
+  { node: <SiNotion className="text-gray-600 dark:text-gray-400" />, title: "Notion", href: "https://notion.so" },
+  { node: <SiLinear className="text-gray-600 dark:text-gray-400" />, title: "Linear", href: "https://linear.app" },
+  { node: <SiSlack className="text-gray-600 dark:text-gray-400" />, title: "Slack", href: "https://slack.com" },
+];
+
+// Second row of logos for opposite direction scrolling
+const techLogosRow2 = [
+  { node: <SiFigma className="text-gray-600 dark:text-gray-400" />, title: "Figma", href: "https://figma.com" },
+  { node: <SiDiscord className="text-gray-600 dark:text-gray-400" />, title: "Discord", href: "https://discord.com" },
+  { node: <SiSupabase className="text-gray-600 dark:text-gray-400" />, title: "Supabase", href: "https://supabase.com" },
+  { node: <SiNetflix className="text-gray-600 dark:text-gray-400" />, title: "Netflix", href: "https://netflix.com" },
+  { node: <SiSpotify className="text-gray-600 dark:text-gray-400" />, title: "Spotify", href: "https://spotify.com" },
+  { node: <SiTailwindcss className="text-gray-600 dark:text-gray-400" />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+  { node: <SiTypescript className="text-gray-600 dark:text-gray-400" />, title: "TypeScript", href: "https://typescriptlang.org" },
+];
 
 export default function Hero() {
+  const handlePrimaryClick = () => {
+    // Add your logic here for primary CTA
+    console.log('Install for VS Code clicked');
+  };
+
+  const handleSecondaryClick = () => {
+    // Add your logic here for secondary CTA
+    console.log('See How It Works clicked');
+  };
+
   return (
     <main className='overflow-hidden'>
-      <section>
-        <div className='relative pt-24 md:pt-36'>
-          <AnimatedGroup
-            variants={{
-              container: {
-                visible: {
-                  transition: {
-                    delayChildren: 1,
-                  },
-                },
-              },
-              item: {
-                hidden: {
-                  opacity: 0,
-                  y: 20,
-                },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    type: 'spring' as const,
-                    bounce: 0.3,
-                    duration: 2,
-                  },
-                },
-              },
-            }}
-            className='absolute inset-0 -z-20'
-          >
-            <img
-              src='https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=3840&q=75'
-              alt='background'
-              className='absolute inset-x-0 top-56 -z-20 hidden lg:top-32 dark:block w-full h-full object-cover'
-              width='3276'
-              height='4095'
-            />
-          </AnimatedGroup>
-          <div
-            aria-hidden
-            className='absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--background)_75%)]'
-          />
-          <div className='mx-auto max-w-7xl px-6'>
-            <div className='text-center sm:mx-auto lg:mr-auto lg:mt-0'>
-              <AnimatedGroup variants={transitionVariants}>
-                <Link
-                  href='#link'
-                  className='hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-black/5 transition-all duration-300 dark:border-t-white/5 dark:shadow-zinc-950'
-                >
-                  <span className='text-foreground text-sm'>
-                    Supercharge Your Copilot Experience
-                  </span>
-                  <span className='dark:border-background block h-4 w-0.5 border-l bg-white dark:bg-zinc-700'></span>
-
-                  <div className='bg-background group-hover:bg-muted size-6 overflow-hidden rounded-full duration-500'>
-                    <div className='flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0'>
-                      <span className='flex size-6'>
-                        <ArrowRight className='m-auto size-3' />
-                      </span>
-                      <span className='flex size-6'>
-                        <ArrowRight className='m-auto size-3' />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-
-                <h1 className='mt-8 max-w-4xl mx-auto text-balance text-6xl md:text-7xl lg:mt-16 xl:text-[5.25rem]'>
-                  Elevate
-                  <Image
-                    alt='Clarity AI'
-                    width={70}
-                    height={70}
-                    className='rounded-md inline-block mx-2'
-                    src={'/flower.webp'}
-                  />
-                  every prompt into a breakthough.
-                </h1>
-                {/* // todo: investigate this, but for now keep both classes. */}
-                <p className='mx-auto mt-8 max-w-2xl text-balance text-lg text-pretty text-muted-foreground'>
-                  Improve your workflow with automatic prompt enhancement. Save
-                  time and effort while elevating AI response quality through
-                  intelligent prompt enhancement & planning that seamlessly
-                  integrates with GitHub Copilot.
-                </p>
-              </AnimatedGroup>
-
-              <AnimatedGroup
-                variants={{
-                  container: {
-                    visible: {
-                      transition: {
-                        staggerChildren: 0.05,
-                        delayChildren: 0.75,
-                      },
-                    },
-                  },
-                  ...transitionVariants,
-                }}
-                className='mt-12 flex flex-col items-center justify-center gap-2 md:flex-row'
-              >
-                <div
-                  key={1}
-                  className='bg-foreground/10 rounded-lg border p-0.5'
-                >
-                  <Button
-                    asChild
-                    size='lg'
-                    className='rounded-md px-5 text-base'
-                  >
-                    <Link href={siteConfig.urls.marketplace}>
-                      <span className='text-nowrap'>Install for VS Code</span>
-                    </Link>
-                  </Button>
-                </div>
-                <Button
-                  key={2}
-                  asChild
-                  size='lg'
-                  variant='ghost'
-                  className='h-10.5 rounded-md px-5'
-                >
-                  <Link href={siteConfig.urls.docs}>
-                    <span className='text-nowrap'>See How It Works</span>
-                  </Link>
-                </Button>
-              </AnimatedGroup>
-            </div>
-          </div>
-
-          <AnimatedGroup
-            variants={{
-              container: {
-                visible: {
-                  transition: {
-                    staggerChildren: 0.05,
-                    delayChildren: 0.75,
-                  },
-                },
-              },
-              ...transitionVariants,
-            }}
-          >
-            <div className='relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20'>
-              <div
-                aria-hidden
-                className='bg-gradient-to-b to-background absolute inset-0 z-10 from-transparent from-35%'
-              />
-              <div className='inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-4xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1'>
-                <img
-                  className='bg-background aspect-15/8 relative hidden rounded-2xl dark:block w-full h-auto object-cover'
-                  src='https://images.unsplash.com/photo-1551650975-87deedd944c3?w=2700&q=75'
-                  alt='app screen'
-                  width='2700'
-                  height='1440'
-                />
-                <img
-                  className='z-2 border-border/25 aspect-15/8 relative rounded-2xl border dark:hidden w-full h-auto object-cover'
-                  src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=2700&q=75'
-                  alt='app screen'
-                  width='2700'
-                  height='1440'
-                />
-              </div>
-            </div>
-          </AnimatedGroup>
-        </div>
-      </section>
+      {/* New Animated Shader Hero Section with brand colors */}
+      <AnimatedShaderHero
+        trustBadge={{
+          text: "Supercharge Your Copilot Experience",
+          icons: ["✨"]
+        }}
+        headline={{
+          line1: "Elevate every prompt into a",
+          line2: "breakthrough."
+        }}
+        subtitle="Improve your workflow with automatic prompt enhancement. Save time and effort while elevating AI response quality through intelligent prompt enhancement & planning that seamlessly integrates with GitHub Copilot."
+        buttons={{
+          primary: {
+            text: "Install for VS Code",
+            onClick: handlePrimaryClick
+          },
+          secondary: {
+            text: "See How It Works",
+            onClick: handleSecondaryClick
+          }
+        }}
+      />
       
-      <section className='bg-background pb-16 pt-16 md:pb-32'>
-        <div className='group relative m-auto max-w-5xl px-6'>
-          <div className='absolute inset-0 z-10 flex scale-95 items-center justify-center opacity-0 duration-500 group-hover:scale-100 group-hover:opacity-100'>
-            <Link
-              href='/'
-              className='block text-sm duration-150 hover:opacity-75'
-            >
-              <span> Trusted by Developers</span>
-
-              <ChevronRight className='ml-1 inline-block size-3' />
-            </Link>
+      {/* Trusted by Developers Section */}
+      <section className='bg-background pb-16 pt-16 md:pb-24'>
+        <div className='mx-auto max-w-7xl px-6'>
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+              Trusted by developers at
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Join thousands of developers who rely on our AI-powered tools to enhance their workflow
+            </p>
           </div>
-          <div className='group-hover:blur-xs mx-auto mt-12 grid max-w-2xl grid-cols-4 gap-x-12 gap-y-8 transition-all duration-500 group-hover:opacity-50 sm:gap-x-16 sm:gap-y-14'>
-            <div className='flex'>
-              <img
-                className='mx-auto h-5 w-fit dark:invert'
-                src='https://html.tailus.io/blocks/customers/nvidia.svg'
-                alt='Nvidia Logo'
-                height='20'
-                width='auto'
-              />
-            </div>
-
-            <div className='flex'>
-              <img
-                className='mx-auto h-4 w-fit dark:invert'
-                src='https://html.tailus.io/blocks/customers/column.svg'
-                alt='Column Logo'
-                height='16'
-                width='auto'
-              />
-            </div>
-            <div className='flex'>
-              <img
-                className='mx-auto h-4 w-fit dark:invert'
-                src='https://html.tailus.io/blocks/customers/github.svg'
-                alt='GitHub Logo'
-                height='16'
-                width='auto'
-              />
-            </div>
-            <div className='flex'>
-              <img
-                className='mx-auto h-5 w-fit dark:invert'
-                src='https://html.tailus.io/blocks/customers/nike.svg'
-                alt='Nike Logo'
-                height='20'
-                width='auto'
-              />
-            </div>
-            <div className='flex'>
-              <img
-                className='mx-auto h-5 w-fit dark:invert'
-                src='https://html.tailus.io/blocks/customers/lemonsqueezy.svg'
-                alt='Lemon Squeezy Logo'
-                height='20'
-                width='auto'
-              />
-            </div>
-            <div className='flex'>
-              <img
-                className='mx-auto h-4 w-fit dark:invert'
-                src='https://html.tailus.io/blocks/customers/laravel.svg'
-                alt='Laravel Logo'
-                height='16'
-                width='auto'
-              />
-            </div>
-            <div className='flex'>
-              <img
-                className='mx-auto h-7 w-fit dark:invert'
-                src='https://html.tailus.io/blocks/customers/lilly.svg'
-                alt='Lilly Logo'
-                height='28'
-                width='auto'
-              />
-            </div>
-
-            <div className='flex'>
-              <img
-                className='mx-auto h-6 w-fit dark:invert'
-                src='https://html.tailus.io/blocks/customers/openai.svg'
-                alt='OpenAI Logo'
-                height='24'
-                width='auto'
-              />
-            </div>
+          
+          <div className="relative space-y-8">
+            {/* First row - scrolling left */}
+            <LogoLoop
+              logos={techLogos}
+              speed={40}
+              direction="left"
+              logoHeight={32}
+              gap={80}
+              pauseOnHover={true}
+              scaleOnHover={true}
+              fadeOut={true}
+              ariaLabel="Technology partners and trusted companies"
+              className="opacity-60 hover:opacity-80 transition-opacity duration-300"
+            />
+            
+            {/* Second row - scrolling right */}
+            <LogoLoop
+              logos={techLogosRow2}
+              speed={35}
+              direction="right"
+              logoHeight={32}
+              gap={80}
+              pauseOnHover={true}
+              scaleOnHover={true}
+              fadeOut={true}
+              ariaLabel="Technology partners and trusted companies"
+              className="opacity-60 hover:opacity-80 transition-opacity duration-300"
+            />
           </div>
         </div>
       </section>
