@@ -1,6 +1,5 @@
-"use client";
+'use client';;
 import React, { useRef, useEffect, useState } from 'react';
-import Image from 'next/image';
 
 // Types for component props
 interface HeroProps {
@@ -10,7 +9,7 @@ interface HeroProps {
   };
   headline: {
     line1: string;
-    line2: string;
+    line2?: string;
   };
   subtitle: string;
   buttons?: {
@@ -88,7 +87,12 @@ void main(){gl_Position=position;}`;
 
     updateScale(scale: number) {
       this.scale = scale;
-      this.gl.viewport(0, 0, this.canvas.width * scale, this.canvas.height * scale);
+      this.gl.viewport(
+        0,
+        0,
+        this.canvas.width * scale,
+        this.canvas.height * scale
+      );
     }
 
     compile(shader: WebGLShader, source: string) {
@@ -118,7 +122,10 @@ void main(){gl_Position=position;}`;
 
     reset() {
       const gl = this.gl;
-      if (this.program && !gl.getProgramParameter(this.program, gl.DELETE_STATUS)) {
+      if (
+        this.program &&
+        !gl.getProgramParameter(this.program, gl.DELETE_STATUS)
+      ) {
         if (this.vs) {
           gl.detachShader(this.program, this.vs);
           gl.deleteShader(this.vs);
@@ -150,38 +157,56 @@ void main(){gl_Position=position;}`;
     init() {
       const gl = this.gl;
       const program = this.program!;
-      
+
       this.buffer = gl.createBuffer();
       gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
-      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.vertices), gl.STATIC_DRAW);
+      gl.bufferData(
+        gl.ARRAY_BUFFER,
+        new Float32Array(this.vertices),
+        gl.STATIC_DRAW
+      );
 
       const position = gl.getAttribLocation(program, 'position');
       gl.enableVertexAttribArray(position);
       gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
 
-      (program as any).resolution = gl.getUniformLocation(program, 'resolution');
+      (program as any).resolution = gl.getUniformLocation(
+        program,
+        'resolution'
+      );
       (program as any).time = gl.getUniformLocation(program, 'time');
       (program as any).move = gl.getUniformLocation(program, 'move');
       (program as any).touch = gl.getUniformLocation(program, 'touch');
-      (program as any).pointerCount = gl.getUniformLocation(program, 'pointerCount');
+      (program as any).pointerCount = gl.getUniformLocation(
+        program,
+        'pointerCount'
+      );
       (program as any).pointers = gl.getUniformLocation(program, 'pointers');
     }
 
     render(now = 0) {
       const gl = this.gl;
       const program = this.program;
-      
+
       if (!program || gl.getProgramParameter(program, gl.DELETE_STATUS)) return;
 
       gl.clearColor(0, 0, 0, 1);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.useProgram(program);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
-      
-      gl.uniform2f((program as any).resolution, this.canvas.width, this.canvas.height);
+
+      gl.uniform2f(
+        (program as any).resolution,
+        this.canvas.width,
+        this.canvas.height
+      );
       gl.uniform1f((program as any).time, now * 1e-3);
       gl.uniform2f((program as any).move, this.mouseMove[0], this.mouseMove[1]);
-      gl.uniform2f((program as any).touch, this.mouseCoords[0], this.mouseCoords[1]);
+      gl.uniform2f(
+        (program as any).touch,
+        this.mouseCoords[0],
+        this.mouseCoords[1]
+      );
       gl.uniform1i((program as any).pointerCount, this.nbrOfPointers);
       gl.uniform2fv((program as any).pointers, this.pointerCoords);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
@@ -198,13 +223,20 @@ void main(){gl_Position=position;}`;
 
     constructor(element: HTMLCanvasElement, scale: number) {
       this.scale = scale;
-      
-      const map = (element: HTMLCanvasElement, scale: number, x: number, y: number) => 
-        [x * scale, element.height - y * scale];
+
+      const map = (
+        element: HTMLCanvasElement,
+        scale: number,
+        x: number,
+        y: number
+      ) => [x * scale, element.height - y * scale];
 
       element.addEventListener('pointerdown', (e) => {
         this.active = true;
-        this.pointers.set(e.pointerId, map(element, this.getScale(), e.clientX, e.clientY));
+        this.pointers.set(
+          e.pointerId,
+          map(element, this.getScale(), e.clientX, e.clientY)
+        );
       });
 
       element.addEventListener('pointerup', (e) => {
@@ -226,7 +258,10 @@ void main(){gl_Position=position;}`;
       element.addEventListener('pointermove', (e) => {
         if (!this.active) return;
         this.lastCoords = [e.clientX, e.clientY];
-        this.pointers.set(e.pointerId, map(element, this.getScale(), e.clientX, e.clientY));
+        this.pointers.set(
+          e.pointerId,
+          map(element, this.getScale(), e.clientX, e.clientY)
+        );
         this.moves = [this.moves[0] + e.movementX, this.moves[1] + e.movementY];
       });
     }
@@ -248,8 +283,8 @@ void main(){gl_Position=position;}`;
     }
 
     get coords() {
-      return this.pointers.size > 0 
-        ? Array.from(this.pointers.values()).flat() 
+      return this.pointers.size > 0
+        ? Array.from(this.pointers.values()).flat()
         : [0, 0];
     }
 
@@ -260,13 +295,13 @@ void main(){gl_Position=position;}`;
 
   const resize = () => {
     if (!canvasRef.current) return;
-    
+
     const canvas = canvasRef.current;
     const dpr = Math.max(1, 0.5 * window.devicePixelRatio);
-    
+
     canvas.width = window.innerWidth * dpr;
     canvas.height = window.innerHeight * dpr;
-    
+
     if (rendererRef.current) {
       rendererRef.current.updateScale(dpr);
     }
@@ -274,7 +309,7 @@ void main(){gl_Position=position;}`;
 
   const loop = (now: number) => {
     if (!rendererRef.current || !pointersRef.current) return;
-    
+
     rendererRef.current.updateMouse(pointersRef.current.first);
     rendererRef.current.updatePointerCount(pointersRef.current.count);
     rendererRef.current.updatePointerCoords(pointersRef.current.coords);
@@ -288,23 +323,23 @@ void main(){gl_Position=position;}`;
 
     const canvas = canvasRef.current;
     const dpr = Math.max(1, 0.5 * window.devicePixelRatio);
-    
+
     rendererRef.current = new WebGLRenderer(canvas, dpr);
     pointersRef.current = new PointerHandler(canvas, dpr);
-    
+
     rendererRef.current.setup();
     rendererRef.current.init();
-    
+
     resize();
-    
+
     if (rendererRef.current.test(defaultShaderSource) === null) {
       rendererRef.current.updateShader(defaultShaderSource);
     }
-    
+
     loop(0);
-    
+
     window.addEventListener('resize', resize);
-    
+
     return () => {
       window.removeEventListener('resize', resize);
       if (animationFrameRef.current) {
@@ -325,11 +360,17 @@ const AnimatedShaderHero: React.FC<HeroProps> = ({
   headline,
   subtitle,
   buttons,
-  className = ""
+  className = '',
 }) => {
   const canvasRef = useShaderBackground();
   const [titleNumber, setTitleNumber] = useState(0);
-  const aiTitles = ["intelligent", "fast", "innovative", "adaptive", "reliable"];
+  const aiTitles = [
+    'intelligent',
+    'fast',
+    'innovative',
+    'adaptive',
+    'reliable',
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -339,7 +380,9 @@ const AnimatedShaderHero: React.FC<HeroProps> = ({
   }, []);
 
   return (
-    <div className={`relative w-full h-screen overflow-hidden bg-black ${className}`}>
+    <div
+      className={`relative w-full h-screen overflow-hidden bg-black ${className}`}
+    >
       <style jsx>{`
         @keyframes fade-in-down {
           from {
@@ -351,7 +394,7 @@ const AnimatedShaderHero: React.FC<HeroProps> = ({
             transform: translateY(0);
           }
         }
-        
+
         @keyframes fade-in-up {
           from {
             opacity: 0;
@@ -362,127 +405,104 @@ const AnimatedShaderHero: React.FC<HeroProps> = ({
             transform: translateY(0);
           }
         }
-        
+
         .animate-fade-in-down {
           animation: fade-in-down 0.8s ease-out forwards;
         }
-        
+
         .animate-fade-in-up {
           animation: fade-in-up 0.8s ease-out forwards;
           opacity: 0;
         }
-        
+
         .animation-delay-200 {
           animation-delay: 0.2s;
         }
-        
+
         .animation-delay-400 {
           animation-delay: 0.4s;
         }
-        
+
         .animation-delay-600 {
           animation-delay: 0.6s;
         }
-        
+
         .animation-delay-800 {
           animation-delay: 0.8s;
         }
-        
+
         @keyframes gradient-shift {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
         }
-        
+
         .animate-gradient {
           background-size: 200% 200%;
           animation: gradient-shift 3s ease infinite;
         }
       `}</style>
-      
+
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full object-contain touch-none"
+        className='absolute inset-0 w-full h-full object-contain touch-none'
         style={{ background: 'black' }}
       />
-      
+
       {/* Hero Content Overlay */}
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-white">
+      <div className='absolute inset-0 z-10 flex flex-col items-center justify-center text-white'>
         {/* Trust Badge */}
         {trustBadge && (
-          <div className="mb-6 animate-fade-in-down">
-            <div className="flex items-center gap-2 px-4 py-2 bg-[#A459E1]/10 backdrop-blur-md border border-[#F0CDFF]/30 rounded-full text-xs">
+          <div className='mb-6 animate-fade-in-down'>
+            <div className='flex items-center gap-2 px-4 py-2 bg-[#A459E1]/10 backdrop-blur-md border border-[#F0CDFF]/30 rounded-full text-xs'>
               {trustBadge.icons && (
-                <div className="flex">
+                <div className='flex'>
                   {trustBadge.icons.map((icon, index) => (
-                    <span key={index} className="text-[#F0CDFF]">
+                    <span key={index} className='text-[#F0CDFF]'>
                       {icon}
                     </span>
                   ))}
                 </div>
               )}
-              <span className="text-[#F0CDFF]">{trustBadge.text}</span>
+              <span className='text-[#F0CDFF]'>{trustBadge.text}</span>
             </div>
           </div>
         )}
 
-        <div className="text-center space-y-4 max-w-4xl mx-auto px-4">
+        <div className='text-center space-y-4 max-w-4xl mx-auto px-4'>
           {/* Main Heading with Animation */}
-          <div className="space-y-1">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-[#F0CDFF] via-white to-[#A459E1] bg-clip-text text-transparent animate-fade-in-up animation-delay-200 tracking-tight">
-              <span>Elevate</span>
-              <Image
-                alt='Clarity AI'
-                width={60}
-                height={60}
-                className='rounded-md inline-block mx-2'
-                src={'/flower.webp'}
-              />
-              <span>every prompt into a</span>
-            </h1>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-[#A459E1] via-[#F0CDFF] to-white bg-clip-text text-transparent animate-fade-in-up animation-delay-400 tracking-tight">
-              <span className="relative inline-flex items-center justify-center overflow-hidden h-16 md:h-20 lg:h-24">
-                {aiTitles.map((title, index) => (
-                  <span
-                    key={index}
-                    className={`absolute font-semibold transition-all duration-700 ease-in-out ${
-                      titleNumber === index
-                        ? 'opacity-100 transform translate-y-0'
-                        : titleNumber > index
-                        ? 'opacity-0 transform -translate-y-12'
-                        : 'opacity-0 transform translate-y-12'
-                    }`}
-                  >
-                    {title}
-                  </span>
-                ))}
-              </span>
-              <span> breakthrough.</span>
+          <div className='space-y-1'>
+            <h1 className='text-4xl md:text-6xl lg:text-7xl font-bold animate-fade-in-up animation-delay-200 tracking-tight'>
+              {headline.line1}
             </h1>
           </div>
-          
+
           {/* Subtitle with Animation */}
-          <div className="max-w-2xl mx-auto animate-fade-in-up animation-delay-600">
-            <p className="text-base md:text-lg lg:text-xl text-[#F0CDFF]/90 font-light leading-relaxed">
-              {subtitle}
-            </p>
+          <div className='max-w-2xl mx-auto animate-fade-in-up animation-delay-600'>
+            <p className='text-base md:text-lg lg:text-xl'>{subtitle}</p>
           </div>
-          
+
           {/* CTA Buttons with Animation */}
           {buttons && (
-            <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8 animate-fade-in-up animation-delay-800">
+            <div className='flex flex-col sm:flex-row gap-3 justify-center mt-8 animate-fade-in-up animation-delay-800'>
               {buttons.primary && (
-                <button 
+                <button
                   onClick={buttons.primary.onClick}
-                  className="px-6 py-3 bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] hover:from-[#9147d4] hover:to-[#e8b7ff] text-black rounded-full font-semibold text-base transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#A459E1]/25"
+                  className='px-6 py-3 bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] hover:from-[#9147d4] hover:to-[#e8b7ff] text-black rounded-full font-semibold text-base transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#A459E1]/25'
                 >
                   {buttons.primary.text}
                 </button>
               )}
               {buttons.secondary && (
-                <button 
+                <button
                   onClick={buttons.secondary.onClick}
-                  className="px-6 py-3 bg-[#A459E1]/10 hover:bg-[#A459E1]/20 border border-[#F0CDFF]/30 hover:border-[#F0CDFF]/50 text-[#F0CDFF] rounded-full font-semibold text-base transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                  className='px-6 py-3 bg-[#A459E1]/10 hover:bg-[#A459E1]/20 border border-[#F0CDFF]/30 hover:border-[#F0CDFF]/50 text-[#F0CDFF] rounded-full font-semibold text-base transition-all duration-300 hover:scale-105 backdrop-blur-sm'
                 >
                   {buttons.secondary.text}
                 </button>
