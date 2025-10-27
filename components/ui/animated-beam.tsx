@@ -7,9 +7,9 @@ import { cn } from "@/lib/utils";
 
 export interface AnimatedBeamProps {
   className?: string;
-  containerRef: React.RefObject<HTMLElement | HTMLDivElement>;
-  fromRef: React.RefObject<HTMLElement | HTMLDivElement>;
-  toRef: React.RefObject<HTMLElement | HTMLDivElement>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
+  fromRef: React.RefObject<HTMLDivElement | null>;
+  toRef: React.RefObject<HTMLDivElement | null>;
   curvature?: number;
   reverse?: boolean;
   pathColor?: string;
@@ -64,6 +64,8 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
       };
 
   useEffect(() => {
+    let ticking = false;
+    
     const updatePath = () => {
       if (containerRef.current && fromRef.current && toRef.current) {
         const containerRect = containerRef.current.getBoundingClientRect();
@@ -89,14 +91,19 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
         },${controlY} ${endX},${endY}`;
         setPathD(d);
       }
+      ticking = false;
     };
 
-    // Initialize ResizeObserver
-    const resizeObserver = new ResizeObserver((entries) => {
-      // For all entries, recalculate the path
-      for (let entry of entries) {
-        updatePath();
+    const debouncedUpdate = () => {
+      if (!ticking) {
+        requestAnimationFrame(updatePath);
+        ticking = true;
       }
+    };
+
+    // Initialize ResizeObserver with debouncing
+    const resizeObserver = new ResizeObserver(() => {
+      debouncedUpdate();
     });
 
     // Observe the container element

@@ -13,27 +13,11 @@ import {
 
 export default function FloatingDockSection() {
   const [isVisible, setIsVisible] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      // Show dock when scrolling down and past initial viewport
-      if (currentScrollY > 200 && currentScrollY > lastScrollY) {
-        setIsVisible(true);
-      }
-      // Hide dock when scrolling up or at top
-      else if (currentScrollY < lastScrollY || currentScrollY < 200) {
-        setIsVisible(false);
-      }
-      
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+    // Always show dock bar on all pages
+    setIsVisible(true);
+  }, []);
 
   // Bluesky icon component (custom since not in Tabler)
   const BlueSkyIcon = () => (

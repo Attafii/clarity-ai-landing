@@ -38,15 +38,23 @@ const BentoItem: React.FC<BentoItemProps> = ({ className = "", children }) => {
         const item = itemRef.current;
         if (!item) return;
 
+        let ticking = false;
+        
         const handleMouseMove = (e: MouseEvent) => {
-            const rect = item.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            item.style.setProperty('--mouse-x', `${x}px`);
-            item.style.setProperty('--mouse-y', `${y}px`);
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const rect = item.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    item.style.setProperty('--mouse-x', `${x}px`);
+                    item.style.setProperty('--mouse-y', `${y}px`);
+                    ticking = false;
+                });
+                ticking = true;
+            }
         };
 
-        item.addEventListener('mousemove', handleMouseMove);
+        item.addEventListener('mousemove', handleMouseMove, { passive: true });
 
         return () => {
             item.removeEventListener('mousemove', handleMouseMove);

@@ -47,19 +47,20 @@ const FloatingDockMobile = ({
             {items.map((item, idx) => (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{
                   opacity: 1,
                   y: 0,
                 }}
                 exit={{
                   opacity: 0,
-                  y: 10,
+                  y: 8,
                   transition: {
-                    delay: idx * 0.05,
+                    delay: idx * 0.03,
+                    duration: 0.15,
                   },
                 }}
-                transition={{ delay: (items.length - 1 - idx) * 0.05 }}
+                transition={{ delay: (items.length - 1 - idx) * 0.03, duration: 0.15 }}
               >
                 <a
                   href={item.href}
@@ -129,36 +130,40 @@ function IconContainer({
     return val - bounds.x - bounds.width / 2;
   });
 
-  let widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-  let heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
+  let widthTransform = useTransform(distance, [-100, 0, 100], [40, 64, 40]);
+  let heightTransform = useTransform(distance, [-100, 0, 100], [40, 64, 40]);
 
-  let widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
+  let widthTransformIcon = useTransform(distance, [-100, 0, 100], [20, 32, 20]);
   let heightTransformIcon = useTransform(
     distance,
-    [-150, 0, 150],
-    [20, 40, 20],
+    [-100, 0, 100],
+    [20, 32, 20],
   );
 
   let width = useSpring(widthTransform, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
+    mass: 0.05,
+    stiffness: 300,
+    damping: 15,
+    restDelta: 0.01,
   });
   let height = useSpring(heightTransform, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
+    mass: 0.05,
+    stiffness: 300,
+    damping: 15,
+    restDelta: 0.01,
   });
 
   let widthIcon = useSpring(widthTransformIcon, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
+    mass: 0.05,
+    stiffness: 300,
+    damping: 15,
+    restDelta: 0.01,
   });
   let heightIcon = useSpring(heightTransformIcon, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
+    mass: 0.05,
+    stiffness: 300,
+    damping: 15,
+    restDelta: 0.01,
   });
 
   const [hovered, setHovered] = useState(false);

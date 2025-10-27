@@ -1,11 +1,22 @@
+'use client';
+
+import dynamic from 'next/dynamic';
 import Header from "@/components/layout/Header";
 import Hero from "@/components/sections/Hero";
 import FloatingDockSection from "@/components/sections/FloatingDockSection";
-import { TestimonialsSection } from "@/components/ui/testimonials-columns-1";
-import { Features } from "@/components/ui/features-8";
-import { Features5 } from "@/components/ui/features-5";
-import { CyberneticBentoGrid } from "@/components/ui/cybernetic-bento-grid";
-import Footer from "@/components/layout/Footer";
+import Pricing from "@/components/sections/Pricing";
+import FAQ from "@/components/sections/FAQ";
+import CTA from "@/components/sections/CTA";
+import Demo from "@/components/sections/Demo";
+import OneShotPrompt from "@/components/sections/OneShotPrompt";
+import OpenSource from "@/components/sections/OpenSource";
+
+// Lazy load heavy components for better initial load performance
+const TestimonialsSection = dynamic(() => import("@/components/ui/testimonials-columns-1").then(mod => ({ default: mod.TestimonialsSection })), { ssr: false });
+const Features = dynamic(() => import("@/components/ui/features-8").then(mod => ({ default: mod.Features })), { ssr: false });
+const Features5 = dynamic(() => import("@/components/ui/features-5").then(mod => ({ default: mod.Features5 })), { ssr: false });
+const CyberneticBentoGrid = dynamic(() => import("@/components/ui/cybernetic-bento-grid").then(mod => ({ default: mod.CyberneticBentoGrid })), { ssr: false });
+const Footer = dynamic(() => import("@/components/layout/Footer"), { ssr: false });
 
 export default function Home() {
   return (
@@ -23,95 +34,29 @@ export default function Home() {
       {/* Additional Features Section - Built for Scaling Teams */}
       <Features5 />
 
+      {/* Open Source Section */}
+      <OpenSource />
+
       {/* How It Works Section - Interactive Bento Grid */}
       <CyberneticBentoGrid />
 
-      {/* AI Solutions Section */}
-      <section id="solutions" className="py-24 bg-muted/30">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold mb-6">AI Solutions</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Discover our cutting-edge AI solutions designed to transform your workflow and enhance productivity.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Demo Section - See it in action */}
+      <Demo />
 
-      {/* Products Section */}
-      <section id="products" className="py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold mb-6">Products</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Explore our suite of AI-powered products that streamline development and boost team collaboration.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* One-Shot Prompt Section - Trending Feature */}
+      <OneShotPrompt />
 
-      {/* Innovation Section */}
-      <section id="innovation" className="py-24 bg-muted/30">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold mb-6">Innovation</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Leading the future of AI-assisted development with breakthrough technologies and methodologies.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Analytics Section */}
-      <section id="analytics" className="py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold mb-6">Analytics</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Gain insights into your development process with comprehensive analytics and performance metrics.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Security Section */}
-      <section id="security" className="py-24 bg-muted/30">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold mb-6">Security</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Enterprise-grade security measures to protect your code and data throughout the development lifecycle.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold mb-6">About</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Learn about our mission to revolutionize software development through intelligent AI assistance.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-24 bg-muted/30">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold mb-6">Contact</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Get in touch with our team to learn more about how Clarity AI can transform your development process.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Pricing Section */}
+      <Pricing />
 
       {/* Testimonials Section */}
       <TestimonialsSection />
+
+      {/* FAQ Section */}
+      <FAQ />
+
+      {/* CTA Section - Final call to action */}
+      <CTA />
 
       {/* Floating Navigation Dock */}
       <FloatingDockSection />
