@@ -2,10 +2,42 @@
 
 import { Zap, Sparkles, Rocket, Target, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect, useRef } from "react";
+
+const useScrollAnimation = () => {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, isVisible] as const;
+};
 
 export default function OneShotPrompt() {
+  const [sectionRef, isVisible] = useScrollAnimation();
   return (
-    <section className="py-24 bg-gradient-to-b from-background via-[#1a0b2e]/30 to-background relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      className={`py-24 bg-gradient-to-b from-background via-[#1a0b2e]/30 to-background relative overflow-hidden transition-all duration-1000 ${
+        isVisible ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
       {/* Animated background */}
       <div className="absolute inset-0 bg-grid-white/[0.02]" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#A459E1]/10 rounded-full blur-3xl animate-pulse" />
@@ -21,9 +53,13 @@ export default function OneShotPrompt() {
         </div>
 
         {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center transition-all duration-1000 transform ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`}>
           {/* Left: Compelling Copy */}
-          <div>
+          <div className={`transition-all duration-1000 transform ${
+            isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
+          }`}>
             <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
               <span className="bg-gradient-to-r from-[#F0CDFF] via-white to-[#A459E1] bg-clip-text text-transparent">
                 Build Entire Websites
@@ -61,8 +97,8 @@ export default function OneShotPrompt() {
               ].map((benefit, index) => {
                 const IconComponent = benefit.icon;
                 return (
-                  <div key={index} className="flex items-start gap-4 group">
-                    <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#A459E1]/20 to-[#F0CDFF]/20 border border-[#A459E1]/30 group-hover:scale-110 transition-transform">
+                  <div key={index} className="flex items-start gap-4 group hover:translate-x-2 transition-transform duration-300">
+                    <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#A459E1]/20 to-[#F0CDFF]/20 border border-[#A459E1]/30 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#A459E1]/20 transition-all duration-300">
                       <IconComponent className="h-6 w-6 text-[#F0CDFF]" />
                     </div>
                     <div>
@@ -84,9 +120,11 @@ export default function OneShotPrompt() {
           </div>
 
           {/* Right: Visual Example */}
-          <div className="relative">
+          <div className={`relative transition-all duration-1000 transform ${
+            isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
+          }`}>
             {/* Floating Example Card */}
-            <div className="relative bg-gradient-to-br from-[#1a0b2e] to-[#0f051a] rounded-2xl border-2 border-[#A459E1]/30 shadow-2xl shadow-[#A459E1]/20 p-8 overflow-hidden">
+            <div className="relative bg-gradient-to-br from-[#1a0b2e] to-[#0f051a] rounded-2xl border-2 border-[#A459E1]/30 shadow-2xl shadow-[#A459E1]/20 p-8 overflow-hidden hover:shadow-[#A459E1]/40 hover:border-[#A459E1]/50 transition-all duration-300 hover:scale-105 cursor-pointer">
               {/* Glow Effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#A459E1]/10 via-transparent to-[#F0CDFF]/10" />
               
@@ -193,7 +231,9 @@ OUTPUT:
         </div>
 
         {/* Social Proof Bar */}
-        <div className="mt-20 pt-12 border-t border-[#A459E1]/20">
+        <div className={`mt-20 pt-12 border-t border-[#A459E1]/20 transition-all duration-1000 transform ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`} style={{ transitionDelay: isVisible ? '600ms' : '0ms' }}>
           <div className="text-center mb-8">
             <p className="text-sm text-muted-foreground mb-6">
               Trusted by developers building the next generation of AI-powered applications
@@ -207,7 +247,7 @@ OUTPUT:
               { stat: "3.2M", label: "Lines of Code Generated" },
               { stat: "15sec", label: "Avg. Prompt Enhancement" }
             ].map((item, index) => (
-              <div key={index} className="text-center">
+              <div key={index} className="text-center hover:scale-110 transition-transform duration-300 cursor-pointer">
                 <div className="text-3xl font-bold bg-gradient-to-r from-[#F0CDFF] to-[#A459E1] bg-clip-text text-transparent mb-2">
                   {item.stat}
                 </div>

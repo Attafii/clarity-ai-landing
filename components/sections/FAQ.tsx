@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect, useRef } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -7,7 +8,33 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+const useScrollAnimation = () => {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, isVisible] as const;
+};
+
 export default function FAQ() {
+  const [sectionRef, isVisible] = useScrollAnimation();
   const faqs = [
     {
       question: "What is Clarity AI?",
@@ -52,14 +79,22 @@ export default function FAQ() {
   ];
 
   return (
-    <section id="faq" className="py-24 bg-muted/30 relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="faq"
+      className={`py-24 bg-muted/30 relative overflow-hidden transition-all duration-1000 ${
+        isVisible ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
       {/* Background decoration */}
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#F0CDFF]/5 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-[#A459E1]/5 rounded-full blur-3xl" />
       
       <div className="mx-auto max-w-4xl px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 transform ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#F0CDFF] via-white to-[#A459E1] bg-clip-text text-transparent">
             Frequently Asked Questions
           </h2>
@@ -72,7 +107,10 @@ export default function FAQ() {
         </div>
 
         {/* FAQ Accordion */}
-        <Accordion type="single" collapsible className="w-full space-y-4">
+        <div className={`transition-all duration-1000 transform ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`} style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}>
+          <Accordion type="single" collapsible className="w-full space-y-4">
           {faqs.map((faq, index) => (
             <AccordionItem
               key={index}
@@ -87,7 +125,8 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
           ))}
-        </Accordion>
+          </Accordion>
+        </div>
 
         {/* Additional Help */}
         <div className="mt-12 text-center p-8 bg-gradient-to-r from-[#A459E1]/10 to-[#F0CDFF]/10 rounded-2xl border border-[#A459E1]/20">

@@ -1,10 +1,36 @@
 'use client';
 
 import { Play, Code2, Sparkles, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+
+const useScrollAnimation = () => {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, isVisible] as const;
+};
 
 export default function Demo() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [sectionRef, isVisible] = useScrollAnimation();
 
   const beforePrompt = `create a function`;
   
@@ -18,14 +44,22 @@ export default function Demo() {
 - Uses proper TypeScript types and interfaces`;
 
   return (
-    <section id="demo" className="py-24 bg-background relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="demo"
+      className={`py-24 bg-background relative overflow-hidden transition-all duration-1000 ${
+        isVisible ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
       {/* Background decoration */}
       <div className="absolute inset-0 bg-grid-white/[0.02]" />
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#A459E1]/5 rounded-full blur-3xl" />
       
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 transform ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`}>
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#A459E1]/10 backdrop-blur-md border border-[#F0CDFF]/20 rounded-full mb-6">
             <Sparkles className="h-4 w-4 text-[#F0CDFF]" />
             <span className="text-sm font-medium text-[#F0CDFF]">See It In Action</span>
@@ -38,9 +72,11 @@ export default function Demo() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12">
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12 transition-all duration-1000 transform ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`} style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}>
           {/* Before: Basic Prompt */}
-          <div className="group">
+          <div className="group hover:scale-105 transition-transform duration-300 cursor-pointer">
             <div className="flex items-center gap-3 mb-4">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-red-500/10 border border-red-500/30">
                 <Code2 className="h-5 w-5 text-red-500" />
@@ -61,7 +97,7 @@ export default function Demo() {
           </div>
 
           {/* After: Enhanced Prompt */}
-          <div className="group">
+          <div className="group hover:scale-105 transition-transform duration-300 cursor-pointer">
             <div className="flex items-center gap-3 mb-4">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-[#A459E1] to-[#F0CDFF]">
                 <Sparkles className="h-5 w-5 text-black" />
@@ -85,7 +121,9 @@ export default function Demo() {
         </div>
 
         {/* Arrow Indicator */}
-        <div className="flex justify-center mb-12">
+        <div className={`flex justify-center mb-12 transition-all duration-1000 transform ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`} style={{ transitionDelay: isVisible ? '300ms' : '0ms' }}>
           <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#A459E1]/20 to-[#F0CDFF]/20 backdrop-blur-sm rounded-full border border-[#A459E1]/30">
             <span className="text-sm font-medium">Transformed in milliseconds</span>
             <ArrowRight className="h-4 w-4 text-[#A459E1] animate-pulse" />
@@ -93,8 +131,10 @@ export default function Demo() {
         </div>
 
         {/* Video Demo Placeholder */}
-        <div className="max-w-5xl mx-auto">
-          <div className="relative bg-gradient-to-br from-[#1a0b2e] to-[#0f051a] rounded-2xl overflow-hidden border-2 border-[#A459E1]/30 shadow-2xl shadow-[#A459E1]/20">
+        <div className={`max-w-5xl mx-auto transition-all duration-1000 transform ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`} style={{ transitionDelay: isVisible ? '350ms' : '0ms' }}>
+          <div className="relative bg-gradient-to-br from-[#1a0b2e] to-[#0f051a] rounded-2xl overflow-hidden border-2 border-[#A459E1]/30 shadow-2xl shadow-[#A459E1]/20 hover:shadow-[#A459E1]/40 hover:border-[#A459E1]/50 transition-all duration-300">
             {/* Video Thumbnail/Placeholder */}
             <div className="aspect-video flex items-center justify-center bg-gradient-to-br from-[#A459E1]/5 to-[#F0CDFF]/5">
               {!isPlaying ? (
@@ -136,7 +176,9 @@ export default function Demo() {
         </div>
 
         {/* Key Benefits */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-12">
+        <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-12 transition-all duration-1000 transform ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`} style={{ transitionDelay: isVisible ? '400ms' : '0ms' }}>
           {[
             {
               title: "10x Faster",
@@ -153,7 +195,7 @@ export default function Demo() {
           ].map((benefit, index) => (
             <div
               key={index}
-              className="text-center p-6 bg-gradient-to-br from-[#A459E1]/5 to-[#F0CDFF]/5 rounded-xl border border-[#A459E1]/20 hover:border-[#A459E1]/40 transition-colors"
+              className="text-center p-6 bg-gradient-to-br from-[#A459E1]/5 to-[#F0CDFF]/5 rounded-xl border border-[#A459E1]/20 hover:border-[#A459E1]/40 hover:shadow-lg hover:shadow-[#A459E1]/10 transition-all duration-300 hover:scale-105 cursor-pointer"
             >
               <h4 className="text-lg font-semibold mb-2 bg-gradient-to-r from-[#F0CDFF] to-[#A459E1] bg-clip-text text-transparent">
                 {benefit.title}

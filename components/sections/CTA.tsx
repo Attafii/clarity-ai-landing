@@ -2,10 +2,42 @@
 
 import { ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect, useRef } from "react";
+
+const useScrollAnimation = () => {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, isVisible] as const;
+};
 
 export default function CTA() {
+  const [sectionRef, isVisible] = useScrollAnimation();
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      className={`py-24 relative overflow-hidden transition-all duration-1000 ${
+        isVisible ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
       {/* Animated background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#1a0b2e] via-background to-[#0f051a]" />
       <div className="absolute inset-0 bg-grid-white/[0.02]" />
@@ -14,8 +46,10 @@ export default function CTA() {
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#A459E1]/20 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#F0CDFF]/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       
-      <div className="mx-auto max-w-5xl px-6 relative z-10">
-        <div className="bg-gradient-to-br from-[#A459E1]/10 to-[#F0CDFF]/5 backdrop-blur-sm rounded-3xl p-12 md:p-16 border border-[#A459E1]/30 shadow-2xl shadow-[#A459E1]/10">
+      <div className={`mx-auto max-w-5xl px-6 relative z-10 transition-all duration-1000 transform ${
+        isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+      }`}>
+        <div className="bg-gradient-to-br from-[#A459E1]/10 to-[#F0CDFF]/5 backdrop-blur-sm rounded-3xl p-12 md:p-16 border border-[#A459E1]/30 shadow-2xl shadow-[#A459E1]/10 hover:shadow-[#A459E1]/20 transition-all duration-300">
           
           {/* Badge */}
           <div className="flex justify-center mb-6">
@@ -26,7 +60,9 @@ export default function CTA() {
           </div>
 
           {/* Main Heading */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-6 leading-tight">
+          <h2 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-6 leading-tight transition-all duration-1000 transform ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
+          }`}>
             <span className="bg-gradient-to-r from-[#F0CDFF] via-white to-[#A459E1] bg-clip-text text-transparent">
               Ready to 10x Your
             </span>
@@ -37,7 +73,9 @@ export default function CTA() {
           </h2>
 
           {/* Subheading */}
-          <p className="text-lg md:text-xl text-muted-foreground text-center max-w-3xl mx-auto mb-10 leading-relaxed">
+          <p className={`text-lg md:text-xl text-muted-foreground text-center max-w-3xl mx-auto mb-10 leading-relaxed transition-all duration-1000 transform ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
+          }`} style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}>
             Join thousands of developers who are already using Clarity AI to transform their GitHub Copilot experience. Start your free 14-day trial today.
           </p>
 
@@ -56,7 +94,9 @@ export default function CTA() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-1000 transform ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
+          }`} style={{ transitionDelay: isVisible ? '400ms' : '0ms' }}>
             <Button
               size="lg"
               className="bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] hover:from-[#9147d4] hover:to-[#e8b7ff] text-black font-semibold text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl hover:shadow-[#A459E1]/30 transition-all duration-300 hover:scale-105 group"

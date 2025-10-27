@@ -2,8 +2,35 @@
 
 import { Check, Sparkles, Zap, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect, useRef } from "react";
+
+const useScrollAnimation = () => {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, isVisible] as const;
+};
 
 export default function Pricing() {
+  const [sectionRef, isVisible] = useScrollAnimation();
   const plan = {
     name: "Open Source",
     price: "$0",
@@ -27,7 +54,13 @@ export default function Pricing() {
   };
 
   return (
-    <section id="pricing" className="py-24 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="pricing"
+      className={`py-24 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden transition-all duration-1000 ${
+        isVisible ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
       {/* Background decoration */}
       <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none" />
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#A459E1]/10 rounded-full blur-3xl" />
@@ -35,7 +68,9 @@ export default function Pricing() {
       
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 transform ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`}>
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#A459E1]/20 to-[#F0CDFF]/20 backdrop-blur-md border border-[#A459E1]/30 rounded-full mb-6">
             <span className="text-sm font-bold text-[#F0CDFF]">🎉 100% FREE & OPEN SOURCE</span>
           </div>
@@ -48,8 +83,10 @@ export default function Pricing() {
         </div>
 
         {/* Pricing Card */}
-        <div className="max-w-2xl mx-auto">
-          <div className="relative rounded-2xl p-10 backdrop-blur-sm bg-gradient-to-b from-[#A459E1]/20 to-[#F0CDFF]/10 border-2 border-[#A459E1]/50 shadow-2xl shadow-[#A459E1]/20">
+        <div className={`max-w-2xl mx-auto transition-all duration-1000 transform hover:scale-105 cursor-pointer ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`} style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}>
+          <div className="relative rounded-2xl p-10 backdrop-blur-sm bg-gradient-to-b from-[#A459E1]/20 to-[#F0CDFF]/10 border-2 border-[#A459E1]/50 shadow-2xl shadow-[#A459E1]/20 hover:shadow-[#A459E1]/40 transition-all duration-300">
             {/* Badge */}
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
               <span className="bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] text-black text-sm font-bold px-6 py-2 rounded-full shadow-lg">
