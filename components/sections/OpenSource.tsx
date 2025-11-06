@@ -115,9 +115,9 @@ export default function OpenSource() {
             className="bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] hover:from-[#9147d4] hover:to-[#e8b7ff] text-black font-semibold text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl hover:shadow-[#A459E1]/30 transition-all duration-300 hover:scale-105 group"
             asChild
           >
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/Attafii/ClarityAI" target="_blank" rel="noopener noreferrer">
               <Github className="mr-2 h-5 w-5" />
-              View on GitHub
+              Star on GitHub
             </a>
           </Button>
           <p className="text-sm text-muted-foreground mt-4">

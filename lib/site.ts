@@ -45,7 +45,7 @@ export const siteConfig = {
   socialLinks: [
     {
       name: 'GitHub',
-      href: 'https://github.com/clarityai/vscode-extension',
+      href: 'https://github.com/Attafii/ClarityAI',
       icon: 'Github',
     },
     {
@@ -79,9 +79,9 @@ export const siteConfig = {
   urls: {
     marketplace:
       'https://marketplace.visualstudio.com/items?itemName=clarityai.prompt-enhancer',
-    github: 'https://github.com/clarityai/vscode-extension',
+    github: 'https://github.com/Attafii/ClarityAI',
     docs: 'https://docs.clarityai.dev',
-    support: 'mailto:support@clarityai.dev',
+    support: 'https://github.com/Attafii/ClarityAI/issues',
   },
 
   // Company Info

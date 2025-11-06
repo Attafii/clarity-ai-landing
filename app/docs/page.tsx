@@ -17,7 +17,6 @@ export default function DocsPage() {
     { id: "configuration", title: "Configuration", icon: Settings },
     { id: "usage", title: "Usage Guide", icon: BookOpen },
     { id: "features", title: "Features", icon: Zap },
-    { id: "api", title: "API Reference", icon: Code2 },
     { id: "contributing", title: "Contributing", icon: Users },
     { id: "troubleshooting", title: "Troubleshooting", icon: AlertCircle }
   ];
@@ -86,8 +85,8 @@ export default function DocsPage() {
                     <div>
                       <h2 className="text-3xl font-bold mb-4 text-foreground">Getting Started</h2>
                       <p className="text-muted-foreground text-lg leading-relaxed">
-                        Clarity AI is an open-source prompt enhancement tool that transforms your basic GitHub Copilot prompts 
-                        into intelligent, context-rich instructions. Get started in less than 5 minutes.
+                        ClarityAI is an open-source VS Code extension that enhances your GitHub Copilot prompts 
+                        using AI-powered analysis. Get better, more accurate code suggestions in minutes.
                       </p>
                     </div>
 
@@ -107,7 +106,7 @@ export default function DocsPage() {
                         </li>
                         <li className="flex items-start gap-2">
                           <span className="text-[#A459E1] mt-1">•</span>
-                          <span>Node.js 18+ (for local development)</span>
+                          <span>Gemini API key from ai.google.dev (free tier available)</span>
                         </li>
                       </ul>
                     </div>
@@ -116,9 +115,10 @@ export default function DocsPage() {
                       <h3 className="text-2xl font-bold mb-4 text-foreground">Quick Start</h3>
                       <div className="space-y-4">
                         {[
-                          { step: 1, title: "Install the Extension", desc: "Search for 'Clarity AI' in VS Code marketplace and click Install" },
-                          { step: 2, title: "Connect GitHub Copilot", desc: "Sign in with your GitHub account when prompted" },
-                          { step: 3, title: "Start Coding", desc: "Write your prompts as usual - Clarity AI works automatically in the background" }
+                          { step: 1, title: "Install the Extension", desc: "Install from VS Code marketplace or download the VSIX file" },
+                          { step: 2, title: "Get API Key", desc: "Visit ai.google.dev and generate your free Gemini API key" },
+                          { step: 3, title: "Configure Extension", desc: "Add your API key to VS Code settings: clarity.geminiApiKey" },
+                          { step: 4, title: "Start Using", desc: "Type @clarity in GitHub Copilot chat followed by your prompt" }
                         ].map((item) => (
                           <div key={item.step} className="flex gap-4">
                             <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] flex items-center justify-center text-black font-bold">
@@ -141,33 +141,35 @@ export default function DocsPage() {
                     <div>
                       <h2 className="text-3xl font-bold mb-4 text-foreground">Installation</h2>
                       <p className="text-muted-foreground text-lg leading-relaxed">
-                        Multiple ways to install Clarity AI depending on your preference.
+                        Install ClarityAI from the VS Code marketplace or manually using the VSIX file.
                       </p>
                     </div>
 
                     <div>
-                      <h3 className="text-2xl font-bold mb-4 text-foreground">VS Code Marketplace</h3>
+                      <h3 className="text-2xl font-bold mb-4 text-foreground">From VS Code Marketplace</h3>
+                      <p className="text-muted-foreground mb-4">
+                        Search for "ClarityAI" in the VS Code Extensions marketplace and click Install.
+                      </p>
                       <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-xl p-6 font-mono text-sm">
                         <div className="flex items-center gap-2 mb-2 text-muted-foreground">
                           <Terminal className="h-4 w-4" />
-                          <span>Command Palette</span>
+                          <span>Or use Command Line</span>
                         </div>
-                        <code className="text-[#F0CDFF]">ext install clarity-ai.vscode</code>
+                        <code className="text-[#F0CDFF]">code --install-extension clarity-0.0.1.vsix</code>
                       </div>
                     </div>
 
                     <div>
-                      <h3 className="text-2xl font-bold mb-4 text-foreground">From Source (Self-Hosting)</h3>
+                      <h3 className="text-2xl font-bold mb-4 text-foreground">Manual Installation</h3>
+                      <p className="text-muted-foreground mb-4">
+                        Download the VSIX file from our GitHub releases page and install it manually.
+                      </p>
                       <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-xl p-6 font-mono text-sm space-y-2">
                         <div className="flex items-center gap-2 mb-2 text-muted-foreground">
-                          <Github className="h-4 w-4" />
-                          <span>Clone Repository</span>
+                          <Terminal className="h-4 w-4" />
+                          <span>Installation Command</span>
                         </div>
-                        <code className="block text-[#F0CDFF]">git clone https://github.com/yourusername/clarity-ai.git</code>
-                        <code className="block text-[#F0CDFF]">cd clarity-ai</code>
-                        <code className="block text-[#F0CDFF]">npm install</code>
-                        <code className="block text-[#F0CDFF]">npm run build</code>
-                        <code className="block text-[#F0CDFF]">code --install-extension ./clarity-ai.vsix</code>
+                        <code className="block text-[#F0CDFF]">code --install-extension clarity-0.0.1.vsix</code>
                       </div>
                     </div>
 
@@ -177,7 +179,7 @@ export default function DocsPage() {
                         Note
                       </h4>
                       <p className="text-muted-foreground">
-                        After installation, reload VS Code for the extension to take effect.
+                        After installation, reload VS Code for the extension to take effect. You'll need to configure your Gemini API key before first use.
                       </p>
                     </div>
                   </div>
@@ -187,76 +189,59 @@ export default function DocsPage() {
                 {activeSection === "configuration" && (
                   <div className="space-y-8">
                     <div>
-                      <h2 className="text-3xl font-bold mb-4 text-foreground">Configuration</h2>
+                      <h2 className="text-3xl font-bold mb-4 text-foreground">Setup & Configuration</h2>
                       <p className="text-muted-foreground text-lg leading-relaxed">
-                        Customize Clarity AI to match your workflow and preferences.
+                        Configure your Gemini API key and customize ClarityAI settings.
                       </p>
                     </div>
 
                     <div>
-                      <h3 className="text-2xl font-bold mb-4 text-foreground">Settings</h3>
+                      <h3 className="text-2xl font-bold mb-4 text-foreground">Get Gemini API Key</h3>
                       <div className="space-y-4">
-                        {[
-                          {
-                            setting: "clarityai.enabled",
-                            type: "boolean",
-                            default: "true",
-                            desc: "Enable/disable Clarity AI enhancement"
-                          },
-                          {
-                            setting: "clarityai.enhancementLevel",
-                            type: "string",
-                            default: "\"balanced\"",
-                            desc: "Options: minimal, balanced, detailed"
-                          },
-                          {
-                            setting: "clarityai.autoEnhance",
-                            type: "boolean",
-                            default: "true",
-                            desc: "Automatically enhance prompts on trigger"
-                          },
-                          {
-                            setting: "clarityai.showDiff",
-                            type: "boolean",
-                            default: "true",
-                            desc: "Show before/after prompt comparison"
-                          }
-                        ].map((item, index) => (
-                          <div key={index} className="bg-background/50 border border-border rounded-lg p-4">
-                            <div className="flex items-start justify-between mb-2">
-                              <code className="text-[#F0CDFF] font-mono text-sm">{item.setting}</code>
-                              <span className="text-xs px-2 py-1 bg-muted rounded">{item.type}</span>
-                            </div>
-                            <p className="text-muted-foreground text-sm mb-2">{item.desc}</p>
-                            <div className="text-xs text-muted-foreground">
-                              Default: <code className="text-[#A459E1]">{item.default}</code>
-                            </div>
-                          </div>
-                        ))}
+                        <p className="text-muted-foreground">
+                          Visit <a href="https://ai.google.dev" target="_blank" rel="noopener noreferrer" className="text-[#A459E1] hover:text-[#F0CDFF] underline">ai.google.dev</a> to create a free Gemini API key.
+                        </p>
+                        <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-xl p-6">
+                          <h4 className="font-semibold text-foreground mb-3">Steps:</h4>
+                          <ol className="space-y-2 text-muted-foreground list-decimal list-inside">
+                            <li>Go to ai.google.dev</li>
+                            <li>Sign in with your Google account</li>
+                            <li>Navigate to "Get API Key"</li>
+                            <li>Create a new API key</li>
+                            <li>Copy the key for the next step</li>
+                          </ol>
+                        </div>
                       </div>
                     </div>
 
                     <div>
-                      <h3 className="text-2xl font-bold mb-4 text-foreground">Custom Templates</h3>
+                      <h3 className="text-2xl font-bold mb-4 text-foreground">Add API Key to VS Code</h3>
                       <p className="text-muted-foreground mb-4">
-                        Create custom prompt templates for your specific use cases:
+                        Open VS Code Settings and add your API key:
                       </p>
                       <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-xl p-6 font-mono text-sm">
-                        <code className="text-[#F0CDFF] block whitespace-pre">
-{`{
-  "templates": {
-    "react-component": {
-      "pattern": "create component",
-      "enhancement": "TypeScript, functional, hooks, props interface"
-    },
-    "api-endpoint": {
-      "pattern": "create api",
-      "enhancement": "Express, error handling, validation, types"
-    }
-  }
-}`}
+                        <code className="text-[#F0CDFF] block">
+                          Settings → Extensions → ClarityAI → Gemini API Key
                         </code>
+                        <div className="mt-4 pt-4 border-t border-[#A459E1]/20">
+                          <span className="text-muted-foreground block mb-2">Or in settings.json:</span>
+                          <code className="text-[#F0CDFF] block whitespace-pre">
+{`{
+  "clarity.geminiApiKey": "your-api-key-here"
+}`}
+                          </code>
+                        </div>
                       </div>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-[#A459E1]/10 to-[#F0CDFF]/10 border border-[#A459E1]/30 rounded-xl p-6">
+                      <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                        <CheckCircle2 className="h-5 w-5 text-[#A459E1]" />
+                        Free Tier Available
+                      </h4>
+                      <p className="text-muted-foreground">
+                        Gemini API offers a generous free tier. Check <a href="https://ai.google.dev/pricing" target="_blank" rel="noopener noreferrer" className="text-[#A459E1] hover:text-[#F0CDFF] underline">ai.google.dev/pricing</a> for current limits.
+                      </p>
                     </div>
                   </div>
                 )}
@@ -267,7 +252,7 @@ export default function DocsPage() {
                     <div>
                       <h2 className="text-3xl font-bold mb-4 text-foreground">Usage Guide</h2>
                       <p className="text-muted-foreground text-lg leading-relaxed">
-                        Learn how to get the most out of Clarity AI with these practical examples.
+                        Learn how to use ClarityAI with GitHub Copilot Chat.
                       </p>
                     </div>
 
@@ -275,26 +260,36 @@ export default function DocsPage() {
                       <h3 className="text-2xl font-bold mb-4 text-foreground">Basic Usage</h3>
                       <div className="space-y-6">
                         <div>
-                          <h4 className="font-semibold text-foreground mb-3">1. Write Your Prompt</h4>
-                          <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-3">
-                            <span className="text-xs text-red-400 font-medium mb-2 block">BEFORE</span>
-                            <code className="text-muted-foreground">create a login function</code>
+                          <h4 className="font-semibold text-foreground mb-3">How to Use</h4>
+                          <p className="text-muted-foreground mb-4">
+                            In GitHub Copilot Chat, use <code className="px-2 py-1 bg-muted rounded text-[#F0CDFF]">@clarity</code> followed by your prompt:
+                          </p>
+                          <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-lg p-4 mb-3">
+                            <code className="text-[#F0CDFF]">@clarity create a login function</code>
                           </div>
+                          <p className="text-sm text-muted-foreground">
+                            ClarityAI will enhance your prompt and send the improved version to Copilot.
+                          </p>
                         </div>
 
                         <div>
-                          <h4 className="font-semibold text-foreground mb-3">2. Clarity AI Enhances</h4>
+                          <h4 className="font-semibold text-foreground mb-3">Example Enhancement</h4>
+                          <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-3">
+                            <span className="text-xs text-red-400 font-medium mb-2 block">YOUR PROMPT</span>
+                            <code className="text-muted-foreground">@clarity create login function</code>
+                          </div>
                           <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4">
-                            <span className="text-xs text-green-400 font-medium mb-2 block">AFTER</span>
+                            <span className="text-xs text-green-400 font-medium mb-2 block">ENHANCED BY CLARITYAI</span>
                             <code className="text-foreground text-sm block whitespace-pre-line">
-{`Create a secure login function that:
-- Accepts email and password parameters
-- Validates input format
-- Hashes password with bcrypt
-- Queries database for user
-- Returns JWT token on success
-- Includes proper error handling
-- TypeScript with proper types`}
+{`Create a secure login function with the following specifications:
+- Accept email and password as parameters
+- Validate email format using regex
+- Hash password using bcrypt
+- Query database for user credentials
+- Return JWT token on successful authentication
+- Include comprehensive error handling for invalid credentials
+- Add TypeScript type definitions
+- Include JSDoc comments`}
                             </code>
                           </div>
                         </div>
@@ -302,16 +297,36 @@ export default function DocsPage() {
                     </div>
 
                     <div>
-                      <h3 className="text-2xl font-bold mb-4 text-foreground">Keyboard Shortcuts</h3>
-                      <div className="space-y-2">
+                      <h3 className="text-2xl font-bold mb-4 text-foreground">Features in Action</h3>
+                      <div className="space-y-4">
                         {[
-                          { key: "Ctrl/Cmd + Shift + E", action: "Enhance current prompt" },
-                          { key: "Ctrl/Cmd + Shift + D", action: "Show enhancement diff" },
-                          { key: "Ctrl/Cmd + Shift + T", action: "Toggle Clarity AI" }
-                        ].map((shortcut, index) => (
-                          <div key={index} className="flex items-center justify-between bg-background/50 border border-border rounded-lg p-4">
-                            <span className="text-muted-foreground">{shortcut.action}</span>
-                            <kbd className="px-3 py-1 bg-muted rounded font-mono text-sm">{shortcut.key}</kbd>
+                          {
+                            title: "Context Detection",
+                            desc: "Automatically detects your project context and adds relevant details",
+                            icon: "🎯"
+                          },
+                          {
+                            title: "Todo Awareness",
+                            desc: "Identifies TODO comments and integrates them into suggestions",
+                            icon: "📝"
+                          },
+                          {
+                            title: "Typo Correction",
+                            desc: "Fixes spelling and grammar errors in your prompts",
+                            icon: "✨"
+                          },
+                          {
+                            title: "Best Practices",
+                            desc: "Adds industry best practices to your requirements",
+                            icon: "⚡"
+                          }
+                        ].map((feature, index) => (
+                          <div key={index} className="bg-background/50 border border-border rounded-lg p-4 flex gap-4">
+                            <div className="text-3xl">{feature.icon}</div>
+                            <div>
+                              <h4 className="font-semibold text-foreground mb-1">{feature.title}</h4>
+                              <p className="text-sm text-muted-foreground">{feature.desc}</p>
+                            </div>
                           </div>
                         ))}
                       </div>
@@ -325,41 +340,41 @@ export default function DocsPage() {
                     <div>
                       <h2 className="text-3xl font-bold mb-4 text-foreground">Features</h2>
                       <p className="text-muted-foreground text-lg leading-relaxed">
-                        Explore all the powerful features Clarity AI offers.
+                        Powerful features that make ClarityAI indispensable for developers.
                       </p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {[
                         {
-                          title: "Smart Context Analysis",
-                          desc: "Analyzes your codebase to add relevant context to prompts",
-                          icon: "🧠"
+                          title: "Context Detection",
+                          desc: "Automatically analyzes your project structure and active files to add relevant context",
+                          icon: "🎯"
                         },
                         {
-                          title: "One-Shot Prompts",
-                          desc: "Generate comprehensive prompts that build complete features in one go",
-                          icon: "⚡"
-                        },
-                        {
-                          title: "Custom Templates",
-                          desc: "Create and share reusable prompt templates with your team",
+                          title: "Todo Awareness",
+                          desc: "Scans for TODO comments in your codebase and integrates them into suggestions",
                           icon: "📝"
                         },
                         {
-                          title: "Analytics Dashboard",
-                          desc: "Track your productivity improvements and prompt effectiveness",
-                          icon: "📊"
+                          title: "Typo Correction",
+                          desc: "Automatically fixes spelling and grammar errors in your prompts",
+                          icon: "✨"
                         },
                         {
-                          title: "Team Collaboration",
-                          desc: "Share best practices and prompt libraries across your team",
-                          icon: "👥"
+                          title: "Smart Enhancement",
+                          desc: "Transforms vague prompts into detailed, actionable specifications",
+                          icon: "🧠"
                         },
                         {
-                          title: "Multi-Language Support",
-                          desc: "Works with all programming languages supported by Copilot",
-                          icon: "🌐"
+                          title: "GitHub Copilot Integration",
+                          desc: "Seamless integration with GitHub Copilot Chat using @clarity command",
+                          icon: "�"
+                        },
+                        {
+                          title: "Free & Open Source",
+                          desc: "100% free to use with full source code available on GitHub",
+                          icon: "💎"
                         }
                       ].map((feature, index) => (
                         <div key={index} className="bg-gradient-to-br from-[#A459E1]/5 to-[#F0CDFF]/5 border border-[#A459E1]/20 rounded-xl p-6">
@@ -368,70 +383,6 @@ export default function DocsPage() {
                           <p className="text-muted-foreground text-sm">{feature.desc}</p>
                         </div>
                       ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* API Reference */}
-                {activeSection === "api" && (
-                  <div className="space-y-8">
-                    <div>
-                      <h2 className="text-3xl font-bold mb-4 text-foreground">API Reference</h2>
-                      <p className="text-muted-foreground text-lg leading-relaxed">
-                        Integrate Clarity AI into your custom tools and workflows.
-                      </p>
-                    </div>
-
-                    <div>
-                      <h3 className="text-2xl font-bold mb-4 text-foreground">REST API</h3>
-                      <div className="space-y-6">
-                        <div className="bg-background/50 border border-border rounded-xl p-6">
-                          <div className="flex items-center gap-3 mb-4">
-                            <span className="px-3 py-1 bg-green-500/20 text-green-400 rounded font-mono text-xs font-bold">POST</span>
-                            <code className="text-[#F0CDFF] font-mono">/api/enhance</code>
-                          </div>
-                          <p className="text-muted-foreground mb-4">Enhance a prompt with AI-powered context</p>
-                          <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-lg p-4 font-mono text-sm">
-                            <code className="text-foreground block whitespace-pre">
-{`{
-  "prompt": "create a function",
-  "context": {
-    "language": "typescript",
-    "framework": "react"
-  }
-}`}
-                            </code>
-                          </div>
-                        </div>
-
-                        <div className="bg-background/50 border border-border rounded-xl p-6">
-                          <div className="flex items-center gap-3 mb-4">
-                            <span className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-xs font-bold">GET</span>
-                            <code className="text-[#F0CDFF] font-mono">/api/templates</code>
-                          </div>
-                          <p className="text-muted-foreground mb-4">Retrieve available prompt templates</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div>
-                      <h3 className="text-2xl font-bold mb-4 text-foreground">SDK Example</h3>
-                      <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-xl p-6 font-mono text-sm">
-                        <code className="text-foreground block whitespace-pre">
-{`import { ClarityAI } from '@clarity-ai/sdk';
-
-const clarity = new ClarityAI({
-  apiKey: process.env.CLARITY_API_KEY
-});
-
-const enhanced = await clarity.enhance({
-  prompt: "create a REST API",
-  options: { level: "detailed" }
-});
-
-console.log(enhanced.prompt);`}
-                        </code>
-                      </div>
                     </div>
                   </div>
                 )}
@@ -476,8 +427,8 @@ console.log(enhanced.prompt);`}
                     <div>
                       <h3 className="text-2xl font-bold mb-4 text-foreground">Development Setup</h3>
                       <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-xl p-6 font-mono text-sm space-y-2">
-                        <code className="block text-[#F0CDFF]">git clone https://github.com/yourusername/clarity-ai.git</code>
-                        <code className="block text-[#F0CDFF]">cd clarity-ai</code>
+                        <code className="block text-[#F0CDFF]">git clone https://github.com/Attafii/ClarityAI.git</code>
+                        <code className="block text-[#F0CDFF]">cd ClarityAI</code>
                         <code className="block text-[#F0CDFF]">npm install</code>
                         <code className="block text-[#F0CDFF]">npm run dev</code>
                       </div>
@@ -493,7 +444,7 @@ console.log(enhanced.prompt);`}
                         className="border-[#A459E1]/50 hover:border-[#F0CDFF] text-[#F0CDFF] hover:bg-[#A459E1]/10"
                         asChild
                       >
-                        <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Attafii/ClarityAI" target="_blank" rel="noopener noreferrer">
                           <Github className="mr-2 h-4 w-4" />
                           View on GitHub
                         </a>
@@ -552,7 +503,7 @@ console.log(enhanced.prompt);`}
                           className="border-[#A459E1]/50 hover:border-[#F0CDFF] text-[#F0CDFF] hover:bg-[#A459E1]/10"
                           asChild
                         >
-                          <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                          <a href="https://github.com/Attafii/ClarityAI/issues" target="_blank" rel="noopener noreferrer">
                             <Github className="mr-2 h-4 w-4" />
                             GitHub Issues
                           </a>
@@ -560,8 +511,11 @@ console.log(enhanced.prompt);`}
                         <Button
                           variant="outline"
                           className="border-[#A459E1]/50 hover:border-[#F0CDFF] text-[#F0CDFF] hover:bg-[#A459E1]/10"
+                          asChild
                         >
-                          Community Forum
+                          <a href="https://github.com/Attafii/ClarityAI" target="_blank" rel="noopener noreferrer">
+                            View Documentation
+                          </a>
                         </Button>
                       </div>
                     </div>

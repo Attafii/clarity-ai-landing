@@ -9,13 +9,13 @@ import { Button } from "@/components/ui/button";
 
 export default function BlogPage() {
   const featuredPost = {
-    id: "one-shot-prompts-revolution",
-    title: "The One-Shot Prompt Revolution: Building Complete Apps in Minutes",
-    excerpt: "Discover how one-shot prompts are transforming software development and why Clarity AI is at the forefront of this movement.",
-    content: "The way we build software is changing. Traditional development cycles of planning, coding, testing, and iteration are being compressed into single, comprehensive prompts that generate complete, production-ready applications...",
-    author: "Clarity AI Team",
-    date: "October 25, 2025",
-    readTime: "8 min read",
+    id: "introducing-clarityai",
+    title: "Introducing ClarityAI: Open Source Prompt Enhancement for VS Code",
+    excerpt: "Meet ClarityAI - the free, open-source VS Code extension that transforms your GitHub Copilot prompts into detailed, context-aware specifications for better code suggestions.",
+    content: "We're excited to introduce ClarityAI, a powerful VS Code extension that enhances your GitHub Copilot prompts using AI. Built with developers in mind, ClarityAI automatically detects context, fixes typos, and transforms vague prompts into comprehensive specifications...",
+    author: "ClarityAI Team",
+    date: "November 6, 2025",
+    readTime: "5 min read",
     category: "Product",
     image: "🚀",
     featured: true
@@ -23,98 +23,58 @@ export default function BlogPage() {
 
   const posts = [
     {
-      id: "mastering-prompt-engineering",
-      title: "Mastering Prompt Engineering: A Developer's Guide",
-      excerpt: "Learn the art and science of crafting effective prompts that get you exactly what you need from AI coding assistants.",
-      author: "Sarah Chen",
-      date: "October 20, 2025",
-      readTime: "12 min read",
-      category: "Tutorial",
-      image: "📚"
-    },
-    {
-      id: "clarity-ai-vs-raw-copilot",
-      title: "Clarity AI vs Raw Copilot: A Real-World Comparison",
-      excerpt: "We tested both approaches on 50 real-world coding tasks. The results surprised even us.",
-      author: "Mike Rodriguez",
-      date: "October 18, 2025",
-      readTime: "10 min read",
-      category: "Analysis",
-      image: "📊"
-    },
-    {
-      id: "open-source-ai-tools",
-      title: "Why Open Source Matters for AI Development Tools",
-      excerpt: "The case for transparent, community-driven AI tools and what it means for developers.",
-      author: "Alex Thompson",
-      date: "October 15, 2025",
-      readTime: "7 min read",
-      category: "Opinion",
-      image: "💭"
-    },
-    {
-      id: "team-productivity-boost",
-      title: "How Teams Are Achieving 10x Productivity with AI",
-      excerpt: "Real stories from development teams who transformed their workflow with enhanced AI prompts.",
-      author: "Emma Wilson",
-      date: "October 12, 2025",
-      readTime: "9 min read",
-      category: "Case Study",
-      image: "👥"
-    },
-    {
-      id: "future-of-coding",
-      title: "The Future of Coding: AI as Your Pair Programmer",
-      excerpt: "What happens when AI assistants become sophisticated enough to understand not just code, but intent?",
-      author: "David Park",
-      date: "October 8, 2025",
-      readTime: "11 min read",
-      category: "Future",
-      image: "🔮"
-    },
-    {
-      id: "prompt-templates-library",
-      title: "Building Your Personal Prompt Templates Library",
-      excerpt: "Create a collection of reusable prompt patterns that supercharge your daily development work.",
-      author: "Lisa Anderson",
-      date: "October 5, 2025",
-      readTime: "6 min read",
-      category: "Tutorial",
-      image: "📝"
-    },
-    {
-      id: "context-matters",
-      title: "Why Context is Everything in AI-Assisted Development",
-      excerpt: "Understanding how context transforms generic AI suggestions into precisely what you need.",
-      author: "James Mitchell",
-      date: "October 1, 2025",
+      id: "how-to-get-started-with-clarityai",
+      title: "How to Get Started with ClarityAI",
+      excerpt: "A complete guide to installing ClarityAI, setting up your Gemini API key, and enhancing your first prompt in just 5 minutes.",
+      author: "ClarityAI Team",
+      date: "November 6, 2025",
       readTime: "8 min read",
-      category: "Technical",
-      image: "🎯"
+      category: "Tutorial",
+      image: "�"
     },
     {
-      id: "clarity-ai-roadmap",
-      title: "Clarity AI Roadmap: What's Coming in 2025",
-      excerpt: "A peek into upcoming features, improvements, and our vision for the future of prompt enhancement.",
-      author: "Clarity AI Team",
-      date: "September 28, 2025",
-      readTime: "5 min read",
-      category: "Product",
-      image: "🗺️"
+      id: "why-prompt-enhancement-matters",
+      title: "Why Prompt Enhancement Matters for Developers",
+      excerpt: "Learn how enhanced prompts lead to better code suggestions, fewer iterations, and improved development velocity with AI assistants.",
+      author: "ClarityAI Team",
+      date: "November 5, 2025",
+      readTime: "6 min read",
+      category: "Insights",
+      image: "�"
     },
     {
-      id: "security-best-practices",
-      title: "Security Best Practices for AI Coding Assistants",
-      excerpt: "Keep your code secure while leveraging the power of AI. Essential security tips every developer should know.",
-      author: "Security Team",
-      date: "September 25, 2025",
+      id: "clarityai-features-deep-dive",
+      title: "ClarityAI Features: A Deep Dive",
+      excerpt: "Explore context detection, todo awareness, typo correction, and other powerful features that make ClarityAI essential for developers.",
+      author: "ClarityAI Team",
+      date: "November 4, 2025",
       readTime: "10 min read",
-      category: "Security",
-      image: "🔒"
+      category: "Technical",
+      image: "�"
+    },
+    {
+      id: "gemini-api-integration",
+      title: "Understanding the Gemini API Integration",
+      excerpt: "How ClarityAI leverages Google Gemini 2.0 Flash to provide fast, accurate prompt enhancements with minimal latency.",
+      author: "ClarityAI Team",
+      date: "November 3, 2025",
+      readTime: "7 min read",
+      category: "Technical",
+      image: "⚡"
+    },
+    {
+      id: "open-source-philosophy",
+      title: "Our Open Source Philosophy",
+      excerpt: "Why we built ClarityAI as a free, open-source tool and what it means for the developer community.",
+      author: "ClarityAI Team",
+      date: "November 2, 2025",
+      readTime: "5 min read",
+      category: "Community",
+      image: "�"
     }
   ];
 
-  const categories = ["All", "Product", "Tutorial", "Analysis", "Opinion", "Case Study", "Future", "Technical", "Security"];
+  const categories = ["All", "Product", "Tutorial", "Insights", "Technical", "Community"];
 
   return (
     <div className="min-h-screen bg-background">
@@ -140,7 +100,7 @@ export default function BlogPage() {
               Clarity AI Blog
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl">
-              Insights, tutorials, and stories about AI-assisted development, prompt engineering, and the future of coding.
+              Learn about ClarityAI features, best practices, tutorials, and insights on AI-assisted development.
             </p>
           </div>
 
