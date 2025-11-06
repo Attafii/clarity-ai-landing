@@ -98,13 +98,11 @@ const techLogosRow2 = [
 
 export default function Hero() {
   const handlePrimaryClick = () => {
-    // Add your logic here for primary CTA
-    console.log('Install for VS Code clicked');
+    window.location.href = '/docs#installation';
   };
 
   const handleSecondaryClick = () => {
-    // Add your logic here for secondary CTA
-    console.log('See How It Works clicked');
+    window.open('https://github.com/Attafii/ClarityAI', '_blank');
   };
 
   return (
@@ -121,11 +119,11 @@ export default function Hero() {
         subtitle='Improve your workflow with automatic prompt enhancement. Save time and effort while elevating AI response quality through intelligent prompt enhancement & planning that seamlessly integrates with GitHub Copilot.'
         buttons={{
           primary: {
-            text: 'Install for VS Code',
+            text: 'Get Started Free',
             onClick: handlePrimaryClick,
           },
           secondary: {
-            text: 'See How It Works',
+            text: 'View on GitHub',
             onClick: handleSecondaryClick,
           },
         }}

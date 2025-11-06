@@ -32,16 +32,83 @@ export default function Demo() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [sectionRef, isVisible] = useScrollAnimation();
 
-  const beforePrompt = `create a function`;
+  const [activeExample, setActiveExample] = useState(0);
   
-  const afterPrompt = `Create a TypeScript function that:
+  const examples = [
+    {
+      title: "Function Creation",
+      before: "create a function",
+      after: `Create a TypeScript function that:
 - Accepts an array of user objects with name and email
 - Validates email format using regex
 - Filters out invalid entries
 - Returns sorted array by name (ascending)
 - Includes JSDoc comments
 - Handles edge cases (null, undefined, empty array)
-- Uses proper TypeScript types and interfaces`;
+- Uses proper TypeScript types and interfaces`
+    },
+    {
+      title: "API Endpoint",
+      before: "make a login endpoint",
+      after: `Create a Next.js 15 API route for user login with:
+
+AUTHENTICATION:
+- Email and password validation
+- bcrypt password hashing comparison
+- JWT token generation with 7-day expiration
+- HttpOnly cookie for token storage
+
+SECURITY:
+- Rate limiting (5 attempts per 15 minutes)
+- CSRF protection
+- Input sanitization
+- Secure password requirements
+
+ERROR HANDLING:
+- Invalid credentials (401)
+- Missing fields (400)
+- Server errors (500)
+- Detailed error messages in development, generic in production
+
+RESPONSE FORMAT:
+- Success: { success: true, user: { id, email, name } }
+- Error: { success: false, error: string }
+
+TypeScript types for request/response`
+    },
+    {
+      title: "React Component",
+      before: "create a todo app",
+      after: `Create a React TypeScript todo application with:
+
+COMPONENTS:
+- TodoList: Main container component
+- TodoItem: Individual todo with checkbox and delete
+- TodoInput: Form with validation
+- TodoFilters: All/Active/Completed tabs
+
+STATE MANAGEMENT:
+- Use React hooks (useState, useEffect)
+- LocalStorage persistence
+- Optimistic UI updates
+
+FEATURES:
+- Add new todos with Enter key
+- Mark as complete/incomplete
+- Delete todos with confirmation
+- Filter by status
+- Todo count display
+- Clear completed button
+
+STYLING:
+- Tailwind CSS classes
+- Responsive design (mobile-first)
+- Smooth transitions
+- Accessible (ARIA labels, keyboard navigation)
+
+TypeScript interfaces for Todo type`
+    }
+  ];
 
   return (
     <section
@@ -65,18 +132,37 @@ export default function Demo() {
             <span className="text-sm font-medium text-[#F0CDFF]">See It In Action</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#F0CDFF] via-white to-[#A459E1] bg-clip-text text-transparent">
-            Watch Clarity AI Transform Your Prompts
+            Watch ClarityAI Transform Your Prompts
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            See how Clarity AI enhances a simple prompt into a detailed, context-rich instruction
+            Real examples showing how ClarityAI enhances simple prompts into detailed, context-rich instructions
           </p>
+        </div>
+
+        {/* Example Tabs */}
+        <div className={`flex justify-center gap-3 mb-8 flex-wrap transition-all duration-1000 transform ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`} style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}>
+          {examples.map((example, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveExample(index)}
+              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                activeExample === index
+                  ? 'bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] text-black shadow-lg'
+                  : 'bg-muted text-muted-foreground hover:bg-muted/80'
+              }`}
+            >
+              {example.title}
+            </button>
+          ))}
         </div>
 
         <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12 transition-all duration-1000 transform ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`} style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}>
           {/* Before: Basic Prompt */}
-          <div className="group hover:scale-105 transition-transform duration-300 cursor-pointer">
+          <div className="group hover:scale-105 transition-transform duration-300">
             <div className="flex items-center gap-3 mb-4">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-red-500/10 border border-red-500/30">
                 <Code2 className="h-5 w-5 text-red-500" />
@@ -86,8 +172,8 @@ export default function Demo() {
                 <p className="text-sm text-muted-foreground">What most developers write</p>
               </div>
             </div>
-            <div className="relative bg-gradient-to-br from-red-500/5 to-background border border-red-500/20 rounded-xl p-6 h-48 flex items-center justify-center group-hover:border-red-500/40 transition-colors">
-              <code className="text-2xl font-mono text-muted-foreground">{beforePrompt}</code>
+            <div className="relative bg-gradient-to-br from-red-500/5 to-background border border-red-500/20 rounded-xl p-6 min-h-48 flex items-center justify-center group-hover:border-red-500/40 transition-colors">
+              <code className="text-2xl font-mono text-muted-foreground text-center">{examples[activeExample].before}</code>
               <div className="absolute top-3 right-3">
                 <span className="text-xs px-2 py-1 bg-red-500/20 text-red-400 rounded-md font-medium">
                   Vague
@@ -97,19 +183,19 @@ export default function Demo() {
           </div>
 
           {/* After: Enhanced Prompt */}
-          <div className="group hover:scale-105 transition-transform duration-300 cursor-pointer">
+          <div className="group hover:scale-105 transition-transform duration-300">
             <div className="flex items-center gap-3 mb-4">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-[#A459E1] to-[#F0CDFF]">
                 <Sparkles className="h-5 w-5 text-black" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold">After: Enhanced with Clarity AI</h3>
+                <h3 className="text-xl font-semibold">After: Enhanced with ClarityAI</h3>
                 <p className="text-sm text-muted-foreground">Context-rich & precise</p>
               </div>
             </div>
-            <div className="relative bg-gradient-to-br from-[#A459E1]/10 to-[#F0CDFF]/5 border-2 border-[#A459E1]/30 rounded-xl p-6 h-48 overflow-auto group-hover:border-[#A459E1]/50 transition-colors">
+            <div className="relative bg-gradient-to-br from-[#A459E1]/10 to-[#F0CDFF]/5 border-2 border-[#A459E1]/30 rounded-xl p-6 min-h-48 max-h-96 overflow-auto group-hover:border-[#A459E1]/50 transition-colors">
               <code className="text-sm font-mono text-foreground/90 whitespace-pre-line leading-relaxed">
-                {afterPrompt}
+                {examples[activeExample].after}
               </code>
               <div className="absolute top-3 right-3">
                 <span className="text-xs px-2 py-1 bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] text-black rounded-md font-medium">

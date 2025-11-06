@@ -112,11 +112,16 @@ export default function OneShotPrompt() {
 
             <Button
               size="lg"
+              onClick={() => window.location.href = '/docs#installation'}
               className="bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] hover:from-[#9147d4] hover:to-[#e8b7ff] text-black font-semibold text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl hover:shadow-[#A459E1]/30 transition-all duration-300 hover:scale-105 group"
             >
-              Try One-Shot Mode
+              Try It Yourself
               <Sparkles className="ml-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
             </Button>
+
+            <p className="text-xs text-muted-foreground mt-4 italic">
+              * Results depend on prompt quality and AI model capability. Best used with GitHub Copilot.
+            </p>
           </div>
 
           {/* Right: Visual Example */}

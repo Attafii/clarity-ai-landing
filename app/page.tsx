@@ -46,9 +46,6 @@ export default function Home() {
       {/* One-Shot Prompt Section - Trending Feature */}
       <OneShotPrompt />
 
-      {/* Pricing Section */}
-      <Pricing />
-
       {/* Testimonials Section */}
       <TestimonialsSection />
 

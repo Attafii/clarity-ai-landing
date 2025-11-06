@@ -48,31 +48,21 @@ export const siteConfig = {
       href: 'https://github.com/Attafii/ClarityAI',
       icon: 'Github',
     },
-    {
-      name: 'Twitter',
-      href: 'https://twitter.com/clarityai',
-      icon: 'Twitter',
-    },
-    {
-      name: 'LinkedIn',
-      href: 'https://linkedin.com/company/clarityai',
-      icon: 'Linkedin',
-    },
   ],
 
   // Navigation Links
   navLinks: [
     { name: 'Features', href: '#features' },
-    { name: 'Install', href: '#install' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'Docs', href: '#docs' },
+    { name: 'Documentation', href: '/docs' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'GitHub', href: 'https://github.com/Attafii/ClarityAI' },
   ],
 
   // Legal Links
   legalLinks: [
-    { name: 'Privacy', href: '#privacy' },
-    { name: 'Terms', href: '#terms' },
-    { name: 'Security', href: '#security' },
+    { name: 'Privacy Policy', href: '/privacy' },
+    { name: 'MIT License', href: 'https://github.com/Attafii/ClarityAI/blob/main/LICENSE' },
+    { name: 'Support', href: 'https://github.com/Attafii/ClarityAI/issues' },
   ],
 
   // URLs
@@ -86,9 +76,10 @@ export const siteConfig = {
 
   // Company Info
   company: {
-    name: 'Clarity AI',
+    name: 'ClarityAI',
     foundedYear: 2025,
-    location: 'San Francisco, CA',
+    author: 'Ahmed Attafi',
+    authorUrl: 'https://attafii.dev',
   },
 };
 

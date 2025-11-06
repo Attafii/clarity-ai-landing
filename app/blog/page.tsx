@@ -1,80 +1,48 @@
-'use client';
-
+import { Metadata } from "next";
 import { ArrowLeft, Calendar, Clock, User, ArrowRight, Tag } from "lucide-react";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingDockSection from "@/components/sections/FloatingDockSection";
 import { Button } from "@/components/ui/button";
+import { getBlogPosts, getFeaturedPost } from "@/lib/db";
 
-export default function BlogPage() {
-  const featuredPost = {
-    id: "introducing-clarityai",
-    title: "Introducing ClarityAI: Open Source Prompt Enhancement for VS Code",
-    excerpt: "Meet ClarityAI - the free, open-source VS Code extension that transforms your GitHub Copilot prompts into detailed, context-aware specifications for better code suggestions.",
-    content: "We're excited to introduce ClarityAI, a powerful VS Code extension that enhances your GitHub Copilot prompts using AI. Built with developers in mind, ClarityAI automatically detects context, fixes typos, and transforms vague prompts into comprehensive specifications...",
-    author: "ClarityAI Team",
-    date: "November 6, 2025",
-    readTime: "5 min read",
-    category: "Product",
+export const dynamic = 'force-dynamic';
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description: 'Learn about prompt engineering, AI-assisted development, and get the most out of ClarityAI with tutorials, guides, and insights.',
+  openGraph: {
+    title: 'ClarityAI Blog - AI Development Insights & Tutorials',
+    description: 'Learn about prompt engineering, AI-assisted development, and get the most out of ClarityAI.',
+  },
+};
+
+export default async function BlogPage() {
+  const [featuredPostData, allPosts] = await Promise.all([
+    getFeaturedPost(),
+    getBlogPosts()
+  ]);
+
+  const posts = allPosts.filter(p => !p.featured);
+  
+  // Map database post to component format
+  const featuredPost = featuredPostData ? {
+    id: featuredPostData.slug,
+    title: featuredPostData.title,
+    excerpt: featuredPostData.excerpt,
+    content: featuredPostData.content,
+    author: featuredPostData.author,
+    date: new Date(featuredPostData.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+    readTime: featuredPostData.read_time,
+    category: featuredPostData.category,
     image: "🚀",
     featured: true
-  };
+  } : null;
 
-  const posts = [
-    {
-      id: "how-to-get-started-with-clarityai",
-      title: "How to Get Started with ClarityAI",
-      excerpt: "A complete guide to installing ClarityAI, setting up your Gemini API key, and enhancing your first prompt in just 5 minutes.",
-      author: "ClarityAI Team",
-      date: "November 6, 2025",
-      readTime: "8 min read",
-      category: "Tutorial",
-      image: "�"
-    },
-    {
-      id: "why-prompt-enhancement-matters",
-      title: "Why Prompt Enhancement Matters for Developers",
-      excerpt: "Learn how enhanced prompts lead to better code suggestions, fewer iterations, and improved development velocity with AI assistants.",
-      author: "ClarityAI Team",
-      date: "November 5, 2025",
-      readTime: "6 min read",
-      category: "Insights",
-      image: "�"
-    },
-    {
-      id: "clarityai-features-deep-dive",
-      title: "ClarityAI Features: A Deep Dive",
-      excerpt: "Explore context detection, todo awareness, typo correction, and other powerful features that make ClarityAI essential for developers.",
-      author: "ClarityAI Team",
-      date: "November 4, 2025",
-      readTime: "10 min read",
-      category: "Technical",
-      image: "�"
-    },
-    {
-      id: "gemini-api-integration",
-      title: "Understanding the Gemini API Integration",
-      excerpt: "How ClarityAI leverages Google Gemini 2.0 Flash to provide fast, accurate prompt enhancements with minimal latency.",
-      author: "ClarityAI Team",
-      date: "November 3, 2025",
-      readTime: "7 min read",
-      category: "Technical",
-      image: "⚡"
-    },
-    {
-      id: "open-source-philosophy",
-      title: "Our Open Source Philosophy",
-      excerpt: "Why we built ClarityAI as a free, open-source tool and what it means for the developer community.",
-      author: "ClarityAI Team",
-      date: "November 2, 2025",
-      readTime: "5 min read",
-      category: "Community",
-      image: "�"
-    }
-  ];
-
-  const categories = ["All", "Product", "Tutorial", "Insights", "Technical", "Community"];
+  // Extract unique categories from posts
+  const categorySet = new Set(allPosts.map(post => post.category));
+  const categories = ["All", ...Array.from(categorySet)];
 
   return (
     <div className="min-h-screen bg-background">
@@ -105,61 +73,63 @@ export default function BlogPage() {
           </div>
 
           {/* Featured Post */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold mb-6 text-foreground flex items-center gap-2">
-              <span className="text-2xl">⭐</span>
-              Featured Article
-            </h2>
-            <Link href={`/blog/${featuredPost.id}`}>
-              <div className="group relative bg-gradient-to-br from-[#A459E1]/20 to-[#F0CDFF]/10 border-2 border-[#A459E1]/50 rounded-2xl p-8 md:p-12 hover:border-[#A459E1]/70 transition-all duration-300 hover:scale-[1.02] cursor-pointer overflow-hidden">
-                {/* Background Effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#A459E1]/5 to-[#F0CDFF]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                
-                <div className="relative z-10">
-                  {/* Badge */}
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] rounded-full mb-6">
-                    <Tag className="h-3 w-3 text-black" />
-                    <span className="text-xs font-bold text-black">{featuredPost.category}</span>
-                  </div>
-
-                  {/* Icon */}
-                  <div className="text-6xl mb-6">{featuredPost.image}</div>
-
-                  {/* Title */}
-                  <h3 className="text-3xl md:text-4xl font-bold mb-4 text-foreground group-hover:text-[#F0CDFF] transition-colors">
-                    {featuredPost.title}
-                  </h3>
-
-                  {/* Excerpt */}
-                  <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                    {featuredPost.excerpt}
-                  </p>
-
-                  {/* Meta */}
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <User className="h-4 w-4" />
-                      <span>{featuredPost.author}</span>
+          {featuredPost && (
+            <div className="mb-16">
+              <h2 className="text-2xl font-bold mb-6 text-foreground flex items-center gap-2">
+                <span className="text-2xl">⭐</span>
+                Featured Article
+              </h2>
+              <Link href={`/blog/${featuredPost.id}`}>
+                <div className="group relative bg-gradient-to-br from-[#A459E1]/20 to-[#F0CDFF]/10 border-2 border-[#A459E1]/50 rounded-2xl p-8 md:p-12 hover:border-[#A459E1]/70 transition-all duration-300 hover:scale-[1.02] cursor-pointer overflow-hidden">
+                  {/* Background Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#A459E1]/5 to-[#F0CDFF]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  
+                  <div className="relative z-10">
+                    {/* Badge */}
+                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] rounded-full mb-6">
+                      <Tag className="h-3 w-3 text-black" />
+                      <span className="text-xs font-bold text-black">{featuredPost.category}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4" />
-                      <span>{featuredPost.date}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4" />
-                      <span>{featuredPost.readTime}</span>
-                    </div>
-                  </div>
 
-                  {/* Read More */}
-                  <div className="mt-6 inline-flex items-center gap-2 text-[#F0CDFF] font-semibold group-hover:gap-3 transition-all">
-                    <span>Read Article</span>
-                    <ArrowRight className="h-5 w-5" />
+                    {/* Icon */}
+                    <div className="text-6xl mb-6">{featuredPost.image}</div>
+
+                    {/* Title */}
+                    <h3 className="text-3xl md:text-4xl font-bold mb-4 text-foreground group-hover:text-[#F0CDFF] transition-colors">
+                      {featuredPost.title}
+                    </h3>
+
+                    {/* Excerpt */}
+                    <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                      {featuredPost.excerpt}
+                    </p>
+
+                    {/* Meta */}
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-2">
+                        <User className="h-4 w-4" />
+                        <span>{featuredPost.author}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4" />
+                        <span>{featuredPost.date}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Clock className="h-4 w-4" />
+                        <span>{featuredPost.readTime}</span>
+                      </div>
+                    </div>
+
+                    {/* Read More */}
+                    <div className="mt-6 inline-flex items-center gap-2 text-[#F0CDFF] font-semibold group-hover:gap-3 transition-all">
+                      <span>Read Article</span>
+                      <ArrowRight className="h-5 w-5" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          </div>
+              </Link>
+            </div>
+          )}
 
           {/* Category Filter */}
           <div className="mb-12">
@@ -182,11 +152,11 @@ export default function BlogPage() {
           {/* Blog Posts Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
-              <Link key={post.id} href={`/blog/${post.id}`}>
+              <Link key={post.id} href={`/blog/${post.slug}`}>
                 <article className="group h-full bg-background/50 backdrop-blur-sm border border-border rounded-xl overflow-hidden hover:border-[#A459E1]/40 transition-all duration-300 hover:scale-105 cursor-pointer">
                   {/* Image/Icon */}
                   <div className="bg-gradient-to-br from-[#A459E1]/10 to-[#F0CDFF]/10 p-8 flex items-center justify-center border-b border-border group-hover:from-[#A459E1]/20 group-hover:to-[#F0CDFF]/20 transition-colors">
-                    <span className="text-6xl">{post.image}</span>
+                    <span className="text-6xl">📝</span>
                   </div>
 
                   <div className="p-6">
@@ -214,11 +184,11 @@ export default function BlogPage() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <Calendar className="h-3 w-3" />
-                          <span>{post.date}</span>
+                          <span>{new Date(post.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <Clock className="h-3 w-3" />
-                          <span>{post.readTime}</span>
+                          <span>{post.read_time}</span>
                         </div>
                       </div>
                     </div>

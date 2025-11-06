@@ -1,10 +1,50 @@
+'use client';
+
 import Link from "next/link";
 import { Github, Twitter, Linkedin } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site";
+import { useState } from "react";
 
 export default function Footer() {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+    setMessage('');
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus('success');
+        setMessage('Thanks for subscribing! Check your email.');
+        setEmail('');
+      } else {
+        setStatus('error');
+        setMessage(data.error || 'Failed to subscribe');
+      }
+    } catch (error) {
+      setStatus('error');
+      setMessage('Something went wrong. Please try again.');
+    }
+
+    setTimeout(() => {
+      setStatus('idle');
+      setMessage('');
+    }, 5000);
+  };
+
   const socialLinks = siteConfig.socialLinks.map(social => ({
     ...social,
     icon: social.icon === "Github" ? Github : social.icon === "Twitter" ? Twitter : Linkedin
@@ -66,16 +106,30 @@ export default function Footer() {
               <p className="text-muted-foreground text-sm">
                 Get updates on new features and improvements.
               </p>
-              <div className="flex flex-col space-y-3">
+              <form onSubmit={handleSubscribe} className="flex flex-col space-y-3">
                 <input
                   type="email"
                   placeholder="Enter email"
-                  className="px-3 py-2 bg-background border border-border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  disabled={status === 'loading'}
+                  className="px-3 py-2 bg-background border border-border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent disabled:opacity-50"
                 />
-                <Button size="sm" className="w-full">
-                  Subscribe
+                <Button 
+                  type="submit" 
+                  size="sm" 
+                  className="w-full"
+                  disabled={status === 'loading'}
+                >
+                  {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
                 </Button>
-              </div>
+                {message && (
+                  <p className={`text-xs ${status === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+                    {message}
+                  </p>
+                )}
+              </form>
             </div>
           </div>
         </div>
@@ -86,7 +140,15 @@ export default function Footer() {
         {/* Bottom section */}
         <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
           <p className="text-muted-foreground text-sm">
-            © {siteConfig.company.foundedYear} {siteConfig.company.name}. All rights reserved.
+            © {siteConfig.company.foundedYear} {siteConfig.company.name} • Built with ❤️ by{' '}
+            <a 
+              href={siteConfig.company.authorUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-[#A459E1] hover:text-[#F0CDFF] transition-colors underline"
+            >
+              {siteConfig.company.author}
+            </a>
           </p>
           
           {/* Social links */}

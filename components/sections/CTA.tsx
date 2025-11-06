@@ -76,15 +76,15 @@ export default function CTA() {
           <p className={`text-lg md:text-xl text-muted-foreground text-center max-w-3xl mx-auto mb-10 leading-relaxed transition-all duration-1000 transform ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
           }`} style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}>
-            Join thousands of developers who are already using Clarity AI to transform their GitHub Copilot experience. Start your free 14-day trial today.
+            Join thousands of developers who are already using ClarityAI to transform their GitHub Copilot experience. Get started in minutes.
           </p>
 
           {/* Benefits List */}
           <div className="flex flex-wrap justify-center gap-6 mb-10">
             {[
-              "No credit card required",
-              "Always free",
-              "Open-source forever"
+              "100% Free Forever",
+              "No Credit Card Required",
+              "Open Source"
             ].map((benefit, index) => (
               <div key={index} className="flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-[#A459E1]" />
@@ -99,17 +99,19 @@ export default function CTA() {
           }`} style={{ transitionDelay: isVisible ? '400ms' : '0ms' }}>
             <Button
               size="lg"
+              onClick={() => window.location.href = '/docs#installation'}
               className="bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] hover:from-[#9147d4] hover:to-[#e8b7ff] text-black font-semibold text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl hover:shadow-[#A459E1]/30 transition-all duration-300 hover:scale-105 group"
             >
-              Start Free Trial
+              Get Started Free
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
               size="lg"
               variant="outline"
+              onClick={() => window.open('https://github.com/Attafii/ClarityAI', '_blank')}
               className="border-2 border-[#A459E1]/50 hover:border-[#F0CDFF] text-[#F0CDFF] hover:bg-[#A459E1]/10 text-lg px-8 py-6 rounded-full transition-all duration-300 hover:scale-105"
             >
-              Watch Demo
+              View on GitHub
             </Button>
           </div>
 
@@ -118,23 +120,23 @@ export default function CTA() {
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 text-center">
               <div>
                 <div className="text-3xl font-bold bg-gradient-to-r from-[#F0CDFF] to-[#A459E1] bg-clip-text text-transparent mb-1">
-                  50K+
+                  Open Source
                 </div>
-                <div className="text-sm text-muted-foreground">Active Users</div>
+                <div className="text-sm text-muted-foreground">MIT Licensed</div>
               </div>
               <div className="hidden md:block w-px h-12 bg-[#A459E1]/20" />
               <div>
                 <div className="text-3xl font-bold bg-gradient-to-r from-[#F0CDFF] to-[#A459E1] bg-clip-text text-transparent mb-1">
-                  1M+
+                  Context-Aware
                 </div>
-                <div className="text-sm text-muted-foreground">Prompts Enhanced</div>
+                <div className="text-sm text-muted-foreground">Smart Enhancement</div>
               </div>
               <div className="hidden md:block w-px h-12 bg-[#A459E1]/20" />
               <div>
                 <div className="text-3xl font-bold bg-gradient-to-r from-[#F0CDFF] to-[#A459E1] bg-clip-text text-transparent mb-1">
-                  98%
+                  Privacy First
                 </div>
-                <div className="text-sm text-muted-foreground">Satisfaction Rate</div>
+                <div className="text-sm text-muted-foreground">No Code Sent</div>
               </div>
             </div>
           </div>

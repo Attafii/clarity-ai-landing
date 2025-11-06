@@ -38,16 +38,16 @@ export default function Pricing() {
     description: "Free for everyone, always",
     features: [
       "Unlimited prompt enhancements",
-      "Advanced AI analysis",
+      "Context-aware AI analysis",
       "VS Code integration",
-      "Custom prompt templates",
-      "Team collaboration",
-      "Analytics dashboard",
+      "GitHub Copilot Chat integration",
+      "TODO detection",
+      "Grammar & typo correction",
       "Community support",
-      "API access",
-      "Open-source codebase",
+      "100% Open-source codebase",
       "Self-hosting option",
-      "No vendor lock-in"
+      "No vendor lock-in",
+      "Privacy-focused (prompts only, never code)"
     ],
     cta: "Get Started Free",
     icon: Sparkles
@@ -140,12 +140,18 @@ export default function Pricing() {
         </div>
 
         {/* Additional Info */}
-        <div className="mt-12 text-center">
+        <div className="mt-12 text-center space-y-3">
           <p className="text-muted-foreground text-sm">
             100% free and open-source. No credit card required.{' '}
-            <a href="https://github.com" className="text-[#A459E1] hover:text-[#F0CDFF] transition-colors underline">
+            <a href="https://github.com/Attafii/ClarityAI" className="text-[#A459E1] hover:text-[#F0CDFF] transition-colors underline">
               View on GitHub
             </a>
+          </p>
+          <p className="text-muted-foreground text-xs max-w-2xl mx-auto">
+            <strong>Privacy Note:</strong> Only your prompts are sent for enhancement - never your actual code. 
+            Read our{' '}
+            <a href="/privacy" className="text-[#A459E1] hover:text-[#F0CDFF] underline">Privacy Policy</a>
+            {' '}for details.
           </p>
         </div>
       </div>
