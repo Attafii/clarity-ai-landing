@@ -1,5 +1,6 @@
 'use client';
 
+import React from "react";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -13,7 +14,7 @@ const blogPosts: Record<string, {
   date: string;
   readTime: string;
   category: string;
-  content: JSX.Element;
+  content: React.ReactElement;
 }> = {
   "introducing-clarityai": {
     title: "Introducing ClarityAI: Open Source Prompt Enhancement for VS Code",
