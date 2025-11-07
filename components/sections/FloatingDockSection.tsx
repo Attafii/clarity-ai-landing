@@ -8,7 +8,7 @@ import {
     IconArticle,
     IconHeart,
     IconBrandGithub,
-    IconBrandX,
+    IconBrandLinkedin,
 } from "@tabler/icons-react";
 
 export default function FloatingDockSection() {
@@ -18,13 +18,6 @@ export default function FloatingDockSection() {
     // Always show dock bar on all pages
     setIsVisible(true);
   }, []);
-
-  // Bluesky icon component (custom since not in Tabler)
-  const BlueSkyIcon = () => (
-    <svg className="h-full w-full text-neutral-500 dark:text-neutral-300" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2.5c-1.38 0-2.5.84-2.5 1.88 0 .31.1.6.26.85.45.71 1.24 1.27 2.24 1.27s1.79-.56 2.24-1.27c.16-.25.26-.54.26-.85C14.5 3.34 13.38 2.5 12 2.5zm-3.75 3.13C7.11 6.47 6 7.97 6 9.75c0 2.9 2.35 5.25 5.25 5.25h1.5c2.9 0 5.25-2.35 5.25-5.25 0-1.78-1.11-3.28-2.25-4.12C15.19 5.28 14.44 5 13.63 5h-3.26c-.81 0-1.56.28-2.12.63z"/>
-    </svg>
-  );
 
   const links = [
     {
@@ -60,19 +53,14 @@ export default function FloatingDockSection() {
       icon: (
         <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "https://github.com/Attafii/clarity-ai-landing",
+      href: "https://github.com/Attafii/ClarityAI",
     },
     {
-      title: "X (Twitter)",
+      title: "LinkedIn",
       icon: (
-        <IconBrandX className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <IconBrandLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "https://x.com/yourhandle",
-    },
-    {
-      title: "Bluesky",
-      icon: <BlueSkyIcon />,
-      href: "https://bsky.app/profile/yourhandle.bsky.social",
+      href: "https://www.linkedin.com/company/clarityai-extension",
     },
   ];
 
