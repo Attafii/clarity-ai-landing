@@ -1,11 +1,12 @@
-import { Metadata } from "next";
 import { ArrowLeft, Calendar, Clock, User, ArrowRight, Tag } from "lucide-react";
 import Link from "next/link";
+import { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingDockSection from "@/components/sections/FloatingDockSection";
 import { Button } from "@/components/ui/button";
 import { getBlogPosts, getFeaturedPost } from "@/lib/db";
+import NewsletterForm from "@/components/NewsletterForm";
 
 export const dynamic = 'force-dynamic';
 
@@ -208,18 +209,7 @@ export default async function BlogPage() {
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
               Get the latest articles, tutorials, and product updates delivered to your inbox.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A459E1] focus:border-transparent"
-              />
-              <Button
-                className="bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] hover:from-[#9147d4] hover:to-[#e8b7ff] text-black font-semibold px-6 rounded-lg"
-              >
-                Subscribe
-              </Button>
-            </div>
+            <NewsletterForm />
             <p className="text-xs text-muted-foreground mt-4">
               No spam. Unsubscribe anytime.
             </p>

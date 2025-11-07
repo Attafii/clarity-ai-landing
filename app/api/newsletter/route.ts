@@ -36,7 +36,7 @@ export async function POST(request: Request) {
 
     // Send welcome email via Resend
     await resend.emails.send({
-      from: 'ClarityAI <noreply@clarity-ai.app>',
+      from: 'ClarityAI <onboarding@resend.dev>',
       to: email,
       subject: 'Welcome to ClarityAI Newsletter! 🚀',
       html: `
