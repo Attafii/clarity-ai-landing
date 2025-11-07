@@ -42,11 +42,11 @@ export default function FloatingDockSection() {
       href: "/blog",
     },
     {
-      title: "Donate",
+      title: "Sponsor",
       icon: (
         <IconHeart className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "/donate",
+      href: "https://github.com/sponsors/Attafii",
     },
     {
       title: "GitHub",
