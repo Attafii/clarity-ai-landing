@@ -6,15 +6,8 @@ export async function GET() {
     // Initialize database
     await initDatabase();
 
-    // Check if posts already exist
-    const existingPosts = await sql`SELECT COUNT(*) as count FROM blog_posts`;
-    
-    if (existingPosts[0].count > 0) {
-      return NextResponse.json({ 
-        message: 'Blog posts already exist',
-        count: existingPosts[0].count 
-      });
-    }
+    // Delete existing posts to reseed with new content
+    await sql`DELETE FROM blog_posts`;
 
     // Seed initial blog posts
     await sql`
