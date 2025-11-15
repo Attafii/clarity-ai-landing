@@ -5,6 +5,22 @@ export function Features() {
     return (
         <section className="bg-gradient-to-b from-background to-purple-950/10 py-16 md:py-32 dark:bg-transparent">
             <div className="mx-auto max-w-3xl lg:max-w-6xl px-6">
+                {/* Section Header */}
+                <div className="text-center mb-16">
+                    <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#A459E1]/20 to-[#F0CDFF]/20 backdrop-blur-md border border-[#A459E1]/30 rounded-full mb-6">
+                        <Sparkles className="h-5 w-5 text-[#F0CDFF]" />
+                        <span className="text-sm font-bold text-[#F0CDFF]">POWERFUL FEATURES</span>
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                        <span className="bg-gradient-to-r from-[#F0CDFF] via-white to-[#A459E1] bg-clip-text text-transparent">
+                            Built for Modern Development
+                        </span>
+                    </h2>
+                    <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                        Everything you need to supercharge your coding workflow with AI-powered intelligence
+                    </p>
+                </div>
+
                 <div className="relative">
                     <div className="relative z-10 grid grid-cols-6 gap-4">
                         {/* AI Enhancement Card */}
@@ -130,7 +146,7 @@ export function Features() {
                                         <div className="relative flex w-[calc(50%+0.875rem)] items-center justify-end gap-2">
                                             <span className="block h-fit rounded border border-[#A459E1]/30 bg-[#A459E1]/10 px-2 py-1 text-xs text-[#F0CDFF] shadow-sm">Sarah</span>
                                             <div className="ring-[#A459E1]/30 size-7 ring-4">
-                                                <img className="size-full rounded-full" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face" alt="Sarah" />
+                                                <img className="size-full rounded-full object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face" alt="Sarah" />
                                             </div>
                                         </div>
                                         <div className="relative ml-[calc(50%-1rem)] flex items-center gap-2">
