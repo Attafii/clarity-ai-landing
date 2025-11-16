@@ -7,7 +7,6 @@ import FloatingDockSection from "@/components/sections/FloatingDockSection";
 import Pricing from "@/components/sections/Pricing";
 import FAQ from "@/components/sections/FAQ";
 import CTA from "@/components/sections/CTA";
-import Demo from "@/components/sections/Demo";
 import OneShotPrompt from "@/components/sections/OneShotPrompt";
 import OpenSource from "@/components/sections/OpenSource";
 
@@ -39,9 +38,6 @@ export default function Home() {
 
       {/* How It Works Section - Interactive Bento Grid */}
       <CyberneticBentoGrid />
-
-      {/* Demo Section - See it in action */}
-      <Demo />
 
       {/* One-Shot Prompt Section - Trending Feature */}
       <OneShotPrompt />
