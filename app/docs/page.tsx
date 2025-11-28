@@ -148,8 +148,13 @@ export default function DocsPage() {
                     <div>
                       <h3 className="text-2xl font-bold mb-4 text-foreground">From VS Code Marketplace</h3>
                       <p className="text-muted-foreground mb-4">
-                        Search for "ClarityAI" in the VS Code Extensions marketplace and click Install.
+                        Install ClarityAI directly from the VS Code Extensions marketplace or open it in VS Code.
                       </p>
+                      <div className="bg-muted/50 p-4 rounded-lg mb-4">
+                        <a href="https://marketplace.visualstudio.com/items?itemName=AhmedAttafii.clarityai" target="_blank" rel="noopener noreferrer" className="text-[#A459E1] hover:text-[#F0CDFF] underline font-medium">
+                          → Install from VS Code Marketplace
+                        </a>
+                      </div>
                       <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-xl p-6 font-mono text-sm">
                         <div className="flex items-center gap-2 mb-2 text-muted-foreground">
                           <Terminal className="h-4 w-4" />

@@ -96,7 +96,7 @@ export async function GET() {
                   <span class="flex-shrink-0 w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mr-4">1</span>
                   <div>
                     <div class="text-white font-semibold mb-1">Install from VS Code Marketplace</div>
-                    <div class="text-gray-400 text-sm">Search for "ClarityAI" or run: <code class="px-2 py-1 bg-gray-800 rounded text-purple-400">code --install-extension clarity-0.0.1.vsix</code></div>
+                    <div class=\"text-gray-400 text-sm\">Search for \"ClarityAI\" in VS Code Extensions or visit: <a href=\"https://marketplace.visualstudio.com/items?itemName=AhmedAttafii.clarityai\" class=\"text-purple-400 hover:text-purple-300 underline\">VS Code Marketplace</a></div>
                   </div>
                 </li>
                 <li class="flex items-start">

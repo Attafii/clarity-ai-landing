@@ -67,8 +67,8 @@ export async function POST(request: Request) {
               
               <div style="background: white; border-left: 4px solid #A459E1; padding: 20px; margin: 30px 0; border-radius: 5px;">
                 <h3 style="margin-top: 0; color: #A459E1;">🚀 Get Started Now</h3>
-                <p style="margin-bottom: 15px;">Install ClarityAI and start enhancing your prompts today:</p>
-                <a href="https://github.com/Attafii/ClarityAI" style="display: inline-block; background: linear-gradient(135deg, #A459E1, #F0CDFF); color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; font-weight: bold;">View on GitHub</a>
+                <p style="margin-bottom: 15px;">Install ClarityAI from the VS Code Marketplace and start enhancing your prompts today:</p>
+                <a href="https://marketplace.visualstudio.com/items?itemName=AhmedAttafii.clarityai" style="display: inline-block; background: linear-gradient(135deg, #A459E1, #F0CDFF); color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; font-weight: bold;">Install Extension</a>
               </div>
               
               <p style="font-size: 14px; color: #888; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">

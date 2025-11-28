@@ -99,10 +99,10 @@ export default function CTA() {
           }`} style={{ transitionDelay: isVisible ? '400ms' : '0ms' }}>
             <Button
               size="lg"
-              onClick={() => window.location.href = '/docs#installation'}
+              onClick={() => window.open('https://marketplace.visualstudio.com/items?itemName=AhmedAttafii.clarityai', '_blank')}
               className="bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] hover:from-[#9147d4] hover:to-[#e8b7ff] text-black font-semibold text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl hover:shadow-[#A459E1]/30 transition-all duration-300 hover:scale-105 group"
             >
-              Get Started Free
+              Install Extension
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button

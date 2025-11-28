@@ -98,7 +98,7 @@ const techLogosRow2 = [
 
 export default function Hero() {
   const handlePrimaryClick = () => {
-    window.location.href = '/docs#installation';
+    window.open('https://marketplace.visualstudio.com/items?itemName=AhmedAttafii.clarityai', '_blank');
   };
 
   const handleSecondaryClick = () => {
