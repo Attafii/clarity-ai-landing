@@ -106,7 +106,7 @@ export default function DocsPage() {
                         </li>
                         <li className="flex items-start gap-2">
                           <span className="text-[#A459E1] mt-1">•</span>
-                          <span>Gemini API key from ai.google.dev (free tier available)</span>
+                          <span>ClarityAI extension installed and configured</span>
                         </li>
                       </ul>
                     </div>
@@ -116,9 +116,8 @@ export default function DocsPage() {
                       <div className="space-y-4">
                         {[
                           { step: 1, title: "Install the Extension", desc: "Install from VS Code marketplace or download the VSIX file" },
-                          { step: 2, title: "Get API Key", desc: "Visit ai.google.dev and generate your free Gemini API key" },
-                          { step: 3, title: "Configure Extension", desc: "Add your API key to VS Code settings: clarity.geminiApiKey" },
-                          { step: 4, title: "Start Using", desc: "Type @clarity in GitHub Copilot chat followed by your prompt" }
+                          { step: 2, title: "Configure ClarityAI", desc: "Open VS Code settings and configure ClarityAI preferences" },
+                          { step: 3, title: "Start Using", desc: "Type @clarity in GitHub Copilot chat followed by your prompt" }
                         ].map((item) => (
                           <div key={item.step} className="flex gap-4">
                             <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] flex items-center justify-center text-black font-bold">
@@ -160,7 +159,7 @@ export default function DocsPage() {
                           <Terminal className="h-4 w-4" />
                           <span>Or use Command Line</span>
                         </div>
-                        <code className="text-[#F0CDFF]">code --install-extension clarity-0.0.1.vsix</code>
+                        <code className="text-[#F0CDFF]">code --install-extension clarity-0.0.5.vsix</code>
                       </div>
                     </div>
 
@@ -174,7 +173,7 @@ export default function DocsPage() {
                           <Terminal className="h-4 w-4" />
                           <span>Installation Command</span>
                         </div>
-                        <code className="block text-[#F0CDFF]">code --install-extension clarity-0.0.1.vsix</code>
+                        <code className="block text-[#F0CDFF]">code --install-extension clarity-0.0.5.vsix</code>
                       </div>
                     </div>
 
@@ -184,7 +183,7 @@ export default function DocsPage() {
                         Note
                       </h4>
                       <p className="text-muted-foreground">
-                        After installation, reload VS Code for the extension to take effect. You'll need to configure your Gemini API key before first use.
+                        After installation, reload VS Code for the extension to take effect. You can start using ClarityAI immediately with @clarity in GitHub Copilot Chat.
                       </p>
                     </div>
                   </div>
@@ -196,44 +195,41 @@ export default function DocsPage() {
                     <div>
                       <h2 className="text-3xl font-bold mb-4 text-foreground">Setup & Configuration</h2>
                       <p className="text-muted-foreground text-lg leading-relaxed">
-                        Configure your Gemini API key and customize ClarityAI settings.
+                        Customize ClarityAI settings to match your workflow.
                       </p>
                     </div>
 
                     <div>
-                      <h3 className="text-2xl font-bold mb-4 text-foreground">Get Gemini API Key</h3>
+                      <h3 className="text-2xl font-bold mb-4 text-foreground">ClarityAI Settings</h3>
                       <div className="space-y-4">
                         <p className="text-muted-foreground">
-                          Visit <a href="https://ai.google.dev" target="_blank" rel="noopener noreferrer" className="text-[#A459E1] hover:text-[#F0CDFF] underline">ai.google.dev</a> to create a free Gemini API key.
+                          Access ClarityAI settings through VS Code Settings (Ctrl+, or Cmd+,) and search for "ClarityAI".
                         </p>
                         <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-xl p-6">
-                          <h4 className="font-semibold text-foreground mb-3">Steps:</h4>
-                          <ol className="space-y-2 text-muted-foreground list-decimal list-inside">
-                            <li>Go to ai.google.dev</li>
-                            <li>Sign in with your Google account</li>
-                            <li>Navigate to "Get API Key"</li>
-                            <li>Create a new API key</li>
-                            <li>Copy the key for the next step</li>
-                          </ol>
+                          <h4 className="font-semibold text-foreground mb-3">Available Settings:</h4>
+                          <ul className="space-y-2 text-muted-foreground list-disc list-inside">
+                            <li>Enhancement level (minimal, balanced, comprehensive)</li>
+                            <li>Auto-enhancement on/off</li>
+                            <li>Context detection preferences</li>
+                            <li>Custom prompt templates</li>
+                          </ul>
                         </div>
                       </div>
                     </div>
 
                     <div>
-                      <h3 className="text-2xl font-bold mb-4 text-foreground">Add API Key to VS Code</h3>
+                      <h3 className="text-2xl font-bold mb-4 text-foreground">Getting Started</h3>
                       <p className="text-muted-foreground mb-4">
-                        Open VS Code Settings and add your API key:
+                        After installation, ClarityAI is ready to use immediately:
                       </p>
                       <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-xl p-6 font-mono text-sm">
                         <code className="text-[#F0CDFF] block">
-                          Settings → Extensions → ClarityAI → Gemini API Key
+                          Open GitHub Copilot Chat → Type @clarity [your prompt]
                         </code>
                         <div className="mt-4 pt-4 border-t border-[#A459E1]/20">
-                          <span className="text-muted-foreground block mb-2">Or in settings.json:</span>
+                          <span className="text-muted-foreground block mb-2">Example:</span>
                           <code className="text-[#F0CDFF] block whitespace-pre">
-{`{
-  "clarity.geminiApiKey": "your-api-key-here"
-}`}
+{`@clarity create a login form with validation`}
                           </code>
                         </div>
                       </div>
@@ -242,10 +238,10 @@ export default function DocsPage() {
                     <div className="bg-gradient-to-br from-[#A459E1]/10 to-[#F0CDFF]/10 border border-[#A459E1]/30 rounded-xl p-6">
                       <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
                         <CheckCircle2 className="h-5 w-5 text-[#A459E1]" />
-                        Free Tier Available
+                        Free & Open Source
                       </h4>
                       <p className="text-muted-foreground">
-                        Gemini API offers a generous free tier. Check <a href="https://ai.google.dev/pricing" target="_blank" rel="noopener noreferrer" className="text-[#A459E1] hover:text-[#F0CDFF] underline">ai.google.dev/pricing</a> for current limits.
+                        ClarityAI is completely free to use with no API keys or subscriptions required. Check our <a href="https://github.com/Attafii/ClarityAI" target="_blank" rel="noopener noreferrer" className="text-[#A459E1] hover:text-[#F0CDFF] underline">GitHub repository</a> for more details.
                       </p>
                     </div>
                   </div>

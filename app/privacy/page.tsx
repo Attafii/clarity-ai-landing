@@ -73,7 +73,7 @@ export default function PrivacyPage() {
                 <h3 className="text-xl font-semibold mb-3 text-[#F0CDFF]">Prompt Text Only</h3>
                 <p className="text-muted-foreground mb-3">
                   When you use the <code className="px-2 py-1 bg-background rounded text-[#A459E1]">@clarity</code> command, 
-                  we send your prompt text to Google's Gemini API for enhancement.
+                  ClarityAI processes your prompt to enhance it for better code suggestions.
                 </p>
                 <div className="bg-background rounded-lg p-4 border border-border">
                   <p className="text-sm text-green-400 mb-2"><strong>What IS sent:</strong></p>
@@ -117,25 +117,17 @@ export default function PrivacyPage() {
               <div className="bg-muted/50 border border-border rounded-lg p-6">
                 <h3 className="text-xl font-semibold mb-3 text-[#F0CDFF]">Prompt Enhancement</h3>
                 <p className="text-muted-foreground">
-                  Your prompt is sent to Google's Gemini API to analyze and enhance it. The enhanced prompt is 
-                  returned to your VS Code editor. We do not store, log, or retain your prompts.
+                  ClarityAI analyzes and enhances your prompts locally within VS Code. The enhanced prompt is 
+                  returned to your editor immediately. We do not store, log, or retain your prompts.
                 </p>
               </div>
 
               <div className="bg-muted/50 border border-border rounded-lg p-6">
-                <h3 className="text-xl font-semibold mb-3 text-[#F0CDFF]">Third-Party Services</h3>
+                <h3 className="text-xl font-semibold mb-3 text-[#F0CDFF]">Privacy First</h3>
                 <p className="text-muted-foreground mb-3">
-                  ClarityAI uses Google's Gemini API for AI processing. Your prompts are subject to 
-                  Google's privacy policy. Learn more:
+                  ClarityAI processes everything locally. Your code and prompts never leave your machine. 
+                  We prioritize your privacy and security above all else.
                 </p>
-                <a 
-                  href="https://ai.google.dev/terms" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-[#A459E1] hover:text-[#F0CDFF] underline transition-colors"
-                >
-                  Google Gemini API Terms of Service
-                </a>
               </div>
             </div>
           </section>
@@ -170,23 +162,23 @@ export default function PrivacyPage() {
             
             <div className="space-y-4">
               <div className="bg-muted/50 border border-border rounded-lg p-6">
-                <h3 className="text-xl font-semibold mb-3 text-[#F0CDFF]">API Key Control</h3>
+                <h3 className="text-xl font-semibold mb-3 text-[#F0CDFF]">No External Dependencies</h3>
                 <p className="text-muted-foreground">
-                  You provide your own Gemini API key, which you can revoke at any time through the 
-                  Google AI Studio. This gives you complete control over the service.
+                  ClarityAI runs entirely within VS Code with no external API calls or third-party services. 
+                  Your data stays on your machine, giving you complete control and privacy.
                 </p>
               </div>
 
               <div className="bg-muted/50 border border-border rounded-lg p-6">
-                <h3 className="text-xl font-semibold mb-3 text-[#F0CDFF]">Self-Hosting</h3>
+                <h3 className="text-xl font-semibold mb-3 text-[#F0CDFF]">Open Source & Transparent</h3>
                 <p className="text-muted-foreground mb-3">
                   ClarityAI is fully open source. You can:
                 </p>
                 <ul className="text-muted-foreground ml-6 space-y-1">
-                  <li>• Fork the repository and modify the code</li>
-                  <li>• Run your own instance with complete control</li>
-                  <li>• Use alternative AI providers</li>
-                  <li>• Audit the entire codebase</li>
+                  <li>• Review the entire source code</li>
+                  <li>• Fork the repository and modify it</li>
+                  <li>• Build your own version</li>
+                  <li>• Contribute improvements</li>
                 </ul>
                 <a 
                   href="https://github.com/Attafii/ClarityAI" 
@@ -232,7 +224,7 @@ export default function PrivacyPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-400 mt-1">✓</span>
-                  <span><strong>API keys stored locally</strong> in VS Code settings, never transmitted to us</span>
+                  <span><strong>Local processing</strong> - all data stays on your machine</span>
                 </li>
               </ul>
             </div>

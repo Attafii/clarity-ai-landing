@@ -102,19 +102,12 @@ export async function GET() {
                 <li class="flex items-start">
                   <span class="flex-shrink-0 w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mr-4">2</span>
                   <div>
-                    <div class="text-white font-semibold mb-1">Get Your Free Gemini API Key</div>
-                    <div class="text-gray-400 text-sm">Visit <a href="https://ai.google.dev" class="text-purple-400 hover:text-purple-300">ai.google.dev</a> and generate a key</div>
+                    <div class="text-white font-semibold mb-1">Configure ClarityAI</div>
+                    <div class="text-gray-400 text-sm">Open VS Code settings and customize ClarityAI preferences (optional)</div>
                   </div>
                 </li>
                 <li class="flex items-start">
                   <span class="flex-shrink-0 w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mr-4">3</span>
-                  <div>
-                    <div class="text-white font-semibold mb-1">Configure in VS Code Settings</div>
-                    <div class="text-gray-400 text-sm">Add your API key to <code class="px-2 py-1 bg-gray-800 rounded text-purple-400">clarity.geminiApiKey</code></div>
-                  </div>
-                </li>
-                <li class="flex items-start">
-                  <span class="flex-shrink-0 w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mr-4">4</span>
                   <div>
                     <div class="text-white font-semibold mb-1">Start Enhancing Prompts</div>
                     <div class="text-gray-400 text-sm">Use <code class="px-2 py-1 bg-gray-800 rounded text-purple-400">@clarity</code> in GitHub Copilot Chat</div>
