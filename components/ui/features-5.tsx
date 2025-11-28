@@ -52,7 +52,7 @@ export function Features5() {
                         </ul>
                     </div>
                     <div className="lg:col-span-3 flex items-center justify-center h-[50rem]">
-                        <PinContainer title="Try Clarity AI" href="https://github.com/Attafii/clarity-ai-landing">
+                        <PinContainer title="Try Clarity AI" href="https://marketplace.visualstudio.com/items?itemName=AhmedAttafii.clarityai">
                             <div className="flex flex-col p-8 tracking-tight text-slate-100/50 w-[28rem] h-[28rem] bg-gradient-to-b from-[#1a0b2e]/80 to-[#0f051a]/90 backdrop-blur-sm border border-[#A459E1]/30 rounded-2xl">
                                 {/* Header */}
                                 <div className="flex items-center justify-between">
