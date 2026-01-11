@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { saveContact } from '@/lib/db';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || 're_WhLnVwFE_987dpYHu4FjcNBjLtoowaYb2');
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,9 +21,10 @@ export async function POST(request: NextRequest) {
     await saveContact({ name, email, subject, message });
 
     // Send email via Resend
+    // Using onboarding@resend.dev which is the default for unverified domains
     const { data, error } = await resend.emails.send({
       from: 'ClarityAI Contact <onboarding@resend.dev>',
-      to: [process.env.CONTACT_EMAIL || 'contact@clarity-ai.app'],
+      to: ['attafiahmed.dev@gmail.com'], 
       subject: subject || `New contact from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

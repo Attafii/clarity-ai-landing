@@ -114,12 +114,13 @@ export default function Hero() {
           icons: ['✨'],
         }}
         headline={{
-          line1: 'Elevate every prompt into a breakthrough.',
+          line1: 'Elevate every prompt into',
+          words: ['a breakthrough.', 'a masterpiece.', 'a solution.', 'a reality.'],
         }}
         subtitle='Improve your workflow with automatic prompt enhancement. Save time and effort while elevating AI response quality through intelligent prompt enhancement & planning that seamlessly integrates with GitHub Copilot.'
         buttons={{
           primary: {
-            text: 'Get Started Free',
+            text: 'Install for VS Code',
             onClick: handlePrimaryClick,
           },
           secondary: {
@@ -133,8 +134,11 @@ export default function Hero() {
       <section className='bg-background pb-16 pt-16 md:pb-24'>
         <div className='mx-auto max-w-7xl px-6'>
           <div className='text-center mb-12'>
-            <h2 className='text-2xl md:text-3xl font-semibold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent'>
-              Trusted by developers at
+            <h2 className='text-4xl md:text-5xl font-bold mb-6 leading-tight'>
+              <span className="bg-gradient-to-r from-[#F0CDFF] via-white to-[#A459E1] bg-clip-text text-transparent">
+                            Trusted by developers at
+                        </span>
+              
             </h2>
             <p className='text-muted-foreground max-w-2xl mx-auto'>
               Join thousands of developers who rely on our AI-powered tools to

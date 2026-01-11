@@ -72,7 +72,7 @@ export default function PrivacyPage() {
               <div className="bg-muted/50 border border-border rounded-lg p-6">
                 <h3 className="text-xl font-semibold mb-3 text-[#F0CDFF]">Prompt Text Only</h3>
                 <p className="text-muted-foreground mb-3">
-                  When you use the <code className="px-2 py-1 bg-background rounded text-[#A459E1]">@clarity</code> command, 
+                  When you use any ClarityAI command (<code className="px-2 py-1 bg-background rounded text-[#A459E1]">@clarity</code>, <code className="px-2 py-1 bg-background rounded text-[#A459E1]">@clarity-thinking</code>, or <code className="px-2 py-1 bg-background rounded text-[#A459E1]">@clarity-fast</code>), 
                   ClarityAI processes your prompt to enhance it for better code suggestions.
                 </p>
                 <div className="bg-background rounded-lg p-4 border border-border">

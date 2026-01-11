@@ -26,12 +26,12 @@ export const siteConfig = {
     },
     {
       title: 'Seamless Copilot Integration',
-      description: 'Works directly with GitHub Copilot Chat',
+      description: 'Works directly with GitHub Copilot Chat using native commands',
       icon: '🔗',
     },
     {
-      title: 'One-Click Operation',
-      description: 'Simple @clarity command in VS Code Chat',
+      title: 'Triple Command System',
+      description: 'Choose your speed with @clarity, @clarity-thinking, or @clarity-fast',
       icon: '⚡',
     },
     {

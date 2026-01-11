@@ -23,7 +23,7 @@ export function Features() {
 
                 <div className="relative">
                     <div className="relative z-10 grid grid-cols-6 gap-4">
-                        {/* AI Enhancement Card */}
+                        {/* Smart Routing Card */}
                         <Card className="relative col-span-full flex overflow-hidden lg:col-span-2 border-[#A459E1]/30 bg-gradient-to-br from-black/60 via-[#A459E1]/10 to-[#F0CDFF]/10 backdrop-blur-sm hover:border-[#F0CDFF]/40 transition-all duration-300">
                             <CardContent className="relative m-auto size-fit pt-6">
                                 <div className="relative flex h-24 w-56 items-center">
@@ -39,129 +39,75 @@ export function Features() {
                             </CardContent>
                         </Card>
 
-                        {/* Code Intelligence Card */}
+                        {/* Context Injection Card */}
                         <Card className="relative col-span-full overflow-hidden sm:col-span-3 lg:col-span-2 border-[#A459E1]/30 bg-gradient-to-br from-black/60 via-[#A459E1]/10 to-[#F0CDFF]/10 backdrop-blur-sm hover:border-[#F0CDFF]/40 transition-all duration-300">
                             <CardContent className="pt-6">
                                 <div className="relative mx-auto flex aspect-square size-32 rounded-full border border-[#A459E1]/40 before:absolute before:-inset-2 before:rounded-full before:border before:border-[#F0CDFF]/20 bg-gradient-to-br from-[#F0CDFF]/10 to-[#A459E1]/10">
                                     <Brain className="m-auto size-16 text-[#A459E1]" strokeWidth={1} />
                                 </div>
                                 <div className="relative z-10 mt-6 space-y-2 text-center">
-                                    <h2 className="group-hover:text-secondary-950 text-lg font-medium transition dark:text-white">AI Code Intelligence</h2>
-                                    <p className="text-gray-300">Advanced AI understands your code context and provides intelligent suggestions that improve code quality.</p>
+                                    <h2 className="group-hover:text-secondary-950 text-lg font-medium transition dark:text-white">Auto-Context Injection</h2>
+                                    <p className="text-gray-300">Detects your tech stack (Next.js, Tailwind, Prisma) to augment prompts with precise technical context.</p>
                                 </div>
                             </CardContent>
                         </Card>
 
-                        {/* Performance Analytics Card */}
+                        {/* Template Library Card */}
                         <Card className="relative col-span-full overflow-hidden sm:col-span-3 lg:col-span-2 border-[#A459E1]/30 bg-gradient-to-br from-black/60 via-[#A459E1]/10 to-[#F0CDFF]/10 backdrop-blur-sm hover:border-[#F0CDFF]/40 transition-all duration-300">
                             <CardContent className="pt-6">
                                 <div className="pt-6 lg:px-6">
-                                    <svg className="dark:text-[#A459E1]/60 w-full" viewBox="0 0 386 123" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="386" height="123" rx="10" />
-                                        <g clipPath="url(#clip0_0_106)">
-                                            <circle className="text-[#A459E1]/40" cx="29" cy="29" r="15" fill="currentColor" />
-                                            <Zap className="absolute top-[22px] left-[22px] size-4 text-white" strokeWidth={2} />
-                                            <path
-                                                d="M55.2373 32H58.7988C61.7383 32 63.4404 30.1816 63.4404 27.0508V27.0371C63.4404 23.9404 61.7246 22.1357 58.7988 22.1357H55.2373V32ZM56.7686 30.6807V23.4551H58.6279C60.6719 23.4551 61.8818 24.7881 61.8818 27.0576V27.0713C61.8818 29.3613 60.6924 30.6807 58.6279 30.6807H56.7686Z"
-                                                fill="currentColor"
-                                            />
-                                            <text x="80" y="32" className="text-sm font-medium fill-[#F0CDFF]">Productivity +40%</text>
-                                        </g>
-                                        <path
-                                            fillRule="evenodd"
-                                            clipRule="evenodd"
-                                            d="M3 123C3 123 14.3298 94.153 35.1282 88.0957C55.9266 82.0384 65.9333 80.5508 65.9333 80.5508C65.9333 80.5508 80.699 80.5508 92.1777 80.5508C103.656 80.5508 100.887 63.5348 109.06 63.5348C117.233 63.5348 117.217 91.9728 124.78 91.9728C132.343 91.9728 142.264 78.03 153.831 80.5508C165.398 83.0716 186.825 91.9728 193.761 91.9728C200.697 91.9728 206.296 63.5348 214.07 63.5348C221.844 63.5348 238.653 93.7771 244.234 91.9728C249.814 90.1684 258.8 60 266.19 60C272.075 60 284.1 88.057 286.678 88.0957C294.762 88.2171 300.192 72.9284 305.423 72.9284C312.323 72.9284 323.377 65.2437 335.553 63.5348C347.729 61.8259 348.218 82.07 363.639 80.5508C367.875 80.1335 372.949 82.2017 376.437 87.1008C379.446 91.3274 381.054 97.4325 382.521 104.647C383.479 109.364 382.521 123 382.521 123"
-                                            fill="url(#paint0_linear_0_106)"
-                                        />
-                                        <path
-                                            className="text-[#A459E1]"
-                                            d="M3 121.077C3 121.077 15.3041 93.6691 36.0195 87.756C56.7349 81.8429 66.6632 80.9723 66.6632 80.9723L383 60.5"
-                                            stroke="currentColor"
-                                            strokeWidth="3"
-                                        />
-                                        <defs>
-                                            <linearGradient id="paint0_linear_0_106" x1="3" y1="60" x2="3" y2="123" gradientUnits="userSpaceOnUse">
-                                                <stop className="text-[#F0CDFF]/20" stopColor="currentColor" />
-                                                <stop className="text-transparent" offset="1" stopColor="currentColor" stopOpacity="0.103775" />
-                                            </linearGradient>
-                                            <clipPath id="clip0_0_106">
-                                                <rect width="358" height="30" fill="white" transform="translate(14 14)" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
+                                    <div className="flex justify-center mb-4">
+                                        <Code className="size-12 text-[#F0CDFF]" />
+                                    </div>
+                                    <div className="text-center">
+                                        <span className="text-sm font-medium text-[#F0CDFF]">12+ Pro Templates</span>
+                                    </div>
                                 </div>
                                 <div className="relative z-10 mt-14 space-y-2 text-center">
-                                    <h2 className="text-lg font-medium transition text-white">Performance Analytics</h2>
-                                    <p className="text-gray-300">Track your coding efficiency and see how AI assistance boosts your development speed and accuracy.</p>
+                                    <h2 className="text-lg font-medium transition text-white">Template Library</h2>
+                                    <p className="text-gray-300">Professional blueprints for APIs, UI, Databases, and Testing. Use @clarity t:name.</p>
                                 </div>
                             </CardContent>
                         </Card>
 
-                        {/* GitHub Copilot Integration */}
+                        {/* One-Click Refinements */}
                         <Card className="relative col-span-full overflow-hidden lg:col-span-3 border-[#A459E1]/30 bg-gradient-to-br from-black/60 via-[#A459E1]/10 to-[#F0CDFF]/10 backdrop-blur-sm hover:border-[#F0CDFF]/40 transition-all duration-300">
                             <CardContent className="grid pt-6 sm:grid-cols-2">
                                 <div className="relative z-10 flex flex-col justify-between space-y-12 lg:space-y-6">
                                     <div className="relative flex aspect-square size-12 rounded-full border border-[#A459E1]/40 before:absolute before:-inset-2 before:rounded-full before:border before:border-[#F0CDFF]/20 bg-gradient-to-br from-[#F0CDFF]/10 to-[#A459E1]/10">
-                                        <Code className="m-auto size-5 text-[#A459E1]" strokeWidth={1} />
+                                        <Sparkles className="m-auto size-5 text-[#A459E1]" strokeWidth={1} />
                                     </div>
                                     <div className="space-y-2">
-                                        <h2 className="group-hover:text-secondary-950 text-lg font-medium text-white transition">GitHub Copilot Integration</h2>
-                                        <p className="text-gray-300">Seamlessly integrates with GitHub Copilot to supercharge your AI coding experience with enhanced prompts.</p>
+                                        <h2 className="group-hover:text-secondary-950 text-lg font-medium text-white transition">One-Click Refinements</h2>
+                                        <p className="text-gray-300">Instantly "Add Tests", "Make Production-Ready", or "Simplify" your code with dedicated refinement actions.</p>
                                     </div>
                                 </div>
-                                <div className="rounded-tl-(--radius) relative -mb-6 -mr-6 mt-6 h-fit border-l border-t border-[#A459E1]/30 p-6 py-6 sm:ml-6">
-                                    <div className="absolute left-3 top-2 flex gap-1">
-                                        <span className="block size-2 rounded-full border border-[#A459E1]/40 bg-[#A459E1]/20"></span>
-                                        <span className="block size-2 rounded-full border border-[#A459E1]/40 bg-[#A459E1]/20"></span>
-                                        <span className="block size-2 rounded-full border border-[#A459E1]/40 bg-[#A459E1]/20"></span>
+                                <div className="relative mt-6 flex flex-col gap-2 sm:ml-6">
+                                    <div className="flex gap-2">
+                                        <div className="px-3 py-1 rounded-full bg-[#A459E1]/20 border border-[#A459E1]/40 text-[10px] text-[#F0CDFF]">Add Tests</div>
+                                        <div className="px-3 py-1 rounded-full bg-[#A459E1]/20 border border-[#A459E1]/40 text-[10px] text-[#F0CDFF]">Simplify</div>
                                     </div>
-                                    <div className="mt-4 space-y-2">
-                                        <div className="h-2 bg-[#A459E1]/30 rounded-full w-3/4"></div>
-                                        <div className="h-2 bg-[#F0CDFF]/40 rounded-full w-1/2"></div>
-                                        <div className="h-2 bg-gradient-to-r from-[#F0CDFF] to-[#A459E1] rounded-full w-5/6 opacity-60"></div>
-                                        <div className="h-2 bg-[#A459E1]/30 rounded-full w-2/3"></div>
-                                        <div className="mt-4 flex items-center space-x-2">
-                                            <div className="w-6 h-6 rounded-full bg-gradient-to-r from-[#F0CDFF] to-[#A459E1]"></div>
-                                            <div className="h-2 bg-gradient-to-r from-[#F0CDFF]/60 to-[#A459E1]/80 rounded-full w-20"></div>
-                                        </div>
-                                    </div>
+                                    <div className="px-3 py-1 rounded-full bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] text-black font-bold text-[10px] w-fit">Production Ready</div>
                                 </div>
                             </CardContent>
                         </Card>
 
-                        {/* Team Collaboration */}
+                        {/* Copilot Integration */}
                         <Card className="relative col-span-full overflow-hidden lg:col-span-3 border-[#A459E1]/30 bg-gradient-to-br from-black/60 via-[#A459E1]/10 to-[#F0CDFF]/10 backdrop-blur-sm hover:border-[#F0CDFF]/40 transition-all duration-300">
                             <CardContent className="grid h-full pt-6 sm:grid-cols-2">
                                 <div className="relative z-10 flex flex-col justify-between space-y-12 lg:space-y-6">
                                     <div className="relative flex aspect-square size-12 rounded-full border border-[#A459E1]/40 before:absolute before:-inset-2 before:rounded-full before:border before:border-[#F0CDFF]/20 bg-gradient-to-br from-[#F0CDFF]/10 to-[#A459E1]/10">
-                                        <Users className="m-auto size-6 text-[#A459E1]" strokeWidth={1} />
+                                        <Code className="m-auto size-6 text-[#A459E1]" strokeWidth={1} />
                                     </div>
                                     <div className="space-y-2">
-                                        <h2 className="text-lg font-medium transition text-white">Team Collaboration</h2>
-                                        <p className="text-gray-300">Share AI-enhanced prompts and coding insights with your team to maintain consistent code quality across projects.</p>
+                                        <h2 className="text-lg font-medium transition text-white">Direct Copilot Send</h2>
+                                        <p className="text-gray-300">Seamlessly forward enhanced prompts directly to VS Code Chat with our native "Send to Copilot" integration.</p>
                                     </div>
                                 </div>
-                                <div className="before:bg-[#A459E1]/20 relative mt-6 before:absolute before:inset-0 before:mx-auto before:w-px sm:-my-6 sm:-mr-6">
-                                    <div className="relative flex h-full flex-col justify-center space-y-6 py-6">
-                                        <div className="relative flex w-[calc(50%+0.875rem)] items-center justify-end gap-2">
-                                            <span className="block h-fit rounded border border-[#A459E1]/30 bg-[#A459E1]/10 px-2 py-1 text-xs text-[#F0CDFF] shadow-sm">Sarah</span>
-                                            <div className="ring-[#A459E1]/30 size-7 ring-4">
-                                                <img className="size-full rounded-full object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face" alt="Sarah" />
-                                            </div>
-                                        </div>
-                                        <div className="relative ml-[calc(50%-1rem)] flex items-center gap-2">
-                                            <div className="ring-[#A459E1]/30 size-8 ring-4">
-                                                <img className="size-full rounded-full" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Marcus" />
-                                            </div>
-                                            <span className="block h-fit rounded border border-[#A459E1]/30 bg-[#A459E1]/10 px-2 py-1 text-xs text-[#F0CDFF] shadow-sm">Marcus</span>
-                                        </div>
-                                        <div className="relative flex w-[calc(50%+0.875rem)] items-center justify-end gap-2">
-                                            <span className="block h-fit rounded border border-purple-500/30 bg-purple-500/10 px-2 py-1 text-xs text-purple-300 shadow-sm">Emily</span>
-                                            <div className="ring-purple-500/30 size-7 ring-4">
-                                                <img className="size-full rounded-full" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" alt="Emily" />
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div className="before:bg-[#A459E1]/20 relative mt-6 before:absolute before:inset-0 before:mx-auto before:w-px sm:-my-6 sm:-mr-6 flex items-center justify-center">
+                                     <div className="px-5 py-2 bg-[#A459E1] text-black rounded-lg font-bold text-sm shadow-lg animate-pulse">
+                                         Send to Copilot
+                                     </div>
                                 </div>
                             </CardContent>
                         </Card>

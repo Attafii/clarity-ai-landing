@@ -1,5 +1,6 @@
-'use client';;
+'use client';
 import React, { useRef, useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Types for component props
 interface HeroProps {
@@ -10,6 +11,7 @@ interface HeroProps {
   headline: {
     line1: string;
     line2?: string;
+    words?: string[];
   };
   subtitle: string;
   buttons?: {
@@ -35,7 +37,7 @@ const useShaderBackground = () => {
   // WebGL Renderer class
   class WebGLRenderer {
     private canvas: HTMLCanvasElement;
-    private gl: WebGL2RenderingContext;
+    private gl: WebGL2RenderingContext | null = null;
     private program: WebGLProgram | null = null;
     private vs: WebGLShader | null = null;
     private fs: WebGLShader | null = null;
@@ -57,12 +59,19 @@ void main(){gl_Position=position;}`;
     constructor(canvas: HTMLCanvasElement, scale: number) {
       this.canvas = canvas;
       this.scale = scale;
-      this.gl = canvas.getContext('webgl2')!;
-      this.gl.viewport(0, 0, canvas.width * scale, canvas.height * scale);
+      this.gl = canvas.getContext('webgl2') || (canvas.getContext('webgl') as any);
+      if (this.gl) {
+          this.gl.viewport(0, 0, canvas.width * scale, canvas.height * scale);
+      }
       this.shaderSource = defaultShaderSource;
     }
 
+    public isSupported(): boolean {
+        return !!this.gl;
+    }
+
     updateShader(source: string) {
+      if (!this.gl) return;
       this.reset();
       this.shaderSource = source;
       this.setup();
@@ -87,16 +96,19 @@ void main(){gl_Position=position;}`;
 
     updateScale(scale: number) {
       this.scale = scale;
-      this.gl.viewport(
-        0,
-        0,
-        this.canvas.width * scale,
-        this.canvas.height * scale
-      );
+      if (this.gl) {
+        this.gl.viewport(
+          0,
+          0,
+          this.canvas.width * scale,
+          this.canvas.height * scale
+        );
+      }
     }
 
     compile(shader: WebGLShader, source: string) {
       const gl = this.gl;
+      if (!gl) return;
       gl.shaderSource(shader, source);
       gl.compileShader(shader);
 
@@ -109,6 +121,7 @@ void main(){gl_Position=position;}`;
     test(source: string) {
       let result = null;
       const gl = this.gl;
+      if (!gl) return "WebGL not supported";
       const shader = gl.createShader(gl.FRAGMENT_SHADER)!;
       gl.shaderSource(shader, source);
       gl.compileShader(shader);
@@ -122,6 +135,7 @@ void main(){gl_Position=position;}`;
 
     reset() {
       const gl = this.gl;
+      if (!gl) return;
       if (
         this.program &&
         !gl.getProgramParameter(this.program, gl.DELETE_STATUS)
@@ -140,6 +154,7 @@ void main(){gl_Position=position;}`;
 
     setup() {
       const gl = this.gl;
+      if (!gl) return;
       this.vs = gl.createShader(gl.VERTEX_SHADER)!;
       this.fs = gl.createShader(gl.FRAGMENT_SHADER)!;
       this.compile(this.vs, this.vertexSrc);
@@ -156,6 +171,7 @@ void main(){gl_Position=position;}`;
 
     init() {
       const gl = this.gl;
+      if (!gl) return;
       const program = this.program!;
 
       this.buffer = gl.createBuffer();
@@ -186,6 +202,7 @@ void main(){gl_Position=position;}`;
 
     render(now = 0) {
       const gl = this.gl;
+      if (!gl) return;
       const program = this.program;
 
       if (!program || gl.getProgramParameter(program, gl.DELETE_STATUS)) return;
@@ -363,21 +380,16 @@ const AnimatedShaderHero: React.FC<HeroProps> = ({
   className = '',
 }) => {
   const canvasRef = useShaderBackground();
-  const [titleNumber, setTitleNumber] = useState(0);
-  const aiTitles = [
-    'intelligent',
-    'fast',
-    'innovative',
-    'adaptive',
-    'reliable',
-  ];
+  const [index, setIndex] = useState(0);
+  const words = headline.words || [];
 
   useEffect(() => {
+    if (words.length === 0) return;
     const interval = setInterval(() => {
-      setTitleNumber((prev) => (prev + 1) % aiTitles.length);
-    }, 2500);
+      setIndex((prev) => (prev + 1) % words.length);
+    }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [words]);
 
   return (
     <div
@@ -475,11 +487,30 @@ const AnimatedShaderHero: React.FC<HeroProps> = ({
           </div>
         )}
 
-        <div className='text-center space-y-4 max-w-4xl mx-auto px-4'>
+        <div className='text-center space-y-4 max-w-5xl mx-auto px-4'>
           {/* Main Heading with Animation */}
           <div className='space-y-1'>
-            <h1 className='text-4xl md:text-6xl lg:text-7xl font-bold animate-fade-in-up animation-delay-200 tracking-tight'>
-              {headline.line1}
+            <h1 className='text-4xl md:text-6xl lg:text-7xl font-bold animate-fade-in-up animation-delay-200 tracking-tight flex flex-col justify-center items-center gap-2'>
+              <span className="inline-block">{headline.line1}</span>
+              {words.length > 0 && (
+                <span className="relative inline-flex items-center justify-center min-w-[280px] md:min-w-[450px] lg:min-w-[550px] h-[1.2em] overflow-hidden text-center">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={index}
+                      initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                      exit={{ opacity: 0, y: -30, filter: 'blur(10px)' }}
+                      transition={{ 
+                        duration: 0.8,
+                        ease: [0.23, 1, 0.32, 1]
+                      }}
+                      className="absolute inset-x-0 bg-gradient-to-r from-[#F0CDFF] via-[#A459E1] to-[#F0CDFF] bg-clip-text text-transparent animate-gradient py-2"
+                    >
+                      {words[index]}
+                    </motion.span>
+                  </AnimatePresence>
+                </span>
+              )}
             </h1>
           </div>
 

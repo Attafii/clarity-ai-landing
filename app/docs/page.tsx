@@ -117,7 +117,7 @@ export default function DocsPage() {
                         {[
                           { step: 1, title: "Install the Extension", desc: "Install from VS Code marketplace or download the VSIX file" },
                           { step: 2, title: "Configure ClarityAI", desc: "Open VS Code settings and configure ClarityAI preferences" },
-                          { step: 3, title: "Start Using", desc: "Type @clarity in GitHub Copilot chat followed by your prompt" }
+                          { step: 3, title: "Start Using", desc: "Type @clarity, @clarity-thinking, or @clarity-fast in GitHub Copilot chat followed by your prompt" }
                         ].map((item) => (
                           <div key={item.step} className="flex gap-4">
                             <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] flex items-center justify-center text-black font-bold">
@@ -159,7 +159,7 @@ export default function DocsPage() {
                           <Terminal className="h-4 w-4" />
                           <span>Or use Command Line</span>
                         </div>
-                        <code className="text-[#F0CDFF]">code --install-extension clarity-0.0.5.vsix</code>
+                        <code className="text-[#F0CDFF]">code --install-extension clarity-1.0.9.vsix</code>
                       </div>
                     </div>
 
@@ -173,7 +173,7 @@ export default function DocsPage() {
                           <Terminal className="h-4 w-4" />
                           <span>Installation Command</span>
                         </div>
-                        <code className="block text-[#F0CDFF]">code --install-extension clarity-0.0.5.vsix</code>
+                        <code className="block text-[#F0CDFF]">code --install-extension clarity-1.0.9.vsix</code>
                       </div>
                     </div>
 
@@ -261,16 +261,24 @@ export default function DocsPage() {
                       <h3 className="text-2xl font-bold mb-4 text-foreground">Basic Usage</h3>
                       <div className="space-y-6">
                         <div>
-                          <h4 className="font-semibold text-foreground mb-3">How to Use</h4>
+                          <h4 className="font-semibold text-foreground mb-3">Choice of Commands</h4>
                           <p className="text-muted-foreground mb-4">
-                            In GitHub Copilot Chat, use <code className="px-2 py-1 bg-muted rounded text-[#F0CDFF]">@clarity</code> followed by your prompt:
+                            In GitHub Copilot Chat, choose the command that fits your needs:
                           </p>
-                          <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-lg p-4 mb-3">
-                            <code className="text-[#F0CDFF]">@clarity create a login function</code>
+                          <div className="space-y-3 mb-6">
+                            <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-lg p-4">
+                              <code className="text-[#F0CDFF]">@clarity [prompt]</code>
+                              <p className="text-xs text-muted-foreground mt-2"><strong>Standard:</strong> Uses Smart Routing to determine the best path automatically.</p>
+                            </div>
+                            <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-lg p-4">
+                              <code className="text-[#F0CDFF]">@clarity-thinking [prompt]</code>
+                              <p className="text-xs text-muted-foreground mt-2"><strong>Deep Analysis:</strong> Forces the thinking engine for complex logical tasks.</p>
+                            </div>
+                            <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-lg p-4">
+                              <code className="text-[#F0CDFF]">@clarity-fast [prompt]</code>
+                              <p className="text-xs text-muted-foreground mt-2"><strong>Instant:</strong> Optimized for quick fixes and simple unit tests.</p>
+                            </div>
                           </div>
-                          <p className="text-sm text-muted-foreground">
-                            ClarityAI will enhance your prompt and send the improved version to Copilot.
-                          </p>
                         </div>
 
                         <div>
@@ -302,24 +310,24 @@ export default function DocsPage() {
                       <div className="space-y-4">
                         {[
                           {
-                            title: "Context Detection",
-                            desc: "Automatically detects your project context and adds relevant details",
+                            title: "Smart Routing",
+                            desc: "Analyzes prompt complexity and routes to the optimal AI backend (@clarity-fast or @clarity-thinking)",
+                            icon: "🧠"
+                          },
+                          {
+                            title: "Auto-Context",
+                            desc: "Automatically detects frameworks and project structure to ground AI responses",
                             icon: "🎯"
                           },
                           {
-                            title: "Todo Awareness",
-                            desc: "Identifies TODO comments and integrates them into suggestions",
-                            icon: "📝"
+                            title: "Prompt Templates",
+                            desc: "Instant access to optimized structures for common coding tasks",
+                            icon: "📋"
                           },
                           {
-                            title: "Typo Correction",
-                            desc: "Fixes spelling and grammar errors in your prompts",
-                            icon: "✨"
-                          },
-                          {
-                            title: "Best Practices",
-                            desc: "Adds industry best practices to your requirements",
-                            icon: "⚡"
+                            title: "Educational Diffs",
+                            desc: "See exactly how your prompt evolved into a master-class specification",
+                            icon: "💡"
                           }
                         ].map((feature, index) => (
                           <div key={index} className="bg-background/50 border border-border rounded-lg p-4 flex gap-4">
@@ -348,29 +356,29 @@ export default function DocsPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {[
                         {
-                          title: "Context Detection",
-                          desc: "Automatically analyzes your project structure and active files to add relevant context",
-                          icon: "🎯"
-                        },
-                        {
-                          title: "Todo Awareness",
-                          desc: "Scans for TODO comments in your codebase and integrates them into suggestions",
-                          icon: "📝"
-                        },
-                        {
-                          title: "Typo Correction",
-                          desc: "Automatically fixes spelling and grammar errors in your prompts",
-                          icon: "✨"
-                        },
-                        {
-                          title: "Smart Enhancement",
-                          desc: "Transforms vague prompts into detailed, actionable specifications",
+                          title: "Smart Routing",
+                          desc: "Automatically routes prompts between standard and 'thinking' modes for optimal quality/speed",
                           icon: "🧠"
                         },
                         {
-                          title: "GitHub Copilot Integration",
-                          desc: "Seamless integration with GitHub Copilot Chat using @clarity command",
-                          icon: "�"
+                          title: "Auto-Context Injection",
+                          desc: "Injects project metadata, framework versions, and file structure insights into your prompts",
+                          icon: "🎯"
+                        },
+                        {
+                          title: "Template Library",
+                          desc: "Ready-to-use enhancement templates for common development patterns",
+                          icon: "📚"
+                        },
+                        {
+                          title: "Educational Diff View",
+                          desc: "Visualizes the enhancement process so you can learn prompt engineering",
+                          icon: "🔍"
+                        },
+                        {
+                          title: "One-Click Refinements",
+                          desc: "Quick action buttons to iterate on Copilot's output instantly",
+                          icon: "⚡"
                         },
                         {
                           title: "Free & Open Source",
@@ -428,10 +436,10 @@ export default function DocsPage() {
                     <div>
                       <h3 className="text-2xl font-bold mb-4 text-foreground">Development Setup</h3>
                       <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-xl p-6 font-mono text-sm space-y-2">
-                        <code className="block text-[#F0CDFF]">git clone https://github.com/Attafii/ClarityAI.git</code>
-                        <code className="block text-[#F0CDFF]">cd ClarityAI</code>
+                        <code className="block text-[#F0CDFF]">git clone https://github.com/Attafii/ClarityAI-Extension</code>
+                        <code className="block text-[#F0CDFF]">cd ClarityAI-Extension</code>
                         <code className="block text-[#F0CDFF]">npm install</code>
-                        <code className="block text-[#F0CDFF]">npm run dev</code>
+                        <code className="block text-[#F0CDFF]">Press F5 in VS Code to open a new window with the extension loaded.</code>
                       </div>
                     </div>
 

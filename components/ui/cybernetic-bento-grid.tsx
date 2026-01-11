@@ -109,59 +109,60 @@ export const CyberneticBentoGrid: React.FC = () => {
                 {/* Bento Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-auto">
                     
-                    {/* Large Feature - Prompt Enhancement */}
+                    {/* Large Feature - Smart Routing Engine */}
                     <BentoItem className="md:col-span-2 md:row-span-2 flex flex-col justify-between min-h-[400px]">
                         <div>
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-[#F0CDFF]/20 to-[#A459E1]/20 flex items-center justify-center">
                                     <Brain className="size-6 text-[#F0CDFF]" />
                                 </div>
-                                <h2 className="text-2xl font-bold text-white">Intelligent Prompt Enhancement</h2>
+                                <h2 className="text-2xl font-bold text-white">Smart Routing Engine</h2>
                             </div>
                             <p className="text-gray-400 text-lg leading-relaxed">
-                                Our AI analyzes your coding context and automatically transforms vague prompts into clear, structured requests that generate better code from GitHub Copilot.
+                                Our new "Complexity Analyzer" algorithm scores every prompt from 0-100. It measures technical depth and abstract requirements to route your request perfectly.
                             </p>
                         </div>
                         <div className="mt-6 p-4 bg-gradient-to-br from-[#A459E1]/10 to-[#F0CDFF]/5 rounded-xl border border-[#A459E1]/20">
-                            <div className="text-sm text-gray-400 mb-2">Before → After</div>
+                            <div className="text-sm text-gray-400 mb-2">Complexity Score: 84/100</div>
                             <div className="space-y-2">
-                                <div className="text-red-300 text-sm font-mono">"make a function"</div>
-                                <div className="text-[#F0CDFF] text-sm font-mono">
-                                    "Create a TypeScript function that validates user input with proper error handling and JSDoc comments"
+                                <div className="flex items-center gap-2">
+                                    <div className="w-2 h-2 bg-[#A459E1] rounded-full"></div>
+                                    <div className="text-[#F0CDFF] text-sm font-mono">Routing to @clarity-thinking</div>
+                                </div>
+                                <div className="text-gray-300 text-xs italic">
+                                    Deep reasoning & architectural planning activated for complex request.
                                 </div>
                             </div>
                         </div>
                     </BentoItem>
 
-                    {/* VS Code Integration */}
+                    {/* Auto-Context Injection */}
                     <BentoItem>
                         <div className="flex items-center gap-3 mb-3">
                             <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#A459E1]/20 to-[#F0CDFF]/20 flex items-center justify-center">
                                 <Zap className="size-5 text-[#A459E1]" />
                             </div>
-                            <h2 className="text-xl font-bold text-white">VS Code Native</h2>
+                            <h2 className="text-xl font-bold text-white">Auto-Context</h2>
                         </div>
                         <p className="text-gray-400 text-sm">
-                            Works seamlessly inside your favorite editor. No context switching required.
+                            Automatically detects Next.js, Tailwind, Prisma, and more to augment prompts with tech-stack reality.
                         </p>
-                        <div className="mt-4 text-xs text-[#F0CDFF]/80 font-mono bg-[#A459E1]/10 p-2 rounded">
-                            Ctrl+Shift+P → Clarity AI
-                        </div>
                     </BentoItem>
 
-                    {/* Performance Analytics */}
+                    {/* Template Library */}
                     <BentoItem>
                         <div className="flex items-center gap-3 mb-3">
                             <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#F0CDFF]/20 to-[#A459E1]/20 flex items-center justify-center">
-                                <BarChart3 className="size-5 text-[#F0CDFF]" />
+                                <FileText className="size-5 text-[#F0CDFF]" />
                             </div>
-                            <h2 className="text-xl font-bold text-white">Analytics</h2>
+                            <h2 className="text-xl font-bold text-white">Templates</h2>
                         </div>
                         <p className="text-gray-400 text-sm mb-3">
-                            Track your productivity gains with detailed insights.
+                            12+ professional templates for API, UI, and Testing.
                         </p>
-                        <div className="text-2xl font-bold text-[#A459E1]">+340%</div>
-                        <div className="text-xs text-gray-500">Avg. improvement</div>
+                        <div className="text-xs text-[#F0CDFF]/80 font-mono bg-[#A459E1]/10 p-2 rounded">
+                            @clarity t:rest-api
+                        </div>
                     </BentoItem>
 
                     {/* Team Collaboration */}

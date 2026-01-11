@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { sql } from '@/lib/db';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || 're_WhLnVwFE_987dpYHu4FjcNBjLtoowaYb2');
 
 export async function POST(request: Request) {
   try {
@@ -15,6 +15,16 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+
+    // Ensure table exists (robustness)
+    await sql`
+      CREATE TABLE IF NOT EXISTS newsletter_subscribers (
+        id SERIAL PRIMARY KEY,
+        email TEXT UNIQUE NOT NULL,
+        subscribed_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+        active BOOLEAN DEFAULT true
+      )
+    `;
 
     // Check if email already exists
     const existing = await sql`
@@ -30,13 +40,14 @@ export async function POST(request: Request) {
 
     // Save to database
     await sql`
-      INSERT INTO newsletter_subscribers (email, subscribed_at)
-      VALUES (${email}, NOW())
+      INSERT INTO newsletter_subscribers (email)
+      VALUES (${email})
     `;
 
     // Send welcome email via Resend
+    // Note: Using onboarding@resend.dev as default for unverified domains
     await resend.emails.send({
-      from: 'ClarityAI <noreply@clarity-ai.app>',
+      from: 'ClarityAI <onboarding@resend.dev>',
       to: email,
       subject: 'Welcome to ClarityAI Newsletter! 🚀',
       html: `
@@ -79,6 +90,23 @@ export async function POST(request: Request) {
             </div>
           </body>
         </html>
+      `,
+    });
+
+    // Send notification to admin
+    await resend.emails.send({
+      from: 'ClarityAI System <onboarding@resend.dev>',
+      to: 'attafiahmed.dev@gmail.com',
+      subject: 'New Newsletter Subscriber! 📧',
+      html: `
+        <div style="font-family: sans-serif; padding: 20px;">
+          <h2 style="color: #A459E1;">New Subscriber Alert</h2>
+          <p>A new user has just subscribed to the newsletter:</p>
+          <div style="background: #f4f4f4; padding: 15px; border-radius: 8px;">
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+          </div>
+        </div>
       `,
     });
 

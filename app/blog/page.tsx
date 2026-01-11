@@ -6,6 +6,8 @@ import Footer from "@/components/layout/Footer";
 import FloatingDockSection from "@/components/sections/FloatingDockSection";
 import { Button } from "@/components/ui/button";
 import { getBlogPosts, getFeaturedPost } from "@/lib/db";
+import BlogList from "@/components/blog/BlogList";
+import NewsletterForm from "@/components/NewsletterForm";
 
 export const dynamic = 'force-dynamic';
 
@@ -127,70 +129,7 @@ export default async function BlogPage() {
             </div>
           )}
 
-          <div className="mb-12">
-            <div className="flex flex-wrap gap-3">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                    category === "All"
-                      ? 'bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] text-black'
-                      : 'bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post) => (
-              <Link key={post.id} href={`/blog/${post.slug}`}>
-                <article className="group h-full bg-background/50 backdrop-blur-sm border border-border rounded-xl overflow-hidden hover:border-[#A459E1]/40 transition-all duration-300 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-[#A459E1]/20">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={post.image} 
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  </div>
-
-                  <div className="p-6">
-                    <div className="inline-flex items-center gap-1 px-2 py-1 bg-[#A459E1]/20 rounded-full mb-3">
-                      <span className="text-xs font-medium text-muted-foreground">{post.category}</span>
-                    </div>
-
-                    <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-[#F0CDFF] transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
-
-                    <p className="text-muted-foreground mb-4 line-clamp-3 text-sm">
-                      {post.excerpt}
-                    </p>
-
-                    <div className="flex flex-col gap-2 text-xs text-muted-foreground border-t border-border pt-4">
-                      <div className="flex items-center gap-2">
-                        <User className="h-3 w-3" />
-                        <span>{post.author}</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="h-3 w-3" />
-                          <span>{new Date(post.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Clock className="h-3 w-3" />
-                          <span>{post.read_time}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </Link>
-            ))}
-          </div>
+          <BlogList posts={posts as any} categories={categories} />
 
           <div className="mt-12 text-center">
             <Button
@@ -208,18 +147,7 @@ export default async function BlogPage() {
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
               Get the latest articles, tutorials, and product updates delivered to your inbox.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A459E1] focus:border-transparent"
-              />
-              <Button
-                className="bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] hover:from-[#9147d4] hover:to-[#e8b7ff] text-black font-semibold px-6 rounded-lg"
-              >
-                Subscribe
-              </Button>
-            </div>
+            <NewsletterForm />
             <p className="text-xs text-muted-foreground mt-4">
               No spam. Unsubscribe anytime.
             </p>

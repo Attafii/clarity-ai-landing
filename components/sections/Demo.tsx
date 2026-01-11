@@ -38,75 +38,73 @@ export default function Demo() {
     {
       title: "Function Creation",
       before: "create a function",
-      after: `Create a TypeScript function that:
+      after: `[QUALITY SCORE: 9.2/10]
+[ROUTE: @clarity-thinking]
+[DETECTED: Next.js + TypeScript]
+
+Create a TypeScript function that:
 - Accepts an array of user objects with name and email
-- Validates email format using regex
-- Filters out invalid entries
+- Validates email format using zod (Project standard detected)
+- Filters out invalid entries with detailed error logging
 - Returns sorted array by name (ascending)
-- Includes JSDoc comments
+- Includes JSDoc comments & TSDoc tags
 - Handles edge cases (null, undefined, empty array)
-- Uses proper TypeScript types and interfaces`
+- Uses proper TypeScript interfaces for data safety`
     },
     {
       title: "API Endpoint",
       before: "make a login endpoint",
-      after: `Create a Next.js 15 API route for user login with:
+      after: `[QUALITY SCORE: 9.8/10]
+[ROUTE: @clarity-thinking]
+[CONTEXT: Prisma + NextAuth v5 detected]
+
+Create a Next.js 15 API route for user login with:
 
 AUTHENTICATION:
-- Email and password validation
-- bcrypt password hashing comparison
+- Email and password validation via Zod
+- Argon2 password hashing comparison
 - JWT token generation with 7-day expiration
-- HttpOnly cookie for token storage
+- HttpOnly cookie for session management
 
 SECURITY:
-- Rate limiting (5 attempts per 15 minutes)
-- CSRF protection
+- Rate limiting (Upstash Redis pattern)
+- CSRF protection enabled
 - Input sanitization
-- Secure password requirements
+- Compliance with OWASP Top 10
 
 ERROR HANDLING:
-- Invalid credentials (401)
-- Missing fields (400)
-- Server errors (500)
-- Detailed error messages in development, generic in production
+- Specialized Prisma error catching
+- User-friendly error responses
+- Detailed server logs via Winston
 
-RESPONSE FORMAT:
-- Success: { success: true, user: { id, email, name } }
-- Error: { success: false, error: string }
-
-TypeScript types for request/response`
+TypeScript types for all request/response models`
     },
     {
       title: "React Component",
       before: "create a todo app",
-      after: `Create a React TypeScript todo application with:
+      after: `[QUALITY SCORE: 9.5/10]
+[ROUTE: @clarity-thinking]
+[TEMPLATE: ui:feature-list]
+
+Create a React TypeScript todo application with:
 
 COMPONENTS:
-- TodoList: Main container component
-- TodoItem: Individual todo with checkbox and delete
-- TodoInput: Form with validation
-- TodoFilters: All/Active/Completed tabs
+- TodoList: Main container using shadcn/ui
+- TodoItem: Framer Motion animations included
+- TodoInput: Validation with React Hook Form
+- Accessibility: ARIA labels & Screen reader optimization
 
 STATE MANAGEMENT:
-- Use React hooks (useState, useEffect)
+- Use Context API / TanStack Query
 - LocalStorage persistence
-- Optimistic UI updates
+- Optimistic UI updates for zero-lag feeling
 
 FEATURES:
-- Add new todos with Enter key
-- Mark as complete/incomplete
-- Delete todos with confirmation
-- Filter by status
-- Todo count display
-- Clear completed button
+- Responsive design (Tailwind mobile-first)
+- Dark mode support
+- Keyboard shortcuts (Ctrl+Enter to add)
 
-STYLING:
-- Tailwind CSS classes
-- Responsive design (mobile-first)
-- Smooth transitions
-- Accessible (ARIA labels, keyboard navigation)
-
-TypeScript interfaces for Todo type`
+OUTPUT: Production-ready clean code.`
     }
   ];
 

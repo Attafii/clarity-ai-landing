@@ -62,18 +62,18 @@ export default function OneShotPrompt() {
           }`}>
             <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
               <span className="bg-gradient-to-r from-[#F0CDFF] via-white to-[#A459E1] bg-clip-text text-transparent">
-                Build Entire Websites
+                Complexity-Aware
               </span>
               <br />
               <span className="bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] bg-clip-text text-transparent">
-                With One Prompt
+                One-Shot Prompts
               </span>
             </h2>
             
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Join the <span className="text-[#F0CDFF] font-semibold">one-shot revolution</span>. 
-              Clarity AI transforms your simple idea into a comprehensive, 
-              AI-ready prompt that builds complete applications in a single shot.
+              Experience the engine that powers Clarity AI. 
+              Clarity AI analyzes your prompt complexity and routes it to 
+              <span className="text-[#F0CDFF] font-semibold"> @clarity-thinking</span> for architect-level execution.
             </p>
 
             {/* Key Benefits */}

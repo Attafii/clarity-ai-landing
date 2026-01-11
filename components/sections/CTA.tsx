@@ -82,9 +82,9 @@ export default function CTA() {
           {/* Benefits List */}
           <div className="flex flex-wrap justify-center gap-6 mb-10">
             {[
-              "100% Free Forever",
-              "No Credit Card Required",
-              "Open Source"
+              "Triple Command System",
+              "Smart Routing Engine",
+              "100% Free & Open Source"
             ].map((benefit, index) => (
               <div key={index} className="flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-[#A459E1]" />

@@ -38,15 +38,15 @@ export default function FAQ() {
   const faqs = [
     {
       question: "What is ClarityAI?",
-      answer: "ClarityAI is a free and open-source VS Code extension that enhances your GitHub Copilot prompts using AI. It analyzes your prompts, adds context, fixes typos, and transforms them into detailed specifications for better code suggestions."
+      answer: "ClarityAI is a free and open-source VS Code extension that enhances your GitHub Copilot prompts using AI. Version 1.0.9 introduces the Smart Routing Engine, which analyzes prompt complexity to provide either rapid responses or deep architectural planning."
     },
     {
-      question: "Does it send my code to external services?",
-      answer: "No, only your prompts go to ClarityAI for enhancement, never your actual code. Your source code remains private and secure on your local machine. We only process the text prompts you write to improve them before sending to Copilot."
+      question: "Privacy: Does it send my code to external services?",
+      answer: "Privacy is our priority. ClarityAI only sends your text prompts and high-level project metadata (like framework names and UI libraries) for enhancement. Your actual source code never leaves your machine. No code is ever sent to or stored on our servers."
     },
     {
-      question: "What AI model powers ClarityAI?",
-      answer: "ClarityAI is powered by Google Gemini 2.0 Flash via API, along with support for other leading LLMs. This ensures fast, accurate prompt enhancements while maintaining flexibility for different use cases."
+      question: "What is the Smart Routing Engine?",
+      answer: "It's an algorithm that scores your prompts from 0-100. Simple prompts (<40) are handled by @clarity-fast for instant result. Complex prompts (>=40) use @clarity-thinking for deep reasoning and multi-step plan generation."
     },
     {
       question: "Is it really free?",

@@ -1,13 +1,21 @@
 import { Activity, DraftingCompass, Mail, Zap, Brain, Code, TrendingUp } from 'lucide-react'
 import Image from 'next/image'
 import { PinContainer } from '@/components/ui/3d-pin'
+import useScrollReveal from '@/hooks/use-scroll-reveal';
 
 export function Features5() {
+    const [sectionRef, isVisible] = useScrollReveal();
+
     return (
-        <section className="py-16 md:py-32 bg-gradient-to-b from-background via-[#0a0014] to-background">
+        <section
+            ref={sectionRef}
+            className={`py-16 md:py-32 bg-gradient-to-b from-background via-[#0a0014] to-background transition-all duration-700 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+        >
             <div className="mx-auto max-w-xl md:max-w-6xl px-6">
                 <div className="grid items-center gap-12 md:grid-cols-2 md:gap-12 lg:grid-cols-5 lg:gap-24">
-                    <div className="lg:col-span-2">
+                    <div className={`lg:col-span-2 transition-all duration-700 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-6 opacity-0'}`}>
                         <div className="md:pr-6 lg:pr-0">
                             <h2 className="text-4xl font-semibold lg:text-5xl bg-gradient-to-r from-[#F0CDFF] to-[#A459E1] bg-clip-text text-transparent">
                                 Supercharge Your GitHub Copilot
@@ -51,7 +59,7 @@ export function Features5() {
                             </li>
                         </ul>
                     </div>
-                    <div className="lg:col-span-3 flex items-center justify-center h-[50rem]">
+                    <div className={`lg:col-span-3 flex items-center justify-center h-[50rem] transition-all duration-700 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-6 opacity-0'}`}>
                         <PinContainer title="Try Clarity AI" href="https://marketplace.visualstudio.com/items?itemName=AhmedAttafii.clarityai">
                             <div className="flex flex-col p-8 tracking-tight text-slate-100/50 w-[28rem] h-[28rem] bg-gradient-to-b from-[#1a0b2e]/80 to-[#0f051a]/90 backdrop-blur-sm border border-[#A459E1]/30 rounded-2xl">
                                 {/* Header */}

@@ -1,10 +1,13 @@
-'use client';
+ 'use client';
 
 import { useState } from 'react';
+import useScrollReveal from '@/hooks/use-scroll-reveal';
 import { Mail, User, MessageSquare, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function Contact() {
+  const [sectionRef, isVisible] = useScrollReveal();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -53,7 +56,13 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-4 bg-gradient-to-b from-zinc-950 to-zinc-900">
+    <section
+      id="contact"
+      ref={sectionRef}
+      className={`py-24 px-4 bg-gradient-to-b from-zinc-950 to-zinc-900 transition-all duration-700 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+      }`}
+    >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#F0CDFF] via-white to-[#A459E1] bg-clip-text text-transparent">

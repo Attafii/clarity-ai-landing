@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { FloatingDock } from "@/components/ui/floating-dock";
+import { motion, AnimatePresence } from "motion/react";
 import {
     IconCurrencyDollar,
     IconBook,
@@ -15,8 +16,17 @@ export default function FloatingDockSection() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Always show dock bar on all pages
-    setIsVisible(true);
+    const handleScroll = () => {
+      // Show dock after scrolling down 200px
+      if (window.scrollY > 200) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const links = [
@@ -75,14 +85,22 @@ export default function FloatingDockSection() {
   }));
   
   return (
-    <div className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ease-in-out ${
-      isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
-    }`}>
-      <FloatingDock
-        mobileClassName="translate-y-0"
-        desktopClassName="backdrop-blur-md bg-black/80 border border-[#A459E1]/20 shadow-2xl shadow-[#A459E1]/10"
-        items={navigationLinks}
-      />
-    </div>
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          initial={{ y: 100, x: "-50%", opacity: 0 }}
+          animate={{ y: 0, x: "-50%", opacity: 1 }}
+          exit={{ y: 100, x: "-50%", opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="fixed bottom-8 left-1/2 z-50 pointer-events-auto"
+        >
+          <FloatingDock
+            mobileClassName="translate-y-0"
+            desktopClassName="backdrop-blur-md bg-black/80 border border-[#A459E1]/20 shadow-2xl shadow-[#A459E1]/10"
+            items={navigationLinks}
+          />
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

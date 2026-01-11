@@ -2,10 +2,13 @@
 
 import { Github, Heart, Code2, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import useScrollReveal from '@/hooks/use-scroll-reveal';
 
 export default function OpenSource() {
+  const [sectionRef, isVisible] = useScrollReveal();
+
   return (
-    <section className="py-24 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
+    <section ref={sectionRef} className={`py-24 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
       {/* Background decoration */}
       <div className="absolute inset-0 bg-grid-white/[0.02]" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#A459E1]/5 rounded-full blur-3xl" />

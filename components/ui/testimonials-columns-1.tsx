@@ -28,13 +28,20 @@ export const TestimonialsColumn = (props: {
                 <div className="p-6 rounded-2xl border border-purple-500/20 bg-gradient-to-br from-black/40 to-purple-900/20 backdrop-blur-sm shadow-lg shadow-purple-500/10 max-w-xs w-full hover:border-purple-400/30 transition-all duration-300" key={i}>
                   <div className="text-gray-200 text-sm leading-relaxed mb-4">{text}</div>
                   <div className="flex items-center gap-3 mt-4">
-                    <img
-                      width={40}
-                      height={40}
-                      src={image}
-                      alt={name}
-                      className="h-10 w-10 rounded-full border-2 border-purple-500/30"
-                    />
+                    <div className="h-10 w-10 rounded-full border-2 border-purple-500/30 overflow-hidden bg-purple-500/10 flex items-center justify-center">
+                      <img
+                        width={40}
+                        height={40}
+                        src={image}
+                        alt={name}
+                        className="h-full w-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          target.parentElement!.innerHTML = `<span class="text-xs font-bold text-purple-300">${name.split(' ').map(n => n[0]).join('')}</span>`;
+                        }}
+                      />
+                    </div>
                     <div className="flex flex-col">
                       <div className="font-semibold text-white tracking-tight leading-5 text-sm">{name}</div>
                       <div className="leading-5 text-purple-300/80 tracking-tight text-xs">{role}</div>
