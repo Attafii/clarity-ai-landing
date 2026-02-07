@@ -17,6 +17,7 @@ export default function DocsPage() {
     { id: "configuration", title: "Configuration", icon: Settings },
     { id: "usage", title: "Usage Guide", icon: BookOpen },
     { id: "features", title: "Features", icon: Zap },
+    { id: "advanced-features", title: "Advanced Features", icon: Code2 },
     { id: "contributing", title: "Contributing", icon: Users },
     { id: "troubleshooting", title: "Troubleshooting", icon: AlertCircle }
   ];
@@ -392,6 +393,175 @@ export default function DocsPage() {
                           <p className="text-muted-foreground text-sm">{feature.desc}</p>
                         </div>
                       ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Advanced Features */}
+                {activeSection === "advanced-features" && (
+                  <div className="space-y-8">
+                    <div>
+                      <h2 className="text-3xl font-bold mb-4 text-foreground">Advanced Features</h2>
+                      <p className="text-muted-foreground text-lg leading-relaxed">
+                        Unlock the full power of ClarityAI with these advanced capabilities designed for professional workflows.
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 text-foreground">Expert Persona Engine</h3>
+                      <p className="text-muted-foreground mb-4">
+                        Activate specialized AI personas through subcommands. Each persona prioritizes different technical aspects and best practices.
+                      </p>
+                      <div className="space-y-3">
+                        {[
+                          { cmd: "@clarity /architect", desc: "Scalability, design patterns (SOLID, Clean Arch), system structure" },
+                          { cmd: "@clarity /security", desc: "Vulnerability prevention, input sanitization, OWASP standards" },
+                          { cmd: "@clarity /reviewer", desc: "Lead-developer style critique of logic, technical debt, edge cases" },
+                          { cmd: "@clarity /tester", desc: "Test coverage, boundary conditions, mock strategies" },
+                          { cmd: "@clarity /frontend", desc: "Accessibility (A11y), responsive design, CSS best practices" },
+                          { cmd: "@clarity /performance", desc: "Big-O complexity, memory footprint, optimization" }
+                        ].map((persona, index) => (
+                          <div key={index} className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-lg p-4">
+                            <code className="text-[#F0CDFF] font-semibold">{persona.cmd}</code>
+                            <p className="text-xs text-muted-foreground mt-2">{persona.desc}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 text-foreground">Security & Privacy Guardrails</h3>
+                      <p className="text-muted-foreground mb-4">
+                        Local-first privacy tools that protect your codebase before prompts ever leave your machine.
+                      </p>
+                      <div className="bg-gradient-to-br from-[#A459E1]/10 to-[#F0CDFF]/10 border border-[#A459E1]/30 rounded-xl p-6">
+                        <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                          <CheckCircle2 className="h-5 w-5 text-[#A459E1]" />
+                          Secret Shield
+                        </h4>
+                        <ul className="space-y-2 text-muted-foreground mb-4">
+                          <li className="flex items-start gap-2">
+                            <span className="text-[#A459E1] mt-1">•</span>
+                            <span>Automatically detects and masks API keys, JWT tokens, database credentials</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-[#A459E1] mt-1">•</span>
+                            <span>PII (Personally Identifiable Information) detection and redaction</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-[#A459E1] mt-1">•</span>
+                            <span>Pattern recognition for 15+ secret types (AWS, GCP, Azure, GitHub, etc.)</span>
+                          </li>
+                        </ul>
+                        <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                          <CheckCircle2 className="h-5 w-5 text-[#A459E1]" />
+                          Logic Vulnerability Scanner
+                        </h4>
+                        <ul className="space-y-2 text-muted-foreground">
+                          <li className="flex items-start gap-2">
+                            <span className="text-[#A459E1] mt-1">•</span>
+                            <span>Warns before enhancing prompts with dangerous patterns (eval, SQLi, insecure HTTP)</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-[#A459E1] mt-1">•</span>
+                            <span>Real-time security best practice suggestions</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 text-foreground">Prompt Vault</h3>
+                      <p className="text-muted-foreground mb-4">
+                        Standardize and share high-performing prompts across your workflow and team.
+                      </p>
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="font-semibold text-foreground mb-2">Local Vault</h4>
+                          <p className="text-muted-foreground mb-3">Private storage for your optimized prompts (saved in VS Code Global State).</p>
+                          <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-xl p-6 font-mono text-sm">
+                            <code className="text-[#F0CDFF]">@clarity /vault</code>
+                            <p className="text-xs text-muted-foreground mt-2">Browse, search, and recall saved prompts</p>
+                          </div>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-foreground mb-2">Team Vault</h4>
+                          <p className="text-muted-foreground mb-3">Shared <code className="text-[#F0CDFF] bg-[#1a0b2e] px-2 py-1 rounded">.clarity/vault.json</code> file for team-wide prompt standardization.</p>
+                          <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-xl p-6 font-mono text-sm">
+                            <code className="text-muted-foreground">// .clarity/vault.json</code>
+                            <pre className="text-[#F0CDFF] mt-2">{`{
+  "Company API Standard": {
+    "template": "...",
+    "tags": ["api", "rest"]
+  }
+}`}</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 text-foreground">Visual Architectural Roadmaps</h3>
+                      <p className="text-muted-foreground mb-4">
+                        ClarityAI integrates Mermaid.js for visual communication and architecture diagrams.
+                      </p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="bg-gradient-to-br from-[#A459E1]/5 to-[#F0CDFF]/5 border border-[#A459E1]/20 rounded-xl p-6">
+                          <div className="text-3xl mb-3">🗺️</div>
+                          <h4 className="font-semibold text-foreground mb-2">Auto-Diagram</h4>
+                          <p className="text-sm text-muted-foreground">Automatically appends Mermaid.js diagram blocks when prompts involve "design", "flow", or "process".</p>
+                        </div>
+                        <div className="bg-gradient-to-br from-[#A459E1]/5 to-[#F0CDFF]/5 border border-[#A459E1]/20 rounded-xl p-6">
+                          <div className="text-3xl mb-3">👁️</div>
+                          <h4 className="font-semibold text-foreground mb-2">Visual Preview</h4>
+                          <p className="text-sm text-muted-foreground">Renders diagrams directly in VS Code Chat panel with "Open in Mermaid Live" button.</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 text-foreground">Quality Analysis & Educational UI</h3>
+                      <p className="text-muted-foreground mb-4">
+                        ClarityAI doesn't just improve your prompt—it teaches you how to write better ones.
+                      </p>
+                      <div className="space-y-4">
+                        <div className="bg-background/50 border border-border rounded-lg p-4 flex gap-4">
+                          <div className="text-3xl">📊</div>
+                          <div>
+                            <h4 className="font-semibold text-foreground mb-1">Quality Score (1-10)</h4>
+                            <p className="text-sm text-muted-foreground">Real-time feedback on how detailed your original prompt was.</p>
+                          </div>
+                        </div>
+                        <div className="bg-background/50 border border-border rounded-lg p-4 flex gap-4">
+                          <div className="text-3xl">💡</div>
+                          <div>
+                            <h4 className="font-semibold text-foreground mb-1">Educational Insights</h4>
+                            <p className="text-sm text-muted-foreground">Highlights key additions (e.g., "Added Error Handling because it prevents runtime crashes").</p>
+                          </div>
+                        </div>
+                        <div className="bg-background/50 border border-border rounded-lg p-4 flex gap-4">
+                          <div className="text-3xl">🔀</div>
+                          <div>
+                            <h4 className="font-semibold text-foreground mb-1">Interactive Diff View</h4>
+                            <p className="text-sm text-muted-foreground">Side-by-side comparison of "Before" and "After" instructions.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 text-foreground">Technical Context Awareness</h3>
+                      <p className="text-muted-foreground mb-4">
+                        ClarityAI "speaks your tech stack" by analyzing your development environment.
+                      </p>
+                      <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-xl p-6">
+                        <h4 className="font-semibold text-foreground mb-3">Automatic Detection:</h4>
+                        <ul className="space-y-2 text-muted-foreground list-disc list-inside">
+                          <li>Tech Stack Sync: Reads package.json to detect framework versions (Next.js 14, React 18, etc.)</li>
+                          <li>.clarityrules Enforcement: Root-level config file for strict project constraints</li>
+                          <li>Workspace Mapping: Indexes src folder to understand internal utilities and exports</li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 )}

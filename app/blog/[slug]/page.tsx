@@ -43,7 +43,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           </h1>
 
           {/* Meta */}
-          <div className="flex flex-wrap items-center gap-6 text-muted-foreground mb-12 pb-8 border-b border-border">
+          <div className="flex flex-wrap items-center gap-6 text-muted-foreground mb-8 pb-8 border-b border-border">
             <div className="flex items-center gap-2">
               <User className="h-4 w-4" />
               <span className="text-sm">{post.author}</span>
@@ -56,6 +56,15 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               <Clock className="h-4 w-4" />
               <span className="text-sm">{post.read_time}</span>
             </div>
+          </div>
+
+          {/* Featured Image */}
+          <div className="mb-12 rounded-3xl overflow-hidden border border-border/50 shadow-2xl shadow-[#A459E1]/10">
+            <img 
+              src={post.image} 
+              alt={post.title}
+              className="w-full aspect-video object-cover"
+            />
           </div>
 
           {/* Content */}

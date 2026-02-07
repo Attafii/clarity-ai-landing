@@ -1,5 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card'
-import { Shield, Users, Zap, Brain, Code, Sparkles } from 'lucide-react'
+import { Shield, Users, Zap, Brain, Code, Sparkles, Database, Lock } from 'lucide-react'
 
 export function Features() {
     return (
@@ -9,7 +9,7 @@ export function Features() {
                 <div className="text-center mb-16">
                     <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#A459E1]/20 to-[#F0CDFF]/20 backdrop-blur-md border border-[#A459E1]/30 rounded-full mb-6">
                         <Sparkles className="h-5 w-5 text-[#F0CDFF]" />
-                        <span className="text-sm font-bold text-[#F0CDFF]">POWERFUL FEATURES</span>
+                        <span className="text-sm font-bold text-[#F0CDFF]">9 POWERFUL FEATURES</span>
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
                         <span className="bg-gradient-to-r from-[#F0CDFF] via-white to-[#A459E1] bg-clip-text text-transparent">
@@ -108,6 +108,57 @@ export function Features() {
                                      <div className="px-5 py-2 bg-[#A459E1] text-black rounded-lg font-bold text-sm shadow-lg animate-pulse">
                                          Send to Copilot
                                      </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        {/* Expert Personas */}
+                        <Card className="relative col-span-full overflow-hidden sm:col-span-3 lg:col-span-2 border-[#A459E1]/30 bg-gradient-to-br from-black/60 via-[#A459E1]/10 to-[#F0CDFF]/10 backdrop-blur-sm hover:border-[#F0CDFF]/40 transition-all duration-300">
+                            <CardContent className="pt-6">
+                                <div className="relative mx-auto flex aspect-square size-32 rounded-full border border-[#A459E1]/40 before:absolute before:-inset-2 before:rounded-full before:border before:border-[#F0CDFF]/20 bg-gradient-to-br from-[#F0CDFF]/10 to-[#A459E1]/10">
+                                    <Users className="m-auto size-16 text-[#A459E1]" strokeWidth={1} />
+                                </div>
+                                <div className="relative z-10 mt-6 space-y-2 text-center">
+                                    <h2 className="group-hover:text-secondary-950 text-lg font-medium transition dark:text-white">Expert Personas</h2>
+                                    <p className="text-gray-300">Activate /architect, /security, /reviewer, /tester, /frontend, or /performance for specialized AI responses.</p>
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        {/* Security Shield */}
+                        <Card className="relative col-span-full overflow-hidden sm:col-span-3 lg:col-span-2 border-[#A459E1]/30 bg-gradient-to-br from-black/60 via-[#A459E1]/10 to-[#F0CDFF]/10 backdrop-blur-sm hover:border-[#F0CDFF]/40 transition-all duration-300">
+                            <CardContent className="pt-6">
+                                <div className="pt-6 lg:px-6">
+                                    <div className="flex justify-center mb-4">
+                                        <Shield className="size-12 text-[#F0CDFF]" />
+                                    </div>
+                                    <div className="text-center">
+                                        <span className="text-sm font-medium text-[#F0CDFF]">100% Local-First</span>
+                                    </div>
+                                </div>
+                                <div className="relative z-10 mt-14 space-y-2 text-center">
+                                    <h2 className="text-lg font-medium transition text-white">Secret Shield</h2>
+                                    <p className="text-gray-300">Auto-detects and masks API keys, secrets, and PII before prompts leave your machine.</p>
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        {/* Prompt Vault */}
+                        <Card className="relative col-span-full overflow-hidden lg:col-span-2 border-[#A459E1]/30 bg-gradient-to-br from-black/60 via-[#A459E1]/10 to-[#F0CDFF]/10 backdrop-blur-sm hover:border-[#F0CDFF]/40 transition-all duration-300">
+                            <CardContent className="pt-6">
+                                <div className="relative z-10 flex flex-col space-y-6">
+                                    <div className="relative flex aspect-square size-12 rounded-full border border-[#A459E1]/40 before:absolute before:-inset-2 before:rounded-full before:border before:border-[#F0CDFF]/20 bg-gradient-to-br from-[#F0CDFF]/10 to-[#A459E1]/10">
+                                        <Database className="m-auto size-5 text-[#A459E1]" strokeWidth={1} />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <h2 className="text-lg font-medium transition text-white">Prompt Vault</h2>
+                                        <p className="text-gray-300">Save and share high-performing prompts. Local vault for personal use, team vault syncs via .clarity/vault.json.</p>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        <div className="px-3 py-1 rounded-full bg-[#A459E1]/20 border border-[#A459E1]/40 text-[10px] text-[#F0CDFF]">Local Vault</div>
+                                        <div className="px-3 py-1 rounded-full bg-[#A459E1]/20 border border-[#A459E1]/40 text-[10px] text-[#F0CDFF]">Team Sync</div>
+                                        <div className="px-3 py-1 rounded-full bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] text-black font-bold text-[10px]">@clarity /vault</div>
+                                    </div>
                                 </div>
                             </CardContent>
                         </Card>
