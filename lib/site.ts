@@ -53,6 +53,7 @@ export const siteConfig = {
   // Navigation Links
   navLinks: [
     { name: 'Features', href: '#features' },
+    { name: 'Testimonials', href: '#testimonials' },
     { name: 'Documentation', href: '/docs' },
     { name: 'Blog', href: '/blog' },
     { name: 'GitHub', href: 'https://github.com/Attafii/ClarityAI' },
@@ -68,7 +69,7 @@ export const siteConfig = {
   // URLs
   urls: {
     marketplace:
-      'https://marketplace.visualstudio.com/items?itemName=clarityai.prompt-enhancer',
+      'https://marketplace.visualstudio.com/items?itemName=AhmedAttafii.clarityai',
     github: 'https://github.com/Attafii/ClarityAI',
     docs: 'https://docs.clarityai.dev',
     support: 'https://github.com/Attafii/ClarityAI/issues',

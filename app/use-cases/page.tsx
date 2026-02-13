@@ -34,7 +34,7 @@ const USE_CASES: UseCase[] = [
       'Educational feedback for junior developers',
     ],
     example: '/expert code-reviewer @file auth.ts --depth comprehensive',
-    usedBy: 'Used by 20,000+ developers at Google, Microsoft, and Stripe',
+    usedBy: 'Used by 20,000+ developers at Meta, Microsoft, and Stripe',
   },
   {
     id: 'security-audit',

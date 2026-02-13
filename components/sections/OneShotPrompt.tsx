@@ -148,7 +148,7 @@ export default function OneShotPrompt() {
                   </div>
                   <div className="bg-background/50 rounded-lg p-4 border border-border">
                     <code className="text-sm text-muted-foreground font-mono">
-                      "Create a landing page for my SaaS product"
+                      "@clarity Create a landing page for my SaaS product"
                     </code>
                   </div>
                 </div>

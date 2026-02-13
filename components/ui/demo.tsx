@@ -1,5 +1,9 @@
-import { PremiumHero } from "@/components/ui/hero";
+import { Testimonials } from "@/components/ui/testimonials";
 
-export default function DemoOne() {
-  return <PremiumHero />;
+export default function TestimonialsDemo() {
+  return (
+    <div className="w-full">
+      <Testimonials />
+    </div>
+  );
 }

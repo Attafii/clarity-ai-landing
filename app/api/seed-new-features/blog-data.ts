@@ -8,10 +8,10 @@ export const blogPostsData = [
   <p class="text-xl text-gray-300 leading-relaxed mb-6">ClarityAI acts as a sophisticated translation and optimization layer between you and AI agents like GitHub Copilot. In an era where AI is becoming the primary driver of development speed, the quality of the instructions we give these models has become the new bottleneck. ClarityAI ensures your intent is captured with technical precision and project-aware context, effectively bridging the gap between a vague idea and a production-ready implementation.</p>
   
   <h2 class="text-3xl font-bold text-white mt-12 mb-6">The Problem: Why Generic AI Isn't Enough</h2>
-  <p class="text-gray-300 mb-6">Most developers interact with AI agents using direct, conversational prompts. While this works for simple tasks, it often fails in professional environments. The fundamental issue is "Context Fragmentation." Your IDE knows your code, your Git history knows your patterns, but the AI cloud only sees what you paste into the chat box. This leads to code that is technically "correct" but architecturally "wrong" for your specific project.</p>
+  <p class="text-gray-300 mb-6">Most developers interact with AI agents using direct, conversational prompts. While this works for simple tasks, it often fails in professional environments. The fundamental issue is \"Context Fragmentation.\" Your IDE knows your code, your Git history knows your patterns, but the ClarityAI service only sees what you paste into the chat box. This leads to code that is technically \"correct\" but architecturally \"wrong\" for your specific project.</p>
   
-  <h2 class="text-3xl font-bold text-white mt-12 mb-6">The Solution: Intelligent Optimization</h2>
-  <p class="text-gray-300 mb-6">ClarityAI solves this by intercepting your prompt and running it through a local enrichment engine. This engine performs three critical tasks before any data ever hits the AI cloud:</p>
+  <h2 class=\"text-3xl font-bold text-white mt-12 mb-6\">The Solution: Intelligent Optimization</h2>
+  <p class=\"text-gray-300 mb-6\">ClarityAI solves this by intercepting your prompt and running it through a local enrichment engine. This engine performs three critical tasks before any data ever hits the ClarityAI service:</p>
   
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-10">
     <div class="bg-gray-900 border border-[#A459E1]/30 p-8 rounded-2xl">
@@ -153,7 +153,7 @@ graph TD
   <p class="text-xl text-gray-300 leading-relaxed mb-6">The biggest barrier to enterprise AI adoption is safety. Developers often accidentally include API keys, passwords, or PII (Personally Identifiable Information) in their chat prompts. Once that data leaves your machine, the damage is done. ClarityAI introduces a "Zero-Trust" architecture for prompting, ensuring that your secrets stay on your machine where they belong.</p>
   
   <h2 class="text-3xl font-bold text-white mt-12 mb-6">The Vulnerability Gap in Modern AI</h2>
-  <p class="text-gray-300 mb-6">Most AI assistants operate on a "Send First, Filter Later" model. The data is sent to a cloud endpoint, and if a filter detects a secret, the response is blocked. This is already too late. If you are operating in a regulated industry like Healthcare or Finance, the mere act of transmitting that PII is a compliance violation. ClarityAI closes this gap by moving the edge of security to your IDE.</p>
+  <p class="text-gray-300 mb-6">Most AI assistants operate on a "Send First, Filter Later" model. The data is sent to a ClarityAI service endpoint, and if a filter detects a secret, the response is blocked. This is already too late. If you are operating in a regulated industry like Healthcare or Finance, the mere act of transmitting that PII is a compliance violation. ClarityAI closes this gap by moving the edge of security to your IDE.</p>
   
   <h2 class="text-3xl font-bold text-white mt-12 mb-6">Secret Shield: How It Works</h2>
   <p class="text-gray-300 mb-6">Secret Shield uses a high-performance local scanning engine based on three levels of detection:</p>
@@ -232,7 +232,7 @@ sequenceDiagram
     excerpt: 'Explore the Complexity Scoring Algorithm that automatically selects the optimal AI model based on your prompt requirements.',
     content: `<div class="prose prose-invert max-w-none">
   <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2070" alt="Smart Routing" class="w-full h-96 object-cover rounded-xl mb-8" />
-  <p class="text-xl text-gray-300 leading-relaxed mb-6">In the world of AI, there is always a trade-off between speed and depth of reasoning. Small models (like GPT-4o-mini or Llama 3 8B) are nearly instantaneous but lack the ability to understand complex architectural patterns. Large reasoning models (like o1 or Claude 3.5 Sonnet) can solve PhD-level physics problems but might take 30 seconds to respond. ClarityAI's Smart Routing Engine eliminates this choice by analyzing your intent in real-time.</p>
+  <p class="text-xl text-gray-300 leading-relaxed mb-6">In the world of AI, there is always a trade-off between speed and depth of reasoning. Standard models are nearly instantaneous but lack the ability to understand complex architectural patterns. Advanced reasoning models can solve complex problems but might take longer to respond. ClarityAI's Smart Routing Engine eliminates this choice by automatically selecting the best ClarityAI model for your specific intent in real-time.</p>
   
   <h2 class="text-3xl font-bold text-white mt-12 mb-6">The Complexity Scoring Algorithm (CSA)</h2>
   <p class="text-gray-300 mb-6">Every time you interact with <code>@clarity</code>, our algorithm assigned a "Complexity Score" (1-10) to your prompt. This happens instantly through a lightweight local classifier. We look for specific triggers that indicate the "Cognitive Load" of the task:</p>

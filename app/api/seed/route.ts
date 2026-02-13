@@ -381,11 +381,11 @@ export async function GET() {
 export function routeTripleCommand(command: string, prompt: string) {
   switch (command) {
     case ''@clarity-thinking'':
-      return { model: ''o1-preview'', reasoning: true, maxTokens: 8000 };
+      return { model: ''clarity-reasoning'', reasoning: true, maxTokens: 8000 };
     case ''@clarity-fast'':
-      return { model: ''gpt-4o-mini'', speed: true, maxTokens: 2000 };
+      return { model: ''clarity-mini'', speed: true, maxTokens: 2000 };
     default:
-      return { model: ''gpt-4o'', adaptive: true };
+      return { model: ''clarity-standard'', adaptive: true };
   }
 }</code></pre>
 
@@ -442,7 +442,7 @@ export function routeTripleCommand(command: string, prompt: string) {
 1. Add a [SignIn] component in /app/sign-in/page.tsx. 
 2. Protect the /dashboard route using export const middleware in middleware.ts. 
 3. Style the auth pages with Tailwind CSS to match the existing dark-mode palette.
-4. Ensure SSO support for Google and GitHub is enabled."</pre>
+4. Ensure SSO support for GitHub and Microsoft is enabled."</pre>
                 </div>
               </div>
             </div>

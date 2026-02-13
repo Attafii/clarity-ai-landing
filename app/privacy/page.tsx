@@ -42,7 +42,7 @@ export default function PrivacyPage() {
           <ul className="space-y-3 text-foreground/90">
             <li className="flex items-start gap-3">
               <span className="text-green-400 mt-1">✓</span>
-              <span><strong>Only your prompts are sent</strong> to our enhancement service - never your actual code</span>
+              <span><strong>Only your prompts are sent</strong> to the ClarityAI service for enhancement - never your actual code</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="text-green-400 mt-1">✓</span>
@@ -142,7 +142,7 @@ export default function PrivacyPage() {
             <div className="bg-muted/50 border border-border rounded-lg p-6">
               <p className="text-muted-foreground mb-4">
                 <strong className="text-foreground">We do not store your data.</strong> ClarityAI is a pass-through 
-                service that sends your prompt to Google's API and returns the enhanced version.
+                utility that sends your prompt to the ClarityAI service and returns the enhanced version via our ClarityAI LLM model.
               </p>
               <ul className="text-muted-foreground space-y-2 ml-6">
                 <li>• No database to store prompts</li>
@@ -162,10 +162,10 @@ export default function PrivacyPage() {
             
             <div className="space-y-4">
               <div className="bg-muted/50 border border-border rounded-lg p-6">
-                <h3 className="text-xl font-semibold mb-3 text-[#F0CDFF]">No External Dependencies</h3>
+                <h3 className="text-xl font-semibold mb-3 text-[#F0CDFF]">Direct Data Control</h3>
                 <p className="text-muted-foreground">
-                  ClarityAI runs entirely within VS Code with no external API calls or third-party services. 
-                  Your data stays on your machine, giving you complete control and privacy.
+                  ClarityAI communicates directly with the ClarityAI service with no third-party LLM providers involved. 
+                  Your data is processed only by our proprietary systems, giving you complete privacy and control.
                 </p>
               </div>
 

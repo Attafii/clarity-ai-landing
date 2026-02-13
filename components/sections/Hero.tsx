@@ -3,8 +3,8 @@ import AnimatedShaderHero from '@/components/ui/animated-shader-hero';
 import LogoLoop from '@/components/LogoLoop';
 import {
   SiGithub,
-  SiOpenai,
-  SiGoogle,
+  SiMeta,
+  SiStripe,
   SiVercel,
   SiNotion,
   SiLinear,
@@ -26,14 +26,14 @@ const techLogos = [
     href: 'https://github.com',
   },
   {
-    node: <SiOpenai className='text-gray-600 dark:text-gray-400' />,
-    title: 'OpenAI',
-    href: 'https://openai.com',
+    node: <SiStripe className='text-gray-600 dark:text-gray-400' />,
+    title: 'Stripe',
+    href: 'https://stripe.com',
   },
   {
-    node: <SiGoogle className='text-gray-600 dark:text-gray-400' />,
-    title: 'Google',
-    href: 'https://google.com',
+    node: <SiMeta className='text-gray-600 dark:text-gray-400' />,
+    title: 'Meta',
+    href: 'https://meta.com',
   },
   {
     node: <SiVercel className='text-gray-600 dark:text-gray-400' />,

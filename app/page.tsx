@@ -16,6 +16,7 @@ const FeatureSpotlightCarousel = dynamic(() => import("@/components/sections/Fea
 const ComparisonTable = dynamic(() => import("@/components/sections/ComparisonTable").then(mod => ({ default: mod.ComparisonTable })), { ssr: false });
 const AnimatedStatistics = dynamic(() => import("@/components/sections/AnimatedStatistics").then(mod => ({ default: mod.AnimatedStatistics })), { ssr: false });
 const BlogPostPreviews = dynamic(() => import("@/components/sections/BlogPostPreviews").then(mod => ({ default: mod.BlogPostPreviews })), { ssr: false });
+const Testimonials = dynamic(() => import("@/components/ui/testimonials").then(mod => ({ default: mod.Testimonials })), { ssr: false });
 const GlobalSearch = dynamic(() => import("@/components/widgets/GlobalSearch").then(mod => ({ default: mod.GlobalSearch })), { ssr: false });
 const ExitIntentPopup = dynamic(() => import("@/components/widgets/ExitIntentPopup").then(mod => ({ default: mod.ExitIntentPopup })), { ssr: false });
 const SocialProofNotifications = dynamic(() => import("@/components/widgets/SocialProofNotifications").then(mod => ({ default: mod.SocialProofNotifications })), { ssr: false });
@@ -61,6 +62,9 @@ export default function Home() {
 
       {/* NEW: Comparison Table */}
       <ComparisonTable />
+
+      {/* NEW: Testimonials Section */}
+      <Testimonials />
 
       {/* NEW: Blog Post Previews */}
       <BlogPostPreviews />

@@ -104,10 +104,10 @@ export default function CTA() {
                 trackEvent('Install Extension Click', { location: 'CTA Section' });
                 window.open('https://marketplace.visualstudio.com/items?itemName=AhmedAttafii.clarityai', '_blank');
               }}
-              className="bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] hover:from-[#9147d4] hover:to-[#e8b7ff] text-black font-semibold text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl hover:shadow-[#A459E1]/30 transition-all duration-300 hover:scale-105 group"
+              className="bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] hover:from-[#9147d4] hover:to-[#e8b7ff] text-black font-semibold text-base px-6 py-2.5 rounded-full shadow-xl hover:shadow-2xl hover:shadow-[#A459E1]/30 transition-all duration-300 hover:scale-105 group"
             >
               Install Extension
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
               size="lg"
@@ -116,7 +116,7 @@ export default function CTA() {
                 trackEvent('View GitHub Click', { location: 'CTA Section' });
                 window.open('https://github.com/Attafii/ClarityAI', '_blank');
               }}
-              className="border-2 border-[#A459E1]/50 hover:border-[#F0CDFF] text-[#F0CDFF] hover:bg-[#A459E1]/10 text-lg px-8 py-6 rounded-full transition-all duration-300 hover:scale-105"
+              className="border-2 border-[#A459E1]/50 hover:border-[#F0CDFF] text-[#F0CDFF] hover:bg-[#A459E1]/10 text-base px-6 py-2.5 rounded-full transition-all duration-300 hover:scale-105"
             >
               View on GitHub
             </Button>

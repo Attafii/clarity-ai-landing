@@ -101,7 +101,7 @@ export default function DocsPage() {
                       <h2 className="text-3xl font-bold mb-4 text-foreground">Getting Started</h2>
                       <p className="text-muted-foreground text-lg leading-relaxed">
                         ClarityAI is an open-source VS Code extension that enhances your GitHub Copilot prompts 
-                        using AI-powered analysis. Get better, more accurate code suggestions in minutes.
+                        using the ClarityAI LLM model and our dedicated ClarityAI service. Get better, more accurate code suggestions in minutes.
                       </p>
                     </div>
 
@@ -256,7 +256,7 @@ export default function DocsPage() {
                         Free & Open Source
                       </h4>
                       <p className="text-muted-foreground">
-                        ClarityAI is completely free to use with no API keys or subscriptions required. Check our <a href="https://github.com/Attafii/ClarityAI" target="_blank" rel="noopener noreferrer" className="text-[#A459E1] hover:text-[#F0CDFF] underline">GitHub repository</a> for more details.
+                        ClarityAI is completely free to use. API keys are provided for free by the ClarityAI service directly through the extension. Check our <a href="https://github.com/Attafii/ClarityAI" target="_blank" rel="noopener noreferrer" className="text-[#A459E1] hover:text-[#F0CDFF] underline">GitHub repository</a> for more details.
                       </p>
                     </div>
                   </div>
@@ -326,12 +326,12 @@ export default function DocsPage() {
                         {[
                           {
                             title: "Smart Routing",
-                            desc: "Analyzes prompt complexity and routes to the optimal AI backend (@clarity-fast or @clarity-thinking)",
+                            desc: "Analyzes prompt complexity and routes to the optimal ClarityAI service mode (@clarity-fast or @clarity-thinking)",
                             icon: "🧠"
                           },
                           {
                             title: "Auto-Context",
-                            desc: "Automatically detects frameworks and project structure to ground AI responses",
+                            desc: "Automatically detects frameworks and project structure to ground ClarityAI LLM model responses",
                             icon: "🎯"
                           },
                           {

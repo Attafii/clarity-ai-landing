@@ -22,7 +22,7 @@ const STATISTICS: Statistic[] = [
     value: 85,
     suffix: '%',
     icon: TrendingUp,
-    color: '#FFFFFF',
+    color: '#A459E1',
     description: 'Average increase in coding speed reported by users',
   },
   {
@@ -31,7 +31,7 @@ const STATISTICS: Statistic[] = [
     value: 50000,
     suffix: '+',
     icon: Users,  
-    color: '#FFFFFF',
+    color: '#F0CDFF',
     description: 'Developers using ClarityAI worldwide',
   },
   {
@@ -40,7 +40,7 @@ const STATISTICS: Statistic[] = [
     value: 98,
     suffix: '%',
     icon: Star,
-    color: '#FFFFFF',
+    color: '#FFD700',
     description: '5-star ratings on VS Code Marketplace',
   },
   {
@@ -49,7 +49,7 @@ const STATISTICS: Statistic[] = [
     value: 2500000,
     suffix: '+',
     icon: Code2,
-    color: '#FFFFFF',
+    color: '#4CAF50',
     description: 'Total AI-assisted code generations',
   },
 ];

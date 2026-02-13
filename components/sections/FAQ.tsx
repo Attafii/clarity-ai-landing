@@ -38,27 +38,27 @@ export default function FAQ() {
   const faqs = [
     {
       question: "What is ClarityAI?",
-      answer: "ClarityAI is a free and open-source VS Code extension that enhances your GitHub Copilot prompts using AI. Version 1.0.9 introduces the Smart Routing Engine, which analyzes prompt complexity to provide either rapid responses or deep architectural planning."
+      answer: "ClarityAI is a free and open-source VS Code extension that enhances your GitHub Copilot prompts using AI. Version 1.0.9 introduces the Smart Routing Engine, which analyzes prompt complexity to provide either rapid responses or deep architectural planning via the ClarityAI service."
     },
     {
       question: "Privacy: Does it send my code to external services?",
-      answer: "Privacy is our priority. ClarityAI only sends your text prompts and high-level project metadata (like framework names and UI libraries) for enhancement. Your actual source code never leaves your machine. No code is ever sent to or stored on our servers."
+      answer: "Privacy is our priority. ClarityAI only sends your text prompts and high-level project metadata for enhancement. Your actual source code never leaves your machine. No code is ever sent to or stored on the ClarityAI service servers."
     },
     {
       question: "What is the Smart Routing Engine?",
-      answer: "It's an algorithm that scores your prompts from 0-100. Simple prompts (<40) are handled by @clarity-fast for instant result. Complex prompts (>=40) use @clarity-thinking for deep reasoning and multi-step plan generation."
+      answer: "It's an algorithm that scores your prompts from 0-100. Simple prompts (<40) are handled by @clarity-fast for instant result. Complex prompts (>=40) use @clarity-thinking for deep reasoning and multi-step plan generation, all powered by the ClarityAI LLM model."
     },
     {
       question: "Is it really free?",
-      answer: "Yes! The extension is 100% free and open source. Gemini API has a generous free tier that's perfect for most developers. Check ai.google.dev/pricing for current limits and pricing details."
+      answer: "Yes! The extension is 100% free and open source. The ClarityAI service provides a high-performance LLM model at no cost for all users, making advanced prompt engineering accessible to everyone."
     },
     {
       question: "How do I get an API key?",
-      answer: "Visit ai.google.dev, create an account with your Google credentials, navigate to the API keys section, and generate your free API key. Then add it to your VS Code settings under clarity.geminiApiKey."
+      answer: "API keys are provided for free by the ClarityAI service. You can obtain your key directly through our platform and add it to your VS Code settings under clarity.apiKey to start enhancing your prompts instantly."
     },
     {
       question: "Can I use it offline?",
-      answer: "No, ClarityAI requires an internet connection to communicate with the Gemini API for prompt enhancement. However, the extension is lightweight and responses are typically very fast."
+      answer: "No, ClarityAI requires an internet connection to communicate with the ClarityAI service for prompt enhancement. However, the ClarityAI LLM model is optimized for speed, ensuring typically very fast response times."
     },
     {
       question: "How does ClarityAI improve my prompts?",

@@ -126,7 +126,7 @@ export default function OpenSource() {
         <div className="text-center">
           <Button
             size="lg"
-            className="bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] hover:from-[#9147d4] hover:to-[#e8b7ff] text-black font-semibold text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl hover:shadow-[#A459E1]/30 transition-all duration-300 hover:scale-105 group"
+            className="bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] hover:from-[#9147d4] hover:to-[#e8b7ff] text-black font-semibold text-base px-6 py-2.5 rounded-full shadow-xl hover:shadow-2xl hover:shadow-[#A459E1]/30 transition-all duration-300 hover:scale-105 group h-auto"
             asChild
           >
             <a href="https://marketplace.visualstudio.com/items?itemName=AhmedAttafii.clarityai" target="_blank" rel="noopener noreferrer">
