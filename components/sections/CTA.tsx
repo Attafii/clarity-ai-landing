@@ -3,6 +3,7 @@
 import { ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 const useScrollAnimation = () => {
   const ref = useRef(null);
@@ -99,7 +100,10 @@ export default function CTA() {
           }`} style={{ transitionDelay: isVisible ? '400ms' : '0ms' }}>
             <Button
               size="lg"
-              onClick={() => window.open('https://marketplace.visualstudio.com/items?itemName=AhmedAttafii.clarityai', '_blank')}
+              onClick={() => {
+                trackEvent('Install Extension Click', { location: 'CTA Section' });
+                window.open('https://marketplace.visualstudio.com/items?itemName=AhmedAttafii.clarityai', '_blank');
+              }}
               className="bg-gradient-to-r from-[#A459E1] to-[#F0CDFF] hover:from-[#9147d4] hover:to-[#e8b7ff] text-black font-semibold text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl hover:shadow-[#A459E1]/30 transition-all duration-300 hover:scale-105 group"
             >
               Install Extension
@@ -108,7 +112,10 @@ export default function CTA() {
             <Button
               size="lg"
               variant="outline"
-              onClick={() => window.open('https://github.com/Attafii/ClarityAI', '_blank')}
+              onClick={() => {
+                trackEvent('View GitHub Click', { location: 'CTA Section' });
+                window.open('https://github.com/Attafii/ClarityAI', '_blank');
+              }}
               className="border-2 border-[#A459E1]/50 hover:border-[#F0CDFF] text-[#F0CDFF] hover:bg-[#A459E1]/10 text-lg px-8 py-6 rounded-full transition-all duration-300 hover:scale-105"
             >
               View on GitHub

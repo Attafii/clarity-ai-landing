@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowLeft, BookOpen, Rocket, Code2, Settings, Zap, Users, Github, Terminal, FileText, CheckCircle2, AlertCircle } from "lucide-react";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
@@ -11,6 +11,19 @@ import { Button } from "@/components/ui/button";
 export default function DocsPage() {
   const [activeSection, setActiveSection] = useState("getting-started");
 
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && navigation.some(item => item.id === hash)) {
+        setActiveSection(hash);
+      }
+    };
+
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
   const navigation = [
     { id: "getting-started", title: "Getting Started", icon: Rocket },
     { id: "installation", title: "Installation", icon: Terminal },
@@ -18,6 +31,7 @@ export default function DocsPage() {
     { id: "usage", title: "Usage Guide", icon: BookOpen },
     { id: "features", title: "Features", icon: Zap },
     { id: "advanced-features", title: "Advanced Features", icon: Code2 },
+    { id: "integrations", title: "IDE Integrations", icon: Code2 },
     { id: "contributing", title: "Contributing", icon: Users },
     { id: "troubleshooting", title: "Troubleshooting", icon: AlertCircle }
   ];
@@ -628,6 +642,133 @@ export default function DocsPage() {
                           View on GitHub
                         </a>
                       </Button>
+                    </div>
+                  </div>
+                )}
+
+                {/* IDE Integrations */}
+                {activeSection === "integrations" && (
+                  <div className="space-y-8">
+                    <div>
+                      <h2 className="text-3xl font-bold mb-4 text-foreground">IDE Integrations</h2>
+                      <p className="text-muted-foreground text-lg leading-relaxed">
+                        ClarityAI works across multiple development environments with seamless integration.
+                      </p>
+                    </div>
+
+                    <div className="space-y-6">
+                      <div className="bg-gradient-to-br from-[#A459E1]/10 to-[#F0CDFF]/10 border border-[#A459E1]/30 rounded-xl p-6">
+                        <div className="flex items-center gap-3 mb-4">
+                          <Terminal className="h-6 w-6 text-[#A459E1]" />
+                          <h3 className="text-xl font-bold text-foreground">Visual Studio Code</h3>
+                        </div>
+                        <p className="text-muted-foreground mb-4">
+                          Native support with first-class integration. Install directly from the VS Code Marketplace.
+                        </p>
+                        <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-lg p-4 font-mono text-sm mb-4">
+                          <code className="block text-[#F0CDFF]">ext install AhmedAttafii.clarityai</code>
+                        </div>
+                        <ul className="space-y-2 text-muted-foreground text-sm">
+                          <li className="flex items-start gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-[#A459E1] mt-0.5 shrink-0" />
+                            <span>Automatic GitHub Copilot detection and enhancement</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-[#A459E1] mt-0.5 shrink-0" />
+                            <span>Inline suggestions and code actions</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-[#A459E1] mt-0.5 shrink-0" />
+                            <span>Command palette integration (Ctrl+Shift+P)</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-gradient-to-br from-[#A459E1]/10 to-[#F0CDFF]/10 border border-[#A459E1]/30 rounded-xl p-6">
+                        <div className="flex items-center gap-3 mb-4">
+                          <Code2 className="h-6 w-6 text-[#F0CDFF]" />
+                          <h3 className="text-xl font-bold text-foreground">Cursor IDE</h3>
+                        </div>
+                        <p className="text-muted-foreground mb-4">
+                          ClarityAI works seamlessly with Cursor's AI-first development environment.
+                        </p>
+                        <div className="space-y-3">
+                          <div>
+                            <p className="text-sm font-semibold text-foreground mb-2">Setup Steps:</p>
+                            <ol className="space-y-2 text-muted-foreground text-sm list-decimal list-inside">
+                              <li>Install ClarityAI from VS Code Marketplace</li>
+                              <li>Open Cursor Settings → Extensions</li>
+                              <li>Enable ClarityAI for all workspaces</li>
+                              <li>Configure custom prompts in Cursor Rules</li>
+                            </ol>
+                          </div>
+                          <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-lg p-4 font-mono text-sm">
+                            <code className="block text-[#F0CDFF] mb-1"># .cursorrules</code>
+                            <code className="block text-[#F0CDFF]">Use ClarityAI for all code suggestions</code>
+                            <code className="block text-[#F0CDFF]">Enable security scanning for production code</code>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="bg-gradient-to-br from-[#A459E1]/10 to-[#F0CDFF]/10 border border-[#A459E1]/30 rounded-xl p-6">
+                        <div className="flex items-center gap-3 mb-4">
+                          <Terminal className="h-6 w-6 text-green-400" />
+                          <h3 className="text-xl font-bold text-foreground">JetBrains IDEs</h3>
+                          <span className="text-xs px-2 py-1 rounded-full bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">
+                            Beta
+                          </span>
+                        </div>
+                        <p className="text-muted-foreground mb-4">
+                          Support for IntelliJ IDEA, WebStorm, PyCharm, and other JetBrains products.
+                        </p>
+                        <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-4">
+                          <p className="text-sm text-yellow-300 flex items-start gap-2">
+                            <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
+                            <span>JetBrains plugin currently in beta. Install via settings → Plugins → Marketplace.</span>
+                          </p>
+                        </div>
+                        <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-lg p-4 font-mono text-sm">
+                          <code className="block text-[#F0CDFF]">Settings → Plugins → Search "ClarityAI"</code>
+                        </div>
+                      </div>
+
+                      <div className="bg-gradient-to-br from-[#A459E1]/10 to-[#F0CDFF]/10 border border-[#A459E1]/30 rounded-xl p-6">
+                        <div className="flex items-center gap-3 mb-4">
+                          <Terminal className="h-6 w-6 text-blue-400" />
+                          <h3 className="text-xl font-bold text-foreground">CI/CD Integration</h3>
+                        </div>
+                        <p className="text-muted-foreground mb-4">
+                          Run ClarityAI security scans and quality checks in your CI/CD pipeline.
+                        </p>
+                        <div className="space-y-4">
+                          <div>
+                            <p className="text-sm font-semibold text-foreground mb-2">GitHub Actions:</p>
+                            <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-lg p-4 font-mono text-xs">
+                              <code className="block text-gray-400 mb-2"># .github/workflows/clarityai.yml</code>
+                              <code className="block text-[#F0CDFF]">name: ClarityAI Security Scan</code>
+                              <code className="block text-[#F0CDFF]">on: [push, pull_request]</code>
+                              <code className="block text-[#F0CDFF]">jobs:</code>
+                              <code className="block text-[#F0CDFF]">  scan:</code>
+                              <code className="block text-[#F0CDFF]">    runs-on: ubuntu-latest</code>
+                              <code className="block text-[#F0CDFF]">    steps:</code>
+                              <code className="block text-[#F0CDFF]">      - uses: actions/checkout@v3</code>
+                              <code className="block text-[#F0CDFF]">      - uses: clarityai/scan-action@v1</code>
+                              <code className="block text-[#F0CDFF]">        with:</code>
+                              <code className="block text-[#F0CDFF]">          severity: high</code>
+                            </div>
+                          </div>
+                          <div>
+                            <p className="text-sm font-semibold text-foreground mb-2">GitLab CI:</p>
+                            <div className="bg-[#1a0b2e] border border-[#A459E1]/30 rounded-lg p-4 font-mono text-xs">
+                              <code className="block text-gray-400 mb-2"># .gitlab-ci.yml</code>
+                              <code className="block text-[#F0CDFF]">clarityai_scan:</code>
+                              <code className="block text-[#F0CDFF]">  image: clarityai/cli:latest</code>
+                              <code className="block text-[#F0CDFF]">  script:</code>
+                              <code className="block text-[#F0CDFF]">    - clarityai scan --workspace .</code>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}

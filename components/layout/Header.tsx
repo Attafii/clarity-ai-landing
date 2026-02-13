@@ -18,18 +18,18 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4">
-      <Link
-        href='/'
-        aria-label='home'
-        className={`flex items-center space-x-2 transition-all duration-300 ease-in-out ${
-          isScrolled 
-            ? 'bg-black/70 backdrop-blur-md border border-[#A459E1]/30 rounded-full px-4 py-2 shadow-lg shadow-[#A459E1]/10' 
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4">
+      <div
+        className={`flex items-center justify-between gap-4 transition-all duration-300 ease-in-out ${
+          isScrolled
+            ? 'bg-black/70 backdrop-blur-md border border-[#A459E1]/30 rounded-full px-6 py-2 shadow-lg shadow-[#A459E1]/10'
             : 'bg-transparent px-2 py-2'
         }`}
       >
-        <Logo />
-      </Link>
+        <Link href="/" aria-label="home" className="flex items-center space-x-2">
+          <Logo />
+        </Link>
+      </div>
     </header>
   );
 }

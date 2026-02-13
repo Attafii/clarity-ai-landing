@@ -10,8 +10,16 @@ import CTA from "@/components/sections/CTA";
 import OneShotPrompt from "@/components/sections/OneShotPrompt";
 import OpenSource from "@/components/sections/OpenSource";
 
-// Lazy load heavy components for better initial load performance
-const TestimonialsSection = dynamic(() => import("@/components/ui/testimonials-columns-1").then(mod => ({ default: mod.TestimonialsSection })), { ssr: false });
+import { GitHubStarBanner } from "@/components/widgets/GitHubStarBanner";
+
+const FeatureSpotlightCarousel = dynamic(() => import("@/components/sections/FeatureSpotlightCarousel").then(mod => ({ default: mod.FeatureSpotlightCarousel })), { ssr: false });
+const ComparisonTable = dynamic(() => import("@/components/sections/ComparisonTable").then(mod => ({ default: mod.ComparisonTable })), { ssr: false });
+const AnimatedStatistics = dynamic(() => import("@/components/sections/AnimatedStatistics").then(mod => ({ default: mod.AnimatedStatistics })), { ssr: false });
+const BlogPostPreviews = dynamic(() => import("@/components/sections/BlogPostPreviews").then(mod => ({ default: mod.BlogPostPreviews })), { ssr: false });
+const GlobalSearch = dynamic(() => import("@/components/widgets/GlobalSearch").then(mod => ({ default: mod.GlobalSearch })), { ssr: false });
+const ExitIntentPopup = dynamic(() => import("@/components/widgets/ExitIntentPopup").then(mod => ({ default: mod.ExitIntentPopup })), { ssr: false });
+const SocialProofNotifications = dynamic(() => import("@/components/widgets/SocialProofNotifications").then(mod => ({ default: mod.SocialProofNotifications })), { ssr: false });
+const EmailCaptureWidget = dynamic(() => import("@/components/widgets/EmailCaptureWidget").then(mod => ({ default: mod.EmailCaptureWidget })), { ssr: false });
 const Features = dynamic(() => import("@/components/ui/features-8").then(mod => ({ default: mod.Features })), { ssr: false });
 const Features5 = dynamic(() => import("@/components/ui/features-5").then(mod => ({ default: mod.Features5 })), { ssr: false });
 const CyberneticBentoGrid = dynamic(() => import("@/components/ui/cybernetic-bento-grid").then(mod => ({ default: mod.CyberneticBentoGrid })), { ssr: false });
@@ -27,8 +35,17 @@ export default function Home() {
         <Hero />
       </section>
 
+      {/* NEW: GitHub Star Banner */}
+      <GitHubStarBanner />
+
+      {/* NEW: Feature Spotlight Carousel */}
+      <FeatureSpotlightCarousel />
+
       {/* Features Section */}
       <Features />
+
+      {/* NEW: Animated Statistics */}
+      <AnimatedStatistics />
 
       {/* Additional Features Section - Built for Scaling Teams */}
       <Features5 />
@@ -42,8 +59,14 @@ export default function Home() {
       {/* One-Shot Prompt Section - Trending Feature */}
       <OneShotPrompt />
 
-      {/* Testimonials Section */}
-      <TestimonialsSection />
+      {/* NEW: Comparison Table */}
+      <ComparisonTable />
+
+      {/* NEW: Blog Post Previews */}
+      <BlogPostPreviews />
+
+      {/* NEW: Email Capture Widget */}
+      <EmailCaptureWidget />
 
       {/* FAQ Section */}
       <FAQ />
@@ -53,6 +76,11 @@ export default function Home() {
 
       {/* Floating Navigation Dock */}
       <FloatingDockSection />
+
+      {/* NEW: Floating Widgets */}
+      <GlobalSearch />
+      <ExitIntentPopup />
+      <SocialProofNotifications />
       
       <Footer />
     </div>
