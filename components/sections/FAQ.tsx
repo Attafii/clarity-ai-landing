@@ -52,9 +52,9 @@ export default function FAQ() {
       question: "Is it really free?",
       answer: "Yes! The extension is 100% free and open source. The ClarityAI service provides a high-performance LLM model at no cost for all users, making advanced prompt engineering accessible to everyone."
     },
-    {
-      question: "How do I get an API key?",
-      answer: "API keys are provided for free by the ClarityAI service. You can obtain your key directly through our platform and add it to your VS Code settings under clarity.apiKey to start enhancing your prompts instantly."
+   {
+      question: "Do I need to add my own API key or do I need to pay?",
+      answer: "ClarityAI has its own service and model that you can use for free. You don't need to provide your own API key or pay for advanced prompt enhancement features."
     },
     {
       question: "Can I use it offline?",
