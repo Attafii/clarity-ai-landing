@@ -43,7 +43,12 @@ export async function checkRateLimit(
   request: NextRequest,
   endpoint: 'contact' | 'newsletter'
 ): Promise<{ success: boolean; remaining?: number; resetTime?: number }> {
-  const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
+  // Extract IP from headers (works with Vercel, proxies, etc)
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+    request.headers.get('x-real-ip') ||
+    request.headers.get('cf-connecting-ip') ||
+    'unknown';
 
   try {
     // In production, use Upstash (if configured)

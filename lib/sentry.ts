@@ -32,8 +32,8 @@ if (env.NEXT_PUBLIC_SENTRY_DSN) {
           return null;
         }
 
-        // Don't send 4xx errors user action (optional)
-        if (event.status === '400' || event.status === '404') {
+        // Don't send specific error types
+        if (error instanceof Error && error.message.includes('404')) {
           return null;
         }
       }
