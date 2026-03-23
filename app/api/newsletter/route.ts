@@ -2,7 +2,25 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { sql } from '@/lib/db';
 
-const resend = new Resend(process.env.RESEND_API_KEY || 're_WhLnVwFE_987dpYHu4FjcNBjLtoowaYb2');
+// Helper function to escape HTML special characters
+function escapeHtml(text: string): string {
+  const map: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;',
+  };
+  return text.replace(/[&<>"']/g, (char) => map[char]);
+}
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+if (!process.env.RESEND_API_KEY) {
+  console.error('RESEND_API_KEY is not configured');
+}
+
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'contact@clarity-ai.app';
 
 export async function POST(request: Request) {
   try {
@@ -13,6 +31,22 @@ export async function POST(request: Request) {
       return NextResponse.json(
         { error: 'Valid email is required' },
         { status: 400 }
+      );
+    }
+
+    // Validate email format more strictly
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: 'Invalid email address' },
+        { status: 400 }
+      );
+    }
+
+    if (!resend) {
+      return NextResponse.json(
+        { error: 'Email service is not configured' },
+        { status: 500 }
       );
     }
 
@@ -44,6 +78,9 @@ export async function POST(request: Request) {
       VALUES (${email})
     `;
 
+    // Escape email for HTML context
+    const escapedEmail = escapeHtml(email);
+
     // Send welcome email via Resend
     // Note: Using onboarding@resend.dev as default for unverified domains
     await resend.emails.send({
@@ -61,27 +98,27 @@ export async function POST(request: Request) {
             <div style="background: linear-gradient(135deg, #A459E1 0%, #F0CDFF 100%); padding: 40px 20px; text-align: center; border-radius: 10px 10px 0 0;">
               <h1 style="color: white; margin: 0; font-size: 32px;">✨ Welcome to ClarityAI!</h1>
             </div>
-            
+
             <div style="background: #f9f9f9; padding: 40px 30px; border-radius: 0 0 10px 10px;">
               <h2 style="color: #A459E1; margin-top: 0;">Thanks for subscribing! 🎉</h2>
-              
+
               <p style="font-size: 16px; color: #555;">
                 You're now part of the ClarityAI community! You'll receive updates about:
               </p>
-              
+
               <ul style="font-size: 16px; color: #555; line-height: 1.8;">
                 <li>New features and improvements</li>
                 <li>Prompt engineering tips and tricks</li>
                 <li>AI development best practices</li>
                 <li>Community highlights and contributions</li>
               </ul>
-              
+
               <div style="background: white; border-left: 4px solid #A459E1; padding: 20px; margin: 30px 0; border-radius: 5px;">
                 <h3 style="margin-top: 0; color: #A459E1;">🚀 Get Started Now</h3>
                 <p style="margin-bottom: 15px;">Install ClarityAI from the VS Code Marketplace and start enhancing your prompts today:</p>
                 <a href="https://marketplace.visualstudio.com/items?itemName=AhmedAttafii.clarityai" style="display: inline-block; background: linear-gradient(135deg, #A459E1, #F0CDFF); color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; font-weight: bold;">Install Extension</a>
               </div>
-              
+
               <p style="font-size: 14px; color: #888; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
                 You're receiving this email because you subscribed to ClarityAI updates.
                 <br>
@@ -96,15 +133,15 @@ export async function POST(request: Request) {
     // Send notification to admin
     await resend.emails.send({
       from: 'ClarityAI System <onboarding@resend.dev>',
-      to: 'attafiahmed.dev@gmail.com',
+      to: CONTACT_EMAIL,
       subject: 'New Newsletter Subscriber! 📧',
       html: `
         <div style="font-family: sans-serif; padding: 20px;">
           <h2 style="color: #A459E1;">New Subscriber Alert</h2>
           <p>A new user has just subscribed to the newsletter:</p>
           <div style="background: #f4f4f4; padding: 15px; border-radius: 8px;">
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+            <p><strong>Email:</strong> ${escapedEmail}</p>
+            <p><strong>Date:</strong> ${escapeHtml(new Date().toLocaleString())}</p>
           </div>
         </div>
       `,
