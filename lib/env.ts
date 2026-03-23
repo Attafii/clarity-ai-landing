@@ -45,7 +45,7 @@ try {
   env = envSchema.parse(process.env);
 } catch (error) {
   if (error instanceof z.ZodError && process.env.NODE_ENV !== 'test') {
-    const missingVars = error.errors
+    const missingVars = error.issues
       .map((err) => `${err.path.join('.')}: ${err.message}`)
       .join('\n  ');
 

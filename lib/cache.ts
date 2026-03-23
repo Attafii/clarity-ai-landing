@@ -88,7 +88,7 @@ class RedisCache {
 
       logger.debug('Redis cache set', { key, ttl });
     } catch (error) {
-      logger.warn('Redis cache set error', error, { key });
+      logger.error('Redis cache set error', error, { key });
     }
   }
 
@@ -114,7 +114,7 @@ class RedisCache {
       logger.debug('Redis cache hit', { key });
       return data.result;
     } catch (error) {
-      logger.warn('Redis cache get error', error, { key });
+      logger.error('Redis cache get error', error, { key });
       return null;
     }
   }
@@ -130,7 +130,7 @@ class RedisCache {
 
       logger.debug('Redis cache deleted', { key });
     } catch (error) {
-      logger.warn('Redis cache delete error', error, { key });
+      logger.error('Redis cache delete error', error, { key });
     }
   }
 
@@ -145,7 +145,7 @@ class RedisCache {
 
       logger.debug('Redis cache cleared');
     } catch (error) {
-      logger.warn('Redis cache clear error', error);
+      logger.error('Redis cache clear error', error);
     }
   }
 }
@@ -210,7 +210,7 @@ export async function invalidateCache(pattern: string): Promise<void> {
     if (stats) {
       // In-memory: filter keys
       const regex = new RegExp('^' + pattern.replace('*', '.*') + '$');
-      const keysToDelete = stats.keys.filter((k) => regex.test(k));
+      const keysToDelete = stats.keys.filter((k: string) => regex.test(k));
 
       for (const key of keysToDelete) {
         await cache.delete(key);
@@ -225,3 +225,4 @@ export async function invalidateCache(pattern: string): Promise<void> {
     logger.error('Cache invalidation error', error, { pattern });
   }
 }
+

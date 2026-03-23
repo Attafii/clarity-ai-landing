@@ -53,12 +53,12 @@ export async function POST(request: NextRequest) {
     const validation = ContactSchema.safeParse(body);
     if (!validation.success) {
       logger.warn('Contact form validation failed', {
-        errors: validation.error.errors,
+        errors: validation.error.issues,
       });
       return NextResponse.json(
         {
           error: 'Invalid input',
-          details: validation.error.errors.map((err) => ({
+          details: validation.error.issues.map((err) => ({
             path: err.path.join('.'),
             message: err.message,
           })),

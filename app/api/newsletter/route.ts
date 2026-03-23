@@ -54,12 +54,12 @@ export async function POST(request: NextRequest) {
     const validation = NewsletterSchema.safeParse(body);
     if (!validation.success) {
       logger.warn('Newsletter validation failed', {
-        errors: validation.error.errors,
+        errors: validation.error.issues,
       });
       return NextResponse.json(
         {
           error: 'Invalid email address',
-          details: validation.error.errors.map((err) => ({
+          details: validation.error.issues.map((err) => ({
             path: err.path.join('.'),
             message: err.message,
           })),

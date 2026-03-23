@@ -8,8 +8,8 @@ jest.mock('@sentry/nextjs', () => ({
   captureMessage: jest.fn(),
 }))
 
-// Mock environment variables
+// Mock environment variables (NODE_ENV is read-only, skip it)
 process.env.NEXT_PUBLIC_APP_URL = 'http://localhost:3000'
 process.env.RESEND_API_KEY = 'test-key'
 process.env.CONTACT_EMAIL = 'test@example.com'
-process.env.NODE_ENV = 'test'
+

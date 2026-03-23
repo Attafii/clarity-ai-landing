@@ -1,91 +1,225 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import Header from "@/components/layout/Header";
-import Hero from "@/components/sections/Hero";
-import FloatingDockSection from "@/components/sections/FloatingDockSection";
-import Pricing from "@/components/sections/Pricing";
-import FAQ from "@/components/sections/FAQ";
-import CTA from "@/components/sections/CTA";
-import OneShotPrompt from "@/components/sections/OneShotPrompt";
-import OpenSource from "@/components/sections/OpenSource";
+import { lazy, Suspense } from 'react';
+import Header from '@/components/layout/Header';
+import Hero from '@/components/sections/Hero';
+import FloatingDockSection from '@/components/sections/FloatingDockSection';
+import Pricing from '@/components/sections/Pricing';
+import FAQ from '@/components/sections/FAQ';
+import CTA from '@/components/sections/CTA';
+import OneShotPrompt from '@/components/sections/OneShotPrompt';
+import OpenSource from '@/components/sections/OpenSource';
 
-import { GitHubStarBanner } from "@/components/widgets/GitHubStarBanner";
+import { GitHubStarBanner } from '@/components/widgets/GitHubStarBanner';
 
-const FeatureSpotlightCarousel = dynamic(() => import("@/components/sections/FeatureSpotlightCarousel").then(mod => ({ default: mod.FeatureSpotlightCarousel })), { ssr: false });
-const ComparisonTable = dynamic(() => import("@/components/sections/ComparisonTable").then(mod => ({ default: mod.ComparisonTable })), { ssr: false });
-const AnimatedStatistics = dynamic(() => import("@/components/sections/AnimatedStatistics").then(mod => ({ default: mod.AnimatedStatistics })), { ssr: false });
-const BlogPostPreviews = dynamic(() => import("@/components/sections/BlogPostPreviews").then(mod => ({ default: mod.BlogPostPreviews })), { ssr: false });
-const Testimonials = dynamic(() => import("@/components/ui/testimonials").then(mod => ({ default: mod.Testimonials })), { ssr: false });
-const GlobalSearch = dynamic(() => import("@/components/widgets/GlobalSearch").then(mod => ({ default: mod.GlobalSearch })), { ssr: false });
-const ExitIntentPopup = dynamic(() => import("@/components/widgets/ExitIntentPopup").then(mod => ({ default: mod.ExitIntentPopup })), { ssr: false });
-const SocialProofNotifications = dynamic(() => import("@/components/widgets/SocialProofNotifications").then(mod => ({ default: mod.SocialProofNotifications })), { ssr: false });
-const EmailCaptureWidget = dynamic(() => import("@/components/widgets/EmailCaptureWidget").then(mod => ({ default: mod.EmailCaptureWidget })), { ssr: false });
-const Features = dynamic(() => import("@/components/ui/features-8").then(mod => ({ default: mod.Features })), { ssr: false });
-const Features5 = dynamic(() => import("@/components/ui/features-5").then(mod => ({ default: mod.Features5 })), { ssr: false });
-const CyberneticBentoGrid = dynamic(() => import("@/components/ui/cybernetic-bento-grid").then(mod => ({ default: mod.CyberneticBentoGrid })), { ssr: false });
-const Footer = dynamic(() => import("@/components/layout/Footer"), { ssr: false });
+// Loading skeleton component
+const LoadingSkeleton = () => (
+  <div className="w-full h-64 bg-gradient-to-r from-gray-900 to-gray-800 animate-pulse rounded-lg" />
+);
+
+// ============================================
+// ABOVE-THE-FOLD COMPONENTS (SSR enabled)
+// ============================================
+// These load immediately with server-side rendering for better first paint
+const FeatureSpotlightCarousel = dynamic(
+  () =>
+    import('@/components/sections/FeatureSpotlightCarousel').then((mod) => ({
+      default: mod.FeatureSpotlightCarousel,
+    })),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: true, // Enable SSR for above-the-fold
+  }
+);
+
+const Features = dynamic(
+  () => import('@/components/ui/features-8').then((mod) => ({ default: mod.Features })),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: true, // Enable SSR for above-the-fold
+  }
+);
+
+// ============================================
+// MIDDLE-OF-PAGE COMPONENTS (Lazy loading)
+// ============================================
+const AnimatedStatistics = dynamic(
+  () =>
+    import('@/components/sections/AnimatedStatistics').then((mod) => ({
+      default: mod.AnimatedStatistics,
+    })),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false, // Lazy load
+  }
+);
+
+const Features5 = dynamic(
+  () => import('@/components/ui/features-5').then((mod) => ({ default: mod.Features5 })),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false,
+  }
+);
+
+const CyberneticBentoGrid = dynamic(
+  () =>
+    import('@/components/ui/cybernetic-bento-grid').then((mod) => ({
+      default: mod.CyberneticBentoGrid,
+    })),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false,
+  }
+);
+
+const ComparisonTable = dynamic(
+  () =>
+    import('@/components/sections/ComparisonTable').then((mod) => ({
+      default: mod.ComparisonTable,
+    })),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false,
+  }
+);
+
+// ============================================
+// BELOW-THE-FOLD COMPONENTS (Defer loading)
+// ============================================
+const Testimonials = dynamic(
+  () => import('@/components/ui/testimonials').then((mod) => ({ default: mod.Testimonials })),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false,
+  }
+);
+
+const BlogPostPreviews = dynamic(
+  () =>
+    import('@/components/sections/BlogPostPreviews').then((mod) => ({
+      default: mod.BlogPostPreviews,
+    })),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false,
+  }
+);
+
+const EmailCaptureWidget = dynamic(
+  () =>
+    import('@/components/widgets/EmailCaptureWidget').then((mod) => ({
+      default: mod.EmailCaptureWidget,
+    })),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false,
+  }
+);
+
+// ============================================
+// INTERACTIVE WIDGETS (Load on demand)
+// ============================================
+const GlobalSearch = dynamic(
+  () =>
+    import('@/components/widgets/GlobalSearch').then((mod) => ({
+      default: mod.GlobalSearch,
+    })),
+  {
+    ssr: false,
+  }
+);
+
+const ExitIntentPopup = dynamic(
+  () =>
+    import('@/components/widgets/ExitIntentPopup').then((mod) => ({
+      default: mod.ExitIntentPopup,
+    })),
+  {
+    ssr: false,
+  }
+);
+
+const SocialProofNotifications = dynamic(
+  () =>
+    import('@/components/widgets/SocialProofNotifications').then((mod) => ({
+      default: mod.SocialProofNotifications,
+    })),
+  {
+    ssr: false,
+  }
+);
+
+// Footer - important for SEO, load early
+const Footer = dynamic(() => import('@/components/layout/Footer'), {
+  ssr: true,
+});
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden transition-colors">
       <Header />
-      
-      {/* Hero Section */}
+
+      {/* ===== CRITICAL PATH ===== */}
       <section id="home">
         <Hero />
       </section>
 
-      {/* NEW: GitHub Star Banner */}
       <GitHubStarBanner />
 
-      {/* NEW: Feature Spotlight Carousel */}
-      <FeatureSpotlightCarousel />
+      <Suspense fallback={<LoadingSkeleton />}>
+        <FeatureSpotlightCarousel />
+      </Suspense>
 
-      {/* Features Section */}
-      <Features />
+      <Suspense fallback={<LoadingSkeleton />}>
+        <Features />
+      </Suspense>
 
-      {/* NEW: Animated Statistics */}
-      <AnimatedStatistics />
+      {/* ===== SECONDARY CONTENT ===== */}
+      <Suspense fallback={<LoadingSkeleton />}>
+        <AnimatedStatistics />
+      </Suspense>
 
-      {/* Additional Features Section - Built for Scaling Teams */}
-      <Features5 />
+      <Suspense fallback={<LoadingSkeleton />}>
+        <Features5 />
+      </Suspense>
 
-      {/* Open Source Section */}
       <OpenSource />
 
-      {/* How It Works Section - Interactive Bento Grid */}
-      <CyberneticBentoGrid />
+      <Suspense fallback={<LoadingSkeleton />}>
+        <CyberneticBentoGrid />
+      </Suspense>
 
-      {/* One-Shot Prompt Section - Trending Feature */}
       <OneShotPrompt />
 
-      {/* NEW: Comparison Table */}
-      <ComparisonTable />
+      <Suspense fallback={<LoadingSkeleton />}>
+        <ComparisonTable />
+      </Suspense>
 
-      {/* NEW: Testimonials Section */}
-      <Testimonials />
+      {/* ===== ENGAGEMENT CONTENT ===== */}
+      <Suspense fallback={<LoadingSkeleton />}>
+        <Testimonials />
+      </Suspense>
 
-      {/* NEW: Blog Post Previews */}
-      <BlogPostPreviews />
+      <Suspense fallback={<LoadingSkeleton />}>
+        <BlogPostPreviews />
+      </Suspense>
 
-      {/* NEW: Email Capture Widget */}
-      <EmailCaptureWidget />
+      <Suspense fallback={<LoadingSkeleton />}>
+        <EmailCaptureWidget />
+      </Suspense>
 
-      {/* FAQ Section */}
       <FAQ />
-
-      {/* CTA Section - Final call to action */}
       <CTA />
 
-      {/* Floating Navigation Dock */}
       <FloatingDockSection />
 
-      {/* NEW: Floating Widgets */}
+      {/* ===== INTERACTIVE WIDGETS (Load on demand) ===== */}
       <GlobalSearch />
       <ExitIntentPopup />
       <SocialProofNotifications />
-      
+
       <Footer />
     </div>
   );
