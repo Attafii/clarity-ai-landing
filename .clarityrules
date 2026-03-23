@@ -1,0 +1,22 @@
+# ClarityAI Project Rules
+
+## Coding Standards
+- Use TypeScript for all new files.
+- Prefer functional components over classes.
+- Use arrow functions for all component definitions.
+- Maintain a "Single Responsibility Principle" for all functions.
+
+## Naming Conventions
+- Components: PascalCase (e.g., `UserCard.tsx`)
+- Hooks: camelCase starting with 'use' (e.g., `useAuth.ts`)
+- Utilities: camelCase (e.g., `formatDate.ts`)
+
+## UI & Styling
+- Use Tailwind CSS for all styling.
+- Follow the project's color palette (refer to `tailwind.config.js`).
+- Ensure all components are accessible (ARIA labels, keyboard navigation).
+
+## Tech Stack Specifics
+- Database: Neon (Postgres)
+- Backend: Next.js API Routes
+- Auth: Clerk
