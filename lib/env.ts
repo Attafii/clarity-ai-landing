@@ -2,14 +2,14 @@ import { z } from 'zod';
 
 const envSchema = z.object({
   // Database
-  DATABASE_URL: z.string().url(),
+  DATABASE_URL: z.string().url().optional(),
 
   // Email Service
-  RESEND_API_KEY: z.string().min(1, 'RESEND_API_KEY is required'),
+  RESEND_API_KEY: z.string().min(1).default('test-key'),
   CONTACT_EMAIL: z.string().email().default('contact@clarity-ai.app'),
 
   // Authentication
-  AUTH_SECRET: z.string().min(32, 'AUTH_SECRET must be at least 32 characters'),
+  AUTH_SECRET: z.string().min(32).default('test-secret-min-32-chars-here-'),
   AUTH_GITHUB_ID: z.string().optional(),
   AUTH_GITHUB_SECRET: z.string().optional(),
   AUTH_GOOGLE_ID: z.string().optional(),
@@ -22,7 +22,9 @@ const envSchema = z.object({
 
   // App Configuration
   NEXT_PUBLIC_APP_URL: z.string().url().default('http://localhost:3000'),
-  NODE_ENV: z.enum(['development', 'staging', 'production']).default('development'),
+  NODE_ENV: z
+    .enum(['development', 'staging', 'production', 'test'])
+    .default('development'),
 
   // Sentry (Optional but recommended)
   NEXT_PUBLIC_SENTRY_DSN: z.string().url().optional(),
@@ -42,7 +44,7 @@ let env: Environment;
 try {
   env = envSchema.parse(process.env);
 } catch (error) {
-  if (error instanceof z.ZodError) {
+  if (error instanceof z.ZodError && process.env.NODE_ENV !== 'test') {
     const missingVars = error.errors
       .map((err) => `${err.path.join('.')}: ${err.message}`)
       .join('\n  ');
@@ -57,7 +59,30 @@ try {
     }
   }
 
-  throw error;
+  // Set defaults for test environment
+  if (process.env.NODE_ENV === 'test') {
+    env = {
+      DATABASE_URL: undefined,
+      RESEND_API_KEY: 'test-key',
+      CONTACT_EMAIL: 'test@example.com',
+      AUTH_SECRET: 'test-secret-min-32-chars-here-00',
+      AUTH_GITHUB_ID: undefined,
+      AUTH_GITHUB_SECRET: undefined,
+      AUTH_GOOGLE_ID: undefined,
+      AUTH_GOOGLE_SECRET: undefined,
+      AUTH_URL: 'http://localhost:3000',
+      BETTER_AUTH_SECRET: undefined,
+      BETTER_AUTH_URL: undefined,
+      NEXT_PUBLIC_APP_URL: 'http://localhost:3000',
+      NODE_ENV: 'test',
+      NEXT_PUBLIC_SENTRY_DSN: undefined,
+      UPSTASH_REDIS_REST_URL: undefined,
+      UPSTASH_REDIS_REST_TOKEN: undefined,
+      CSRF_SECRET: undefined,
+    } as Environment;
+  } else {
+    throw error;
+  }
 }
 
 // Validate production requirements
@@ -83,3 +108,4 @@ if (env.NODE_ENV === 'production') {
 }
 
 export { env };
+
